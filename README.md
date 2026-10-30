@@ -8,6 +8,9 @@ A Lean 4 / Mathlib formalization of
 [Author's PDF](https://tenenb.perso.math.cnrs.fr/PPP/ShortSums.pdf) ·
 [DOI](https://doi.org/10.1007/BF02392880)
 
+Registered with Palomar as
+[PALOMAR-2026-10-30-000010, version 1](https://palomar-registry.org/entry?id=PALOMAR-2026-10-30-000010&version=1).
+
 **Theorems 1–3, Corollaries 1–10, and Lemma 2 have Lean proofs**, with the
 corrections and scope conventions listed below. The printed Lemma 1 has a checked
 counterexample; the comparisons needed by the main results are proved separately.
