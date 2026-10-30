@@ -1,0 +1,6 @@
+.lake/
+*.olean
+*.ilean
+*.export
+*.export.ndjson
+__pycache__/

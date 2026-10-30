@@ -1,0 +1,26 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "NairTenenbaum.Submission.theoremOne",
+    "NairTenenbaum.Submission.theoremTwo",
+    "NairTenenbaum.Submission.theoremThree",
+    "NairTenenbaum.Submission.corollaryOne",
+    "NairTenenbaum.Submission.corollaryTwo",
+    "NairTenenbaum.Submission.corollaryThree",
+    "NairTenenbaum.Submission.corollaryFour",
+    "NairTenenbaum.Submission.corollaryFive",
+    "NairTenenbaum.Submission.corollarySix",
+    "NairTenenbaum.Submission.corollarySeven",
+    "NairTenenbaum.Submission.corollaryEight",
+    "NairTenenbaum.Submission.corollaryNine",
+    "NairTenenbaum.Submission.corollaryTen",
+    "NairTenenbaum.Submission.lemmaTwo"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}

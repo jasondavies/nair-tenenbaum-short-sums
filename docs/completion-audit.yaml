@@ -1,0 +1,499 @@
+schema: nair-tenenbaum-progress-v1
+title: Short sums of certain arithmetic functions
+authors:
+  - Mohan Nair
+  - Gérald Tenenbaum
+publication:
+  journal: Acta Mathematica
+  volume: 180
+  year: 1998
+  pages: 119–144
+  doi: 10.1007/BF02392880
+  source: https://tenenb.perso.math.cnrs.fr/PPP/ShortSums.pdf
+status: complete_with_documented_corrections
+lean: leanprover/lean4:v4.35.0
+mathlib_revision: 56a005855ea17e0b0958f73ec801ae140b0a1679
+main_theorems_proved:
+  - NairTenenbaum.theoremTwo
+  - NairTenenbaum.theoremOne
+  - NairTenenbaum.theoremOne_for_families
+  - NairTenenbaum.theoremThree
+  - NairTenenbaum.theoremThree_for_families
+corollaries_proved:
+  - NairTenenbaum.corollaryFour
+  - NairTenenbaum.corollaryEight
+  - NairTenenbaum.corollaryNine
+  - NairTenenbaum.corollaryFive
+  - NairTenenbaum.corollaryOne
+  - NairTenenbaum.corollaryTwo
+  - NairTenenbaum.corollaryThree
+  - NairTenenbaum.corollaryOne_for_families
+  - NairTenenbaum.corollaryThree_for_families
+  - NairTenenbaum.corollarySeven
+  - NairTenenbaum.corollaryTen
+  - NairTenenbaum.corollarySix
+  - NairTenenbaum.corollarySix_for_families
+statement_targets:
+  - declaration: NairTenenbaum.LemmaTwo
+    kind: proposition_definition
+    source: Lemma 2, equation (26)
+    proof_status: proved
+    proof: NairTenenbaum.lemmaTwo
+    interface: general scalar class M, original Section 4 parameters and cutoff, convergent infinite tail, constant chosen before F and D and both cutoffs
+  - declaration: NairTenenbaum.LemmaOneObstruction.linearSystem_comparison_fails
+    kind: counterexample_theorem
+    source: Lemma 1, equations (23)–(24)
+    proof_status: refuted_as_printed
+    interface: arithmetic counterexample for Q=X; required totient and selected-prime comparisons proved separately
+  - declaration: NairTenenbaum.TheoremTwo
+    kind: proposition_definition
+    source: Theorem 2
+    proof_status: proved
+    proof: NairTenenbaum.theoremTwo
+    interface: nonconstant irreducible integer polynomial, arbitrary fixed k greater than degree, no restriction on fixed prime divisors
+  - declaration: NairTenenbaum.CorollaryFour
+    kind: proposition_definition
+    source: Corollary 4
+    proof_status: proved
+    proof: NairTenenbaum.corollaryFour
+    interface: original irreducible integer polynomial without fixed prime divisor, every t at least one, and every positive interval exponent
+  - declaration: NairTenenbaum.CorollaryEight
+    kind: proposition_definition
+    source: Corollary 8
+    proof_status: proved
+    proof: NairTenenbaum.corollaryEight
+    interface: both inequalities with uniform constants for nonzero integer shifts of absolute value at most x
+  - declaration: NairTenenbaum.CorollaryNine
+    kind: proposition_definition
+    source: Corollary 9
+    proof_status: proved
+    proof: NairTenenbaum.corollaryNine
+    interface: all positive dyadic cutoffs and nonzero residues of absolute value at most x, inheriting the range from Corollary 8
+  - declaration: NairTenenbaum.CorollaryFive
+    kind: proposition_definition
+    source: Corollary 5
+    proof_status: proved
+    proof: NairTenenbaum.corollaryFive
+    interface: dyadic floor differences with constants uniform in D and every exponent coefficient greater than sqrt(2)
+  - declaration: NairTenenbaum.CorollarySix
+    kind: proposition_definition
+    source: Corollary 6
+    proof_status: proved_with_explicit_nonconstancy
+    proof: NairTenenbaum.corollarySix
+    interface: nonconstant restricted coordinate in PolynomialSystem; original height and interval hypotheses
+  - declaration: NairTenenbaum.corollarySix_for_families
+    kind: theorem
+    source: Corollary 6
+    proof_status: proved_with_explicit_nonconstancy
+    interface: original integer polynomial families with nonconstant restricted coordinate; factorization constructed
+  - declaration: NairTenenbaum.CorollaryTen
+    kind: proposition_definition
+    source: Corollary 10
+    proof_status: proved
+    proof: NairTenenbaum.corollaryTen
+    interface: Goldbach representation count with constants uniform in the represented integer and interval
+  - declaration: NairTenenbaum.TheoremThree
+    kind: proposition_definition
+    source: Theorem 3, equation (22)
+    proof_status: proved
+    proof: NairTenenbaum.theoremThree
+    interface: supplied irreducible factorization data in PolynomialSystem
+  - declaration: NairTenenbaum.theoremThree_for_families
+    kind: theorem
+    source: Theorem 3, equation (22)
+    proof_status: proved
+    interface: original integer polynomial families; factorization constructed
+  - declaration: NairTenenbaum.CorollarySeven
+    kind: proposition_definition
+    source: Corollary 7
+    proof_status: proved
+    proof: NairTenenbaum.corollarySeven
+    interface: nonzero integer shifts with constants uniform in the shift
+  - declaration: NairTenenbaum.TheoremOne
+    kind: proposition_definition
+    source: Theorem 1, equation (18)
+    proof_status: proved
+    proof: NairTenenbaum.theoremOne
+    interface: supplied irreducible factorization data in PolynomialSystem
+  - declaration: NairTenenbaum.CorollaryOne
+    kind: proposition_definition
+    source: Corollary 1
+    proof_status: proved
+    proof: NairTenenbaum.corollaryOne
+    interface: supplied irreducible factorization data in PolynomialSystem
+  - declaration: NairTenenbaum.CorollaryTwo
+    kind: proposition_definition
+    source: Corollary 2, equation (20)
+    proof_status: proved
+    proof: NairTenenbaum.corollaryTwo
+    interface: original integer polynomials with integral irreducibility and rational pairwise coprimality
+  - declaration: NairTenenbaum.CorollaryThree
+    kind: proposition_definition
+    source: Corollary 3
+    proof_status: proved
+    proof: NairTenenbaum.corollaryThree
+    interface: supplied irreducible factorization data in PolynomialSystem
+  - declaration: NairTenenbaum.theoremOne_for_families
+    kind: theorem
+    source: Theorem 1, equation (18)
+    proof_status: proved
+    interface: original integer polynomial families; factorization constructed
+  - declaration: NairTenenbaum.corollaryOne_for_families
+    kind: theorem
+    source: Corollary 1
+    proof_status: proved
+    interface: original integer polynomial families; factorization constructed
+  - declaration: NairTenenbaum.corollaryThree_for_families
+    kind: theorem
+    source: Corollary 3
+    proof_status: proved
+    interface: original integer polynomial families; factorization constructed
+proved_components:
+  - full Lemma 2 for general scalar class-M weights, including nonmultiplicative weights
+  - common class-M constants independent of F and discriminant and both real cutoffs
+  - prime-factor flooring-root lift preserving scalar admissibility
+  - admissibility of products on disjoint coordinate blocks
+  - exact scalar-weight encoding by a doubled exponent matrix and squared weighted mass
+  - preservation of the original smooth-tail cutoff and exponential decay under the lift
+  - small-cutoff case below two and convergence of the general infinite tail
+  - Theorem 2 with arbitrary fixed k greater than degree and no fixed-prime-divisor restriction
+  - power-saving counts for every ideal class and the full ideal counting function
+  - identification of the quantitative ideal-count leading coefficient with the Dedekind zeta residue
+  - unconditional weighted prime-root upper bound with leading coefficient one and bounded error
+  - small-prime and rough polynomial logarithmic masses with linear interval-length errors
+  - absorption of the linear mass error by divisor hits and the final strict logarithmic exponent gain
+  - exact conversion from an integral lattice basis to integer-coordinate counts
+  - power-saving norm-cutoff lattice count in the fundamental cone with exponent (degree-1)/degree
+  - explicit finite mesh covers of Lipschitz cube images and their dilations
+  - uniform integer lattice-point bounds near dilated Lipschitz charts
+  - exact unit-cell volumes and lattice discrepancy bounded by mixed boundary cells
+  - general quantitative lattice count for bounded regions with finite Lipschitz boundary charts
+  - radial and unit-coordinate face description of the number-field norm-one boundary
+  - compact sign-angle coordinates and smooth radial parametrizations of mixed embedding space
+  - finite smooth boundary charts with field-degree-minus-one parameters
+  - power-saving lattice count for the norm-one region after every real linear coordinate change
+  - residue-degree sum bound and exact identification of prime-norm ideals
+  - logarithmic derivation for arithmetic functions and ideal von Mangoldt convolution identity
+  - exact local ideal von Mangoldt coefficients from formal Euler differentiation
+  - prime-power support, nonnegativity, and pointwise comparison with ordinary von Mangoldt
+  - linear Chebyshev bound for the ideal von Mangoldt summatory function
+  - weighted prime-root sum bounded by the ideal reciprocal sum plus a fixed exceptional-prime constant
+  - partial summation and fractional moments from a linear summatory bound
+  - linear convolution error under a power-saving summatory estimate
+  - sharp weighted prime-root upper bound conditional on an explicit power-saving ideal-count error
+  - exact weighted multiplicity-vector description of ideals of prime-power norm
+  - polynomial inverse of the local ideal-counting series at every prime
+  - local root-correction absolute convergence and positivity including all exceptional primes
+  - global absolute convergence and positivity of the root-ideal correction
+  - positive squarefree-root mean for original irreducible integer polynomials
+  - unconditional dyadic root-density lower bound under the original Theorem 2 polynomial hypotheses
+  - unconditional divisor-hit lower bound in the exact Theorem 2 interval
+  - multiplicative completion from prime-power values and multiplicativity of Dirichlet inverses
+  - exact squarefree-root correction to ideal counts with prime-coefficient cancellation away from the conductor
+  - polynomial bound on ideal prime-power counts via injective prime-ideal multiplicity encoding
+  - uniform exponential bounds for local inverse and root-correction coefficients
+  - summable inverse-square bounds for correction tails at sufficiently large good primes
+  - unique ideal factorization into factors of specified coprime norms and multiplicativity of ideal counts
+  - exact Dirichlet convolution summatory identity and linear mean transfer under absolute summability
+  - ideal norm arithmetic function with positive mean given by the Dedekind zeta residue
+  - positive mean of a nonnegative root-count minorant implies a dyadic root-density lower bound
+  - uniform prime-power root bounds for primitive polynomials including fixed prime divisors
+  - linear smooth logarithmic counting error from Chebyshev prime counting
+  - bounded higher-prime-power logarithmic main contribution
+  - small-prime logarithmic mass reduced to the weighted prime-root sum with a proved linear error
+  - quantitative lower total logarithmic mass with a linear interval-length error
+  - exact prime-multiplicity and prime-power-count expansions of the smooth logarithmic mass
+  - canonical polynomial smooth and rough logarithmic masses and their exact difference identity
+  - upper short-interval congruence count with the floor error retained
+  - smooth logarithmic mass bounded by finite root-density and congruence-remainder terms
+  - prime-power exponent cutoff derived from the size of the polynomial values
+  - logarithmic counting remainder bounded by a uniform local root bound times prime count times log size
+  - primitive residue-root bounds and degree-one reduction at all small primes after affine restriction
+  - removal of fixed prime divisors using every residue class modulo degree factorial times absolute discriminant
+  - preservation of rational irreducibility under affine substitution and taking the primitive part
+  - Hooley multiplication bound without coprimality and finite affine short-sum reduction
+  - uniform transformed interval ranges and unrestricted Hooley moments with a positive logarithmic margin
+  - negligible divisor-window tail for irreducible polynomials with fixed prime divisors
+  - final strict exponential gain for every alpha less than 2 minus log 4 from the divisor-hit exponent margin
+  - divisor-window moment truncation and negligible large-window contribution for eta greater than log 4 minus 1
+  - exact complete-block polynomial congruence counts and divisor-window root-density lower bound
+  - divisor-hit lower bound conditional on an explicit numerical root-density estimate
+  - rough cofactor prime-factor counts with one factor saved at each divisor hit
+  - finite logarithmic mass bound using the actual greatest prime factor of the product
+  - canonical smooth and rough parts at a real cutoff and their logarithmic mass identity
+  - exponential greatest-prime-factor gain conditional on a quantitative lower rough-mass estimate
+  - geometric Euler bound for finite ideal-norm sums by prime-factor multiplicity encoding
+  - degree bound for prime ideals above each rational prime and convergent higher-degree errors
+  - full ideal-norm Dirichlet series bounded above by the root Euler exponential
+  - exact residue-root equality under integral normalization at good primes
+  - sharp lower logarithmic prime-root bound for irreducible polynomials
+  - lower log log x bound for the truncated prime-root reciprocal sum
+  - irreducible polynomial sieve product bounded by a constant divided by log x
+  - Corollary 4 with sharp logarithmic and subexponential exponents
+  - exact correspondence of residue roots and prime-norm ideals away from conductor primes
+  - positive lower pole bound for the ideal-norm Dirichlet series
+  - logarithmic upper bound for finite sums of prime reciprocals
+  - uniform reciprocal-totient bound by a fixed power of log log x
+  - absorption of reciprocal totients into every positive Hooley exponent margin
+  - Corollary 8 with both inequalities uniform in nonzero shifts up to x
+  - Corollary 9 uniform in the dyadic cutoff and nonzero residues up to x
+  - subpolynomial irreducible polynomial root counts from uniform prime-power bounds
+  - coprime squarefree-powerful decomposition and injective square-times-cube representation
+  - convergence of divisor-weighted root sums over powerful integers
+  - sharp unrestricted weighted reciprocal Hooley mean for every t at least one
+  - Corollary 5 with constants uniform in the dyadic cutoff
+  - finite and infinite squarefree Euler bounds from nonnegative prime weights
+  - exact divisor-series prime product and exponential Euler bound retaining the factor 2^t
+  - convergence, differentiation, and finite-interval integral identities for the prime root series
+  - exact integrating factor for the nonlinear Hooley differential inequality
+  - integrability of the transformed derivative majorant and unconditional endpoint-plus-integral estimate
+  - elementary logarithmic-prime pole bound with explicit degree-only constant and its substitution into the majorant
+  - residue homomorphism kernels and exact quotient cardinalities for arbitrary moduli
+  - conductor-coprime polynomial quotients and injection of residue roots into ideals of prescribed norm
+  - nonzero conductor exponent from the discriminant of an integral primitive generator
+  - real ideal-norm Dirichlet series convergence, Dedekind zeta identity, and simple-pole bound
+  - good-prime Euler product bounded by ideal counts with a summable logarithmic error
+  - sharp logarithmic prime-root bound for minimal polynomials including conductor primes
+  - integral normalization and residue-root comparison for arbitrary integer polynomials
+  - sharp logarithmic prime-root bound for every integer polynomial irreducible over the rationals
+  - quantitative Hooley exponent gap bounded below by t divided by 7q(q-1)
+  - explicit moment power majorant uniform in the moment order and its integrated bound
+  - exact recovery of the moment series with exponent 2^t-t+t/q
+  - integrated error coefficient bounded linearly in q and endpoint bounded uniformly in q
+  - Hooley Dirichlet series bound with constant (Kq)^q uniform in the eligible moment order
+  - finite squarefree reciprocal sums bounded by Dirichlet moments at 1+1/log(x)
+  - rounded integer moment optimization with limiting coefficient sqrt(2t)
+  - sharp weighted reciprocal Hooley mean over squarefree integers for every t at least one
+  - convergent prime-cofactor reindexing of squarefree logarithmic series
+  - exact prime expansion of the Hooley Dirichlet derivative in both summation orders
+  - convergence of the root-weighted prime series and the infinite fractional-moment prime step
+  - summability and nonlinear Hölder bound for the Dirichlet mixed error
+  - unconditional Hooley differential inequality with explicit prime and divisor series
+  - Hooley integral moments with measurability, integrability, positivity, and two-sided maximum comparison
+  - exact coprime prime recurrence and mixed-moment interpolation
+  - uniform prime logarithmic mass on intervals of logarithmic length two
+  - finite prime-sampling and mixed-term estimates with explicit 4^q moment-order dependence
+  - root-weighted prime recurrence and fractional-power step with the main prime sum retained explicitly
+  - squarefree moment coefficients with subpolynomial growth uniform in moment order and polynomial coefficients
+  - convergence and termwise differentiation of the Hooley moment Dirichlet series for every real argument greater than one
+  - exact floor-difference counts of multiples and dyadic divisor-sum rearrangement for Corollary 5
+  - polynomial Hooley short sums reduced to root-weighted means for all positive interval and moment exponents
+  - exact prime progression count differences and averaged divisor-window rearrangement for Corollary 9
+  - shifted-prime Hooley moments with explicit reciprocal-totient factor and constants uniform for nonzero shifts of size at most x
+  - unconditional reductions of both dyadic averages to the same reciprocal Hooley mean uniformly in the dyadic cutoff
+  - Corollary 6 exponential smoothness saving for a nonconstant restricted coordinate
+  - Corollary 6 for original polynomial families with factorization constructed
+  - weighted small-value and fixed-prime-support exceptional estimates with uniform power savings
+  - absorption of exceptional terms into the smoothness-weighted main term under the original interval range
+  - admissible selected-prime tilt estimate via Theorem 1 and uniform equation (41)
+  - checked counterexample to Corollary 6 when the restricted coordinate is a constant unit
+  - selected-prime moment comparison on the full weighted-mass truncation including nonsmooth integers
+  - complete multiplicativity and admissibility of the small-prime coordinate tilt
+  - corrected proof of Corollary 6 equation (41) with degree and restricted-discriminant uniformity
+  - coefficient-independent polynomial absolute-value fiber and sublevel counts
+  - arbitrarily small power bounds for polynomial values supported on a fixed finite prime set
+  - smooth-value Rankin bound with zero extension and an explicit small-value remainder
+  - Corollary 10 under the original interval and height hypotheses
+  - two-prime sieve with separate small-prime exceptions and explicit reciprocal-totient correction
+  - Goldbach sieve cutoff and logarithm-squared saving for intervals of length at least N^theta
+  - Theorem 3 with the height threshold, constant-term correction, and original arithmetic-function growth hypothesis
+  - Theorem 3 for original polynomial families with factorization data constructed
+  - Corollary 7 with exact shifted-linear weight and height and constants uniform in the shift
+  - exhaustive prime-restricted contribution cover and uniform integer-interval assembly
+  - prime-argument exceptional contributions with saving x^(-g epsilon/24)
+  - polynomial degree constants absorbed into an exponent of one eighth for the prime-argument growth margin
+  - prime-argument bad-prime summation retaining the original radical LCM density and restricted discriminant
+  - prime-argument small-divisor reindexing and uniform bound at prefix masses up to x^(3g^2 epsilon)
+  - coefficient-uniform prime-argument sieve scales with cutoff x^(g epsilon/16)
+  - exact Theorem 3 main expression and absorption of power-saving errors into it
+  - small-prefix contribution at actual prime arguments with the reciprocal-logarithm saving
+  - smooth moments with the extra totient power and unchanged arithmetic-function growth assumptions
+  - prime-argument smooth-tail sieve retaining the full combined good and bad prefix mass
+  - one-band decay absorbing the additional reciprocal band exponent
+  - summed prime-argument logarithmic bands with uniform moment strength and smoothness cutoff
+  - exact root-count formula on adjoining X and a verified fixed-prime obstruction to direct use of Theorem 1
+  - elementary reciprocal-logarithm upper bound for the prime Euler product from the harmonic series
+  - exact reciprocal-totient correction for omitted primes in the one-root Euler product
+  - conditional Selberg sieve with admissibility required only at selected primes
+  - prime-argument conditional sieve omitting small fixed primes and retaining the original polynomial Euler product
+  - prime-argument sieve remainder absorption with constants independent of the constant term
+  - uniform multivariable totient comparison with the twist exponent independent of the polynomial degree
+  - selected-prefix majorant for actual prime arguments using the original polynomial value decomposition
+  - existence of common irreducible factorization data for every original family with no fixed prime divisor
+  - normalized integral factor construction with multiplicities and unit signs
+  - rational nonassociation of distinct normalized primitive factors
+  - Theorem 1 and Corollaries 1 and 3 without a supplied-factorization hypothesis
+  - Corollary 3 with the factored root-weighted sums and uniform constants
+  - uniqueness of cross-coprime divisor tuples at fixed weighted mass
+  - disjointness of dagger tuple congruences at the same polynomial value
+  - summed density comparison for finite disjoint joint congruence conditions
+  - disjoint exponent supports for pairwise coprime original polynomials
+  - aggregation of all root densities in a substitution fiber
+  - factored upper bound for the full dagger weight sum at every real cutoff
+  - Corollary 2 with constructed identity-exponent factorization data and the explicit tuple main term
+  - no-fixed-prime condition implies primitivity and transfers integral irreducibility to the rational field
+  - exact reindexing of the irreducible progression weight at every real cutoff
+  - products of one-variable admissible functions with the parameter B^k
+  - zero extension commutes with coordinate products
+  - Corollary 1 with a height threshold independent of beta and the original restricted-discriminant dependence
+  - affine resultant and discriminant scaling including degree zero
+  - divisibility of the transformed restricted discriminant by the original one
+  - exact transformed weight identity with coprimality to the progression modulus
+  - affine coefficient-height bound retaining the degree factor
+  - all four contribution estimates under explicit polynomial-value growth
+  - exhaustive contribution cover on arbitrary integer intervals
+  - uniform integer-interval estimate at every scale at least two with endpoint rounding
+  - progression interval reindexing and exact main-term identity
+  - affine root-count formula at all coprime and noncoprime moduli
+  - exact omitted-prime Euler product for arithmetic progressions
+  - construction of the substituted polynomial system preserving degree and irreducible factor data
+  - Theorem 1 with the original height, growth, interval, and discriminant uniformity
+  - large-prefix rough-remainder estimate at the smaller sieve cutoff
+  - exhaustive four-majorant cover including small total values and zero polynomial values
+  - minimal majorant, equations (12)–(14)
+  - auxiliary multiplicative functions and equation (17)
+  - local auxiliary series convergence and finite smooth Euler products
+  - coprime prime-support splitting and equations (29)–(30)
+  - polynomial root count multiplicativity and prime degree bound
+  - prime-power root bounds under separable reduction
+  - discriminant Bezout identity without a leading-coefficient invertibility hypothesis
+  - irreducible-factor prime-power root bounds outside the restricted bad discriminant
+  - bad-prime root clustering and exponent-independent bounds
+  - all-prime irreducible-factor root bounds uniform in degree and restricted discriminant
+  - root-weighted local convergence and finite smooth Euler products
+  - elementary weighted prime sums and uniform logarithmic-exponent increment bounds
+  - tilted root-weighted local series and finite smooth Euler products
+  - cutoff-uniform root-weighted moment-correction Euler products
+  - moment exponent gap and actual polynomial-factor specialization
+  - valuation-dependent prime increments and support-preserving finite convolution
+  - convergent Euler product and finite smooth bounds for the moment kernel
+  - global finite root-weighted exponential moments on smooth dagger tuples
+  - finite Rankin saving uniform in the mass and smoothness cutoffs
+  - exact smooth-weight reindexing and polynomial-system smooth tail bound
+  - uniform root-auxiliary Euler products on prime bands
+  - smoothness-cutoff comparison preserving the mass bound and dagger conditions
+  - explicit tail absorption and uniform smooth-sum truncation for all cutoffs at least two
+  - convergent infinite root-vector smooth tail with exponential saving and final truncation
+  - root-vector specialization of Lemma 2 for actual polynomial systems
+  - corrected totient comparison after exponential tilting
+  - convergent infinite totient-modified smooth tail with an untwisted truncated right-hand sum
+  - smooth-tail constants uniform in total degree and restricted discriminant
+  - totient smooth tail instantiated with Theorem 1 growth parameters
+  - full discriminant-prime removal and restricted bad-prime support for polynomial divisors
+  - fractional auxiliary Euler products and uniform smooth series bounds
+  - convergence of the full bad-prime tuple series with least-common-multiple density
+  - Mobius inversion over multiples and optimizing truncated Selberg weights
+  - exact Selberg reciprocal-denominator main term and squared-cutoff remainder support
+  - exact logarithmic moment and quantitative lower bound for the truncated Selberg denominator
+  - uniform subpolynomial majorants for distinct-prime products and optimized sieve coefficients
+  - quadratic least-common-multiple remainder estimate for the Selberg sieve
+  - quantitative sieve upper bound uniform in dimension and error exponent
+  - polynomial-value interval sieve with coefficient-independent constants and discharged remainder
+  - conditional polynomial sieve retaining simultaneous CRT density and its remainder numerator
+  - omitted Euler factors controlled by a degree-uniform totient correction
+  - actual sieve prime modulus and restoration of the full sifting Euler product
+  - uniform subpolynomial lower bound for the polynomial sifting product
+  - conditional sieve remainder absorbed under an explicit modulus-and-cutoff level condition
+  - arbitrary-product and prime-support bounds for totient corrections
+  - conditional sieve with the radical LCM density and full bad-prime summation
+  - summation over good tuples and removal of their totient corrections
+  - original unsplit small-divisor sieve sum controlled by one weighted-mass level
+  - uniform sieve threshold at the paper's small-divisor and prime cutoffs
+  - coefficient-uniform comparison of sieve products at power-related cutoffs
+  - sifted small-divisor sum bounded by the original main term with uniform constants
+  - rough integer prime-factor counts and constant arithmetic-growth bounds
+  - exact positive polynomial-value tuples and sieve coprimality of selected prefixes
+  - uniform polynomial-value power bounds from the height hypothesis
+  - first-contribution reduction by grouping integers with the same selected prefix
+  - natural-to-integer interval reindexing and endpoint rounding bounds
+  - first-class majorant bounded by the main term with Theorem 1 height and growth parameters
+  - least prime powers above real thresholds and their modulus size bounds
+  - large coordinate prime power forced by a weighted prefix crossing
+  - elementary union bound for large powers of small primes with uniform root-count constants
+  - second-class inclusion in the exceptional set with repeated irreducible factors allowed
+  - pointwise arithmetic-weight bounds retaining the degree-only coefficient
+  - weighted second-class power saving of x^(-epsilon/3)
+  - unit-tuple contribution and uniform absorption of power savings into the original main term
+  - second-class majorant with Theorem 1 height and growth parameters and rounded endpoints
+  - uniform radical root-count bounds at every prime power
+  - reciprocal-density tails over fixed finite prime support
+  - large smooth divisor tuples mapped to a radical-value divisor through their least common multiple
+  - weighted third-class power saving of x^(-epsilon/12)
+  - third-class majorant with a height threshold independent of the fixed prime support
+  - uniform positive moments for all bad-prime valuations
+  - coefficient-uniform totient-modified smooth moments before taking the tail
+  - smooth-tail saving on the original combined bad and good prefix mass
+  - logarithmic cutoff criterion supplying both moment exponent gaps
+  - reindexing of the original smooth mass tail with its sieve restriction preserved
+  - smooth-tail conditional sieve with separate smoothness and sifting cutoffs
+  - uniform sieve level for large prefixes and all smaller prime cutoffs
+  - selected-prefix majorant preserving smoothness and the original lower mass cutoff
+  - one-band decay after paying arithmetic and Euler-product costs
+  - uniform geometric summation of logarithmic prime bands
+  - real dyadic band cover including strict and closed endpoints
+  - fixed coefficient-independent cutoff supplying every band condition
+  - actual intermediate-prime prefixes covered by finitely many eligible bands
+  - intermediate-prime contribution under Theorem 1 height and growth hypotheses
+  - exact simultaneous polynomial CRT density and interval discrepancy
+  - mixed bad-part and good-coordinate congruence bounds
+  - uniform summation of bad-prime congruence contributions with admissible arithmetic weights
+  - first crossing prime at a weighted-mass threshold and equation (28)
+  - sufficient weighted local comparison criterion and uniform finite Euler product bounds
+  - reciprocal-totient correction satisfies the repaired local criterion for every polynomial factor
+  - finite scalar comparison by complementary whole prime-power splitting
+  - corrected global scalar totient comparison with an explicit coefficient-independent constant
+  - scalar comparison instantiated at every actual irreducible polynomial factor
+  - tuple splitting preserves the weighted-mass cutoff and full dagger restrictions
+  - exact reindexing between weight-fiber sums and truncated tuple sums
+  - corrected global multivariable totient comparison for actual polynomial systems
+  - comparison constant uniform in total degree and restricted bad discriminant
+  - common value-divisors of distinct factors divide the radical discriminant
+  - polynomial degree identities and nonvanishing of the radical discriminant
+  - coefficient-height bounds for integral polynomial values
+  - polynomial congruence counts in intervals with an explicit remainder bound
+  - exponent substitution and finite weight fibers
+  - Hooley divisor concentration and coprime multiplication bound
+  - divisor bounds and admissibility of positive powers of Hooley's function
+  - reduction to arithmetic functions normalized at one
+  - explicit linear polynomial specialization
+source_issues:
+  - source: Corollary 6, nonconstancy of the restricted polynomial
+    declaration: NairTenenbaum.constant_coordinate_smooth_bound_fails
+    status: constant_unit_coordinate_defeats_the_claimed_saving
+    repaired_application: NairTenenbaum.corollarySix
+    repair: explicitly require positive degree of the restricted coordinate
+  - source: Theorem 3 proof, adjoining X
+    declaration: NairTenenbaum.adjoining_X_can_introduce_fixed_prime
+    status: enlarged_family_can_have_a_fixed_prime
+    repaired_application: NairTenenbaum.theoremThree
+    repair: sieve only admissible primes and retain the original degree in arithmetic growth
+  - source: Corollary 7 interval range
+    status: transposed_inequality
+    formalized_range: x^(4 epsilon) <= y <= x, as in Theorem 3
+  - source: Lemma 1, equations (23)–(24)
+    declaration: NairTenenbaum.LemmaOneObstruction.admissible_counterexample
+    polynomial_specialization: NairTenenbaum.LemmaOneObstruction.linearSystem_comparison_fails
+    status: arithmetic_comparison_refuted_as_stated
+    repaired_application: NairTenenbaum.PolynomialSystem.totient_comparison_uniform
+    additional_repaired_application: NairTenenbaum.PolynomialSystem.selectedTilt_weightSum_real_le
+    limitation: does not refute the main theorems; twists beyond the proved totient and selected-prime comparisons need separate treatment
+  - source: Estimate of S1, single-gcd removal preceding equation (32)
+    declaration: NairTenenbaum.gcd_removal_not_coprime
+    status: gcd_removal_does_not_supply_required_coprimality
+    repaired_decomposition: NairTenenbaum.PolynomialSystem.divisor_primeReject_dagger
+    repaired_counting: NairTenenbaum.PolynomialSystem.badPrime_weighted_congruence_sum_le
+    repaired_sieve: NairTenenbaum.exists_smallDivisorSiftedSum_mainTerm_bound
+    repaired_first_class: NairTenenbaum.exists_smallRoughShortSum_theoremOne_bound
+    repaired_main_theorem: NairTenenbaum.theoremOne
+    application_status: all numbered applications have proved specializations
+allowed_axioms:
+  - propext
+  - Classical.choice
+  - Quot.sound
+verification: bash scripts/check.sh
+verification_result:
+  build_jobs: 9410
+  audited_declarations: 3209
+  numbered_paper_statements: 15
+  scope: all numbered results proved or explicitly corrected or refuted; see statement_targets and source_issues
+proof_map: BLUEPRINT.md

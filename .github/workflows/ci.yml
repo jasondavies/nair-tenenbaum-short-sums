@@ -1,0 +1,42 @@
+name: Lean and Palomar
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install submission check tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes bubblewrap python3-yaml python3-jsonschema
+      - uses: leanprover/lean-action@v1
+        with:
+          use-mathlib-cache: true
+      - name: Check submission layout and metadata
+        run: |
+          /usr/bin/python3 scripts/check-submission.py
+          /usr/bin/python3 - <<'PY'
+          import json
+          import urllib.request
+          import jsonschema
+          import yaml
+          url = "https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/v0.4.schema.json"
+          with urllib.request.urlopen(url, timeout=30) as response:
+              schema = json.load(response)
+          with open("formalization.yaml", encoding="utf-8") as source:
+              jsonschema.validate(yaml.safe_load(source), schema)
+          print("Metadata validates against the upstream v0.4 schema.")
+          PY
+      - name: Build and audit every proof and submission theorem
+        run: bash scripts/check.sh
+      - name: Comparator with the bundled NanoDa and con-ron checkers
+        run: bash scripts/verify-comparator.sh
