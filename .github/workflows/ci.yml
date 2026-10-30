@@ -18,6 +18,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install --yes bubblewrap python3-yaml python3-jsonschema
+          # Ubuntu 24.04 and later restrict unprivileged user namespaces via AppArmor,
+          # which bwrap needs for Comparator's sandbox; the runner is disposable.
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
       - uses: leanprover/lean-action@v1
         with:
           use-mathlib-cache: true
