@@ -22,7 +22,7 @@ namespace NairTenenbaum
 /-- Short sums over arbitrary integer intervals, assuming a bound on the actual
 polynomial values and a positive margin between arithmetic growth and the
 exceptional-set saving. -/
-theorem exists_integerSum_mainTerm_bound_of_margin {g : ℕ} (hg : 0 < g)
+theorem exists_integerSum_mainTerm_bound {g : ℕ} (hg : 0 < g)
     {A B ε σ c : ℝ} (hA : 1 ≤ A) (hB : 1 ≤ B) (hε : 0 < ε)
     (hsmall : (g : ℝ) ^ 2 * ε ≤ 1 / 8) (hσ : 0 < σ)
     (hσsmall : (g : ℝ) ^ 2 * σ ≤ 1 / 8) (hc : 0 ≤ c)
@@ -115,23 +115,6 @@ theorem exists_integerSum_mainTerm_bound_of_margin {g : ℕ} (hg : 0 < g)
   simpa only [N, s, add_mul] using add_le_add (add_le_add (add_le_add Hrough Hprime) Hsmooth)
       Hmiddle
 
-/-- The progression margin is a special case of the common interval bound. -/
-theorem exists_integerSum_mainTerm_bound {g : ℕ} (hg : 0 < g)
-    {A B ε σ c : ℝ} (hA : 1 ≤ A) (hB : 1 ≤ B) (hε : 0 < ε)
-    (hsmall : (g : ℝ) ^ 2 * ε ≤ 1 / 8) (hσ : 0 < σ)
-    (hσsmall : (g : ℝ) ^ 2 * σ ≤ 1 / 8) (hc : 0 ≤ c)
-    (hmargin : c * σ ≤ (g : ℝ) * ε / 2) :
-    ∃ x₀ : ℝ, 1 < x₀ ∧ ∃ C : ℕ → ℝ, (∀ D, 0 < C D) ∧
-      ∀ (k r : ℕ) (P : PolynomialSystem k r), P.total.natDegree = g →
-      ∀ (F : ArithmeticMap k), Admissible A B σ F →
-      ∀ (x y : ℝ) (a b : ℤ), x₀ ≤ x → x ^ (4 * (g : ℝ) ^ 2 * ε) ≤ y →
-      a ≤ b → y / 2 ≤ (b : ℝ) - a → (b : ℝ) - a ≤ 2 * y →
-      (∀ t ∈ Finset.Ioc a b, ((P.total.eval t).natAbs : ℝ) ≤ x ^ c) →
-      P.integerSum F a b ≤ C P.badDiscriminant * mainTerm P F x y := by
-  apply exists_integerSum_mainTerm_bound_of_margin hg hA hB hε hsmall hσ hσsmall hc
-  have hgε : 0 ≤ (g : ℝ) * ε := mul_nonneg (Nat.cast_nonneg _) hε.le
-  linarith
-
 /-- The elementary bound used on a bounded range of the analytic scale. -/
 theorem PolynomialSystem.integerSum_le_of_value_bound {k r : ℕ} (P : PolynomialSystem k r)
     {A B σ c x y : ℝ} {F : ArithmeticMap k} (hF : Admissible A B σ F)
@@ -160,7 +143,7 @@ theorem exists_integerSum_mainTerm_bound_all_scales {g : ℕ} (hg : 0 < g)
     {A B ε σ c : ℝ} (hA : 1 ≤ A) (hB : 1 ≤ B) (hε : 0 < ε)
     (hsmall : (g : ℝ) ^ 2 * ε ≤ 1 / 8) (hσ : 0 < σ)
     (hσsmall : (g : ℝ) ^ 2 * σ ≤ 1 / 8) (hc : 0 ≤ c)
-    (hmargin : c * σ ≤ (g : ℝ) * ε / 2) :
+    (hmargin : c * σ ≤ 17 * (g : ℝ) * ε / 24) :
     ∃ C : ℕ → ℝ, (∀ D, 0 < C D) ∧
       ∀ (k r : ℕ) (P : PolynomialSystem k r), P.total.natDegree = g →
       ∀ (F : ArithmeticMap k), Admissible A B σ F →

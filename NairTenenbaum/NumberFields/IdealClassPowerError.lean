@@ -16,7 +16,7 @@ a representative of the inverse class converts this to each ideal class.
 
 @[expose] public section
 
-open scoped Classical nonZeroDivisors
+open scoped nonZeroDivisors
 
 namespace NairTenenbaum
 
@@ -61,6 +61,7 @@ theorem exists_idealSet_normCount_power_error (J : (Ideal (𝓞 K))⁰) :
     ∃ V C : ℝ, 0 ≤ C ∧ ∀ x : ℝ, 1 ≤ x →
       |(Nat.card {a : idealSet K J // mixedEmbedding.norm (a : mixedSpace K) ≤ x} : ℝ) - V * x| ≤
         C * x ^ numberFieldCountingExponent K := by
+  classical
   let L := mixedEmbedding.idealLattice K (FractionalIdeal.mk0 K J)
   let : Module.Free ℤ L := ZLattice.module_free ℝ L
   obtain ⟨V, C, hC, HC⟩ := exists_normCone_lattice_power_error K (Module.Free.chooseBasis ℤ L)

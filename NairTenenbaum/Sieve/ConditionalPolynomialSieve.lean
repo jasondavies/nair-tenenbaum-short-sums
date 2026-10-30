@@ -20,36 +20,6 @@ namespace NairTenenbaum
 
 open Finset Nat Real Polynomial
 
-/-- The global no-fixed-prime specialization of the local conditional sieve. -/
-noncomputable def conditionalPolynomialSieve {r : ℕ} (Q : ℤ[X]) (hQ : NoFixedPrimeDivisor Q)
-    (P : ℕ) (hP : Squarefree P) (hroot : ∀ p, p.Prime → p ∣ P → 0 < rootCount Q p)
-    (R : Fin r → ℤ[X]) (m : Tuple r) (a b : ℤ) : BoundingSieve :=
-  localConditionalPolynomialSieve Q P hP (fun p hp _ => hQ p hp) hroot R m a b
-
-theorem conditionalPolynomialSieve_multSum {r : ℕ} (Q : ℤ[X]) (hQ : NoFixedPrimeDivisor Q)
-    (P : ℕ) (hP : Squarefree P) (hroot : ∀ p, p.Prime → p ∣ P → 0 < rootCount Q p)
-    (R : Fin r → ℤ[X]) (m : Tuple r) (a b : ℤ) (d : ℕ) :
-    (conditionalPolynomialSieve Q hQ P hP hroot R m a b).multSum d =
-      mixedCongruenceCount Q R d m a b :=
-  localConditionalPolynomialSieve_multSum Q P hP (fun p hp _ => hQ p hp) hroot R m a b d
-
-theorem conditionalPolynomialSieve_rem_le {r : ℕ} (Q : ℤ[X]) (hQ : NoFixedPrimeDivisor Q)
-    (P : ℕ) (hP : Squarefree P) (hroot : ∀ p, p.Prime → p ∣ P → 0 < rootCount Q p)
-    (R : Fin r → ℤ[X]) (m : Tuple r)
-    (hpair : Pairwise fun i j => Nat.Coprime (m i) (m j)) (hPm : Nat.Coprime P (mass m))
-    (a b : ℤ) (hab : a ≤ b) {d : ℕ} (hd : d ∣ P) :
-    |(conditionalPolynomialSieve Q hQ P hP hroot R m a b).rem d| ≤
-      (rootCount Q d : ℝ) * ∏ i, (rootCount (R i) (m i) : ℝ) :=
-  localConditionalPolynomialSieve_rem_le Q P hP (fun p hp _ => hQ p hp) hroot
-    R m hpair hPm a b hab hd
-
-theorem conditionalPolynomialSieve_siftedSum {r : ℕ} (Q : ℤ[X]) (hQ : NoFixedPrimeDivisor Q)
-    (P : ℕ) (hP : Squarefree P) (hroot : ∀ p, p.Prime → p ∣ P → 0 < rootCount Q p)
-    (R : Fin r → ℤ[X]) (m : Tuple r) (a b : ℤ) :
-    (conditionalPolynomialSieve Q hQ P hP hroot R m a b).siftedSum =
-      conditionalPolynomialSiftedCount Q P R m a b :=
-  localConditionalPolynomialSieve_siftedSum Q P hP (fun p hp _ => hQ p hp) hroot R m a b
-
 /-- The congruence density remains in the main term; its numerator controls
 the error. The constant is uniform in the congruence polynomials and moduli. -/
 theorem exists_conditional_polynomial_sieve_bound {g η : ℝ} (hg : 1 ≤ g) (hη : 0 < η) :

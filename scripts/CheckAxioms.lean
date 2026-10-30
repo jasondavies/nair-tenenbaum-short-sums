@@ -115,7 +115,6 @@ import all NairTenenbaum.Smooth.PrimeBandCutoff
 
 import all NairTenenbaum.Smooth.PrimeBandCover
 
-import all NairTenenbaum.Contributions.IntermediateContribution
 
 import all NairTenenbaum.Contributions.IntermediateContributionReal
 

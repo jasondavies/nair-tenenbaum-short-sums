@@ -50,9 +50,12 @@ theorem integerLatticeCell_inter_frontier {s : Set (ι → ℝ)} {m : ι → ℤ
   · exact ⟨x, hxc, subset_closure hxs⟩
   · exact ⟨y, hyc, subset_closure hys⟩
 
-theorem exists_finset_integerLattice_outer_cells {s : Set (ι → ℝ)} (hs : Bornology.IsBounded s) :
+omit [Fintype ι] in
+theorem exists_finset_integerLattice_outer_cells [Finite ι] {s : Set (ι → ℝ)}
+    (hs : Bornology.IsBounded s) :
     ∃ O : Finset (ι → ℤ), ∀ m, m ∈ O ↔ (integerLatticeCell m ∩ s).Nonempty := by
   classical
+  cases nonempty_fintype ι
   obtain ⟨R, hR, hbound⟩ := hs.exists_pos_norm_le
   let B := Fintype.piFinset (fun _i : ι => Icc ⌈-(R + 1)⌉ ⌊R + 1⌋)
   have hmem (m : ι → ℤ) (hm : (integerLatticeCell m ∩ s).Nonempty) : m ∈ B := by

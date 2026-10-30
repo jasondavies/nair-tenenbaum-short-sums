@@ -18,7 +18,7 @@ the positive Dedekind zeta residue.
 
 @[expose] public section
 
-open scoped Classical nonZeroDivisors
+open scoped nonZeroDivisors
 
 namespace NairTenenbaum
 
@@ -33,6 +33,7 @@ noncomputable def nonzeroIdealNormCount (x : ℝ) : ℕ :=
 
 theorem nonzeroIdealNormCount_eq_sum_classes {x : ℝ} (hx : 0 ≤ x) :
     nonzeroIdealNormCount K x = ∑ A : ClassGroup (𝓞 K), idealClassNormCount K A x := by
+  classical
   have : Fintype {I : (Ideal (𝓞 K))⁰ // absNorm (I : Ideal (𝓞 K)) ≤ x} := by
     simp_rw [← Nat.le_floor_iff hx]
     exact @Fintype.ofFinite _ (finite_setOfPred_absNorm_le₀ ⌊x⌋₊)

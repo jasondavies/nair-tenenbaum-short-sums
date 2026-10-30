@@ -36,7 +36,7 @@ theorem exp_gain_of_logMass_bounds {P y a H E M : ℝ} (hP : 1 ≤ P) (hy : 1 �
       have hyzero : Real.log y = 0 := by nlinarith
       have HP := Real.log_nonneg hP
       linarith
-    · have hgap : 0 < a - H := by rcases lt_or_eq_of_le hHa with h | h; linarith; contradiction
+    · have hgap : 0 < a - H := by rcases lt_or_eq_of_le hHa with h | h <;> [linarith; contradiction]
       have := mul_lt_mul_of_pos_left h hgap
       nlinarith
   have Hgain : H * Real.log y / 2 ≤ a * (Real.log P - Real.log y) := by

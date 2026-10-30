@@ -450,9 +450,9 @@ small prefixes crossing the larger mass threshold and embeds the class into
 `z` and the irreducible coordinates. At `T=z³`, the exceptional count is at
 most `4(b−a)g·max(g,D³)/z²`, provided `z⁴≤b−a`. The coordinate root bounds
 are discharged using `PolynomialLocal`; no independence assumption is used.
-`ValueWeightBounds` retains the coefficient `((g+1)2^g)^(εδ/3)` outside
-the power of `x`. Together with the exceptional count this gives the saving
-`x^(-ε/3)` in `SecondContributionWeights`, also when `g=1`.
+`SecondContributionWeights` names the weighted sum over this exceptional set.
+The pointwise bound in `ValueWeightBounds` and the exceptional count combine in
+`ValueBoundContributions` to give a power saving, also when `g=1`.
 
 `MainTermLowerBound` proves that the unit tuple contributes at least `F(1)`
 and that any fixed negative power is absorbed by the uniform lower bound
@@ -474,8 +474,8 @@ smooth radical divisor greater than `x^(3gε/2)`. Its modulus is at most
 On any fixed finite prime support `s`, the reciprocal-square-root series
 has a bounded Euler product. The uniform radical root bound then gives a
 reciprocal-density tail of order `T^(-1/2)`, with a constant depending only
-on `g,D,s`. `ThirdContributionWeights` combines this with the pointwise
-arithmetic-weight estimate to obtain the saving `x^(-ε/12)`. It holds even
+on `g,D,s`. `ValueBoundContributions` combines this with the pointwise
+arithmetic-weight estimate to obtain a power saving. It holds even
 when the tuple coordinates share bad primes.
 
 `ThirdContribution` defines the large smooth-divisor class and proves the
@@ -542,9 +542,8 @@ prefix is either supported on the fixed finite prime set or belongs to the
 intermediate-prime contribution. The zero-extension terms vanish separately.
 The majorants can overlap because the arithmetic weights are nonnegative.
 
-`IntegerIntervalBound.exists_integerSum_mainTerm_bound_of_margin` combines the
-four estimates with the growth margin `cσ≤17gε/24`. The stronger progression
-margin remains available as a specialization. Theorem 1 now applies this
+`IntegerIntervalBound.exists_integerSum_mainTerm_bound` combines the
+four estimates with the growth margin `cσ≤17gε/24`. Theorem 1 now applies this
 integer-interval bound through the same height-to-interval threshold lemma
 used by Theorem 3. The former separate real-interval estimate chain has been
 removed. The statement in `Targets.lean` is unchanged: growth parameter `εδ/3`,
@@ -575,8 +574,8 @@ The progression estimate uses a direct bound on the actual values, rather than
 requiring a coefficient-height hypothesis for the transformed polynomial at a
 smaller scale. `ValueBoundContributions` supplies all four majorants from
 `|Q(t)|≤x^c`. `IntegerIntervalDecomposition` gives their exhaustive cover on
-any integer interval. `IntegerIntervalBound` specializes the common bound to `cσ≤gε/2`
-and absorbs the bounded range of `x` into the bound constant. The resulting
+any integer interval. `IntegerIntervalBound` absorbs the bounded range of `x`
+into the bound constant. The resulting
 estimate holds for every `x≥2` with rounded length bounds `y−1≤b−a≤2y`.
 Its analytic scale is independent of the interval's location.
 
@@ -1131,7 +1130,7 @@ All fifteen numbered results are accounted for: Theorems 1–3, Corollaries 1–
 and Lemma 2 have proofs with the scope and corrections recorded above; the
 printed Lemma 1 is refuted and the needed replacements are proved. No result
 has been substituted by an axiom or a structure field containing the desired
-conclusion. The full build and audit check 3,060 declarations and allow only
+conclusion. The full build and audit check 3,032 declarations and allow only
 `propext`, `Classical.choice`, and `Quot.sound`.
 
 

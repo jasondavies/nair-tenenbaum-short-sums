@@ -178,21 +178,6 @@ theorem PolynomialSystem.primePowerContribution_power_saving_of_margin {k r g : 
   apply H.trans
   convert H'' using 1 <;> ring
 
-/-- The stronger progression growth margin gives a quarter-power saving. -/
-theorem PolynomialSystem.primePowerContribution_value_power_saving {k r g : ℕ}
-    (P : PolynomialSystem k r) (hdeg : P.total.natDegree = g)
-    {A B σ ε c x y : ℝ} {F : ArithmeticMap k} (hF : Admissible A B σ F)
-    (hB : 0 ≤ B) (hσ : 0 ≤ σ) (hε : 0 ≤ ε) (hx : 1 ≤ x)
-    (hmargin : c * σ ≤ (g : ℝ) * ε / 2) {a b : ℤ} (hab : a ≤ b)
-    (hlevel : (x ^ ((g : ℝ) * ε / 2)) ^ 4 ≤ (b : ℝ) - a)
-    (hlen : (b : ℝ) - a ≤ 2 * y)
-    (hvalue : ∀ t ∈ Finset.Ioc a b, ((P.total.eval t).natAbs : ℝ) ≤ x ^ c) :
-    P.primePowerContribution F (x ^ ((g : ℝ) * ε / 2)) a b ≤
-      (8 * (g : ℝ) * (max g (P.badDiscriminant ^ 3) : ℕ) * B) *
-        y * x ^ (-((g : ℝ) * ε / 4)) * F 1 := by
-  apply P.primePowerContribution_power_saving_of_margin hdeg hF hB hσ hε hx _ hab hlevel hlen hvalue
-  nlinarith [mul_nonneg (Nat.cast_nonneg g : (0 : ℝ) ≤ _) hε]
-
 /-- The same growth margin pays the smooth-divisor saving. -/
 theorem PolynomialSystem.smoothDivisorContribution_power_saving_of_margin {k r g : ℕ}
     (P : PolynomialSystem k r) (hdeg : P.total.natDegree = g)
@@ -222,20 +207,5 @@ theorem PolynomialSystem.smoothDivisorContribution_power_saving_of_margin {k r g
       0 ≤ 2 * smoothDivisorBound g P.badDiscriminant s * B)) (hF.nonneg 1)
   apply H.trans
   convert H'' using 1 <;> ring
-
-/-- The stronger progression growth margin gives a quarter-power saving. -/
-theorem PolynomialSystem.smoothDivisorContribution_value_power_saving {k r g : ℕ}
-    (P : PolynomialSystem k r) (hdeg : P.total.natDegree = g)
-    {A B σ ε c x y : ℝ} {F : ArithmeticMap k} (hF : Admissible A B σ F)
-    (hB : 0 ≤ B) (hσ : 0 ≤ σ) (hx : 1 ≤ x)
-    (hmargin : c * σ ≤ (g : ℝ) * ε / 2) (s : Finset ℕ) (N : ℕ+)
-    {a b : ℤ} (hab : a ≤ b) (hlevel : (N : ℝ) ≤ (b : ℝ) - a)
-    (hlen : (b : ℝ) - a ≤ 2 * y)
-    (hvalue : ∀ t ∈ Finset.Ioc a b, ((P.total.eval t).natAbs : ℝ) ≤ x ^ c) :
-    P.smoothDivisorContribution F s N (x ^ (3 * (g : ℝ) * ε / 2)) a b ≤
-      (4 * smoothDivisorBound g P.badDiscriminant s * B) *
-        y * x ^ (-((g : ℝ) * ε / 4)) * F 1 := by
-  exact P.smoothDivisorContribution_power_saving_of_margin hdeg hF hB hσ hx
-    (by linarith) s N hab hlevel hlen hvalue
 
 end NairTenenbaum

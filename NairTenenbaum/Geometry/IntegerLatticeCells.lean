@@ -49,7 +49,9 @@ theorem integerLatticeCell_pairwiseDisjoint : Pairwise (fun m n : ι → ℤ => 
   exact hmn ((mem_integerLatticeCell_iff_floor.mp hxm).symm.trans
     (mem_integerLatticeCell_iff_floor.mp hxn))
 
-theorem measurableSet_integerLatticeCell (m : ι → ℤ) : MeasurableSet (integerLatticeCell m) :=
+omit [Fintype ι] in
+theorem measurableSet_integerLatticeCell [Finite ι] (m : ι → ℤ) :
+    MeasurableSet (integerLatticeCell m) :=
   MeasurableSet.pi Set.countable_univ (fun _ _ => measurableSet_Ico)
 
 theorem volume_integerLatticeCell (m : ι → ℤ) : volume (integerLatticeCell m) = 1 := by

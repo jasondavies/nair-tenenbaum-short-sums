@@ -62,8 +62,9 @@ theorem admissible_liftedArithmeticMap {k r : ℕ} {A B T ε : ℝ}
       pullback γ F n * ∏ i, θ i (n i) := by
   have hr (i : Fin r) : positiveFloorRoot ⟨totalExponent γ i, hγ i⟩
       (n i ^ totalExponent γ i) = n i := positiveFloorRoot_pow _ _
-  simp [pullback, liftedArithmeticMap, appendArithmeticMap, productArithmeticMap,
-    substitute, liftedExponents, hr]
+  simp only [pullback, liftedArithmeticMap, appendArithmeticMap, substitute, liftedExponents,
+    Fin.append_left, productArithmeticMap, Fin.append_right, pow_ite, pow_zero, prod_ite_eq,
+    mem_univ, ↓reduceIte, hr, mul_eq_mul_right_iff]
   exact Or.inl rfl
 
 theorem rootTupleWeight_lifted {k r : ℕ} (γ : Fin k → Fin r → ℕ)

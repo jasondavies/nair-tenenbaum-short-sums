@@ -150,7 +150,8 @@ theorem weightFiber_one_variable (D : ℕ) (N : ℕ+) :
       exact (congrArg n (Subsingleton.elim j 0)).trans (PNat.coe_injective heq)
     · intro heq
       rw [heq]
-      simp
+      simp only [Fin.isValue, ne_eq, not_true_eq_false, Nat.coprime_self, PNat.coe_eq_one_iff,
+        IsEmpty.forall_iff, true_and]
       exact h
   · ext n
     rw [mem_weightFiber _ (by intro h; simp)]

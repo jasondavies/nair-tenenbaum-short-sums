@@ -21,7 +21,7 @@ open Module
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
 variable {L : Submodule ℤ E} [DiscreteTopology L] [IsZLattice ℝ L]
-variable {ι : Type*} [Fintype ι] (b : Basis ι ℤ L)
+variable {ι : Type*} [Finite ι] (b : Basis ι ℤ L)
 
 theorem ofZLatticeBasis_equivFun_eq (x : L) :
     (b.ofZLatticeBasis ℝ).equivFunL (x : E) = integerLatticePoint (b.equivFun x) := by

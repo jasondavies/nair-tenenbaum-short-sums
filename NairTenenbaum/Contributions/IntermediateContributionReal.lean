@@ -5,7 +5,8 @@ Authors: Jason Davies
 -/
 module
 
-public import NairTenenbaum.Contributions.IntermediateContribution
+public import NairTenenbaum.Polynomials.PolynomialValueBounds
+public import NairTenenbaum.Smooth.PrimeBandCover
 public import NairTenenbaum.Contributions.RealIntervalBounds
 
 /-! # The intermediate-prefix bound in the original real short interval -/

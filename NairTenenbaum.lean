@@ -109,7 +109,6 @@ public import NairTenenbaum.Smooth.PrimeBandContribution
 public import NairTenenbaum.Smooth.PrimeBandSummation
 public import NairTenenbaum.Smooth.PrimeBandCutoff
 public import NairTenenbaum.Smooth.PrimeBandCover
-public import NairTenenbaum.Contributions.IntermediateContribution
 public import NairTenenbaum.Contributions.IntermediateContributionReal
 public import NairTenenbaum.Smooth.LargePrefixMainTerm
 public import NairTenenbaum.Contributions.ShortSumDecomposition

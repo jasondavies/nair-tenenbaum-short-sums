@@ -203,7 +203,7 @@ the `unusedArguments` declaration linter and audits every declaration defined by
 modules, including private and generated declarations. The only permitted axioms
 are `propext`, `Classical.choice`, and `Quot.sound`. A source module missing from
 the audit's explicit `import all` list is an error. No library or Solution proof uses `sorry` or an additional axiom.
-Challenge contains only the deliberate statement placeholders described above. The completed audit checks **3,060 declarations**.
+Challenge contains only the deliberate statement placeholders described above. The completed audit checks **3,032 declarations**.
 The statement map above and [completion audit](docs/completion-audit.yaml) record
 which printed statements are proved, corrected, or refuted. The additional
 submission audit checks every theorem listed in `comparator.json` and confirms
@@ -286,13 +286,13 @@ All names below are in the `NairTenenbaum` namespace.
 | [PrimePowerThreshold](NairTenenbaum/Arithmetic/PrimePowerThreshold.lean) | Least prime power above a threshold and large coordinate prime powers forced by a prefix crossing |
 | [PrimePowerCounting](NairTenenbaum/Arithmetic/PrimePowerCounting.lean) | Elementary union bound for large powers of small primes, with density at most a constant times z/T |
 | [SecondContributionCounting](NairTenenbaum/Contributions/SecondContributionCounting.lean) | Second-class inclusion in the exceptional set and degree/discriminant-uniform counting |
-| [ValueWeightBounds](NairTenenbaum/Arithmetic/ValueWeightBounds.lean) | Pointwise arithmetic-weight bounds retaining the degree-only coefficient |
+| [ValueWeightBounds](NairTenenbaum/Arithmetic/ValueWeightBounds.lean) | Pointwise arithmetic-weight bound by a power of the mass |
 | [MainTermLowerBound](NairTenenbaum/Arithmetic/MainTermLowerBound.lean) | Unit weight and uniform absorption of power-saving errors into the original main term |
-| [SecondContributionWeights](NairTenenbaum/Contributions/SecondContributionWeights.lean) | Weighted exceptional-set estimate with the saving x^(-ε/3) |
+| [SecondContributionWeights](NairTenenbaum/Contributions/SecondContributionWeights.lean) | The weighted sum over the small-prime power exceptional set |
 | [SecondContribution](NairTenenbaum/Contributions/SecondContribution.lean) | Small-crossing-prime predicate, scale identity, and sieve-level bound |
 | [SmoothDivisorDensity](NairTenenbaum/Smooth/SmoothDivisorDensity.lean) | Reciprocal-density tail for smooth moduli and uniform radical root counts at every prime power |
 | [SmoothDivisorCounting](NairTenenbaum/Smooth/SmoothDivisorCounting.lean) | Large smooth divisor tuples mapped to one radical-value divisor through their least common multiple |
-| [ThirdContributionWeights](NairTenenbaum/Contributions/ThirdContributionWeights.lean) | Weighted bounded-smoothness estimate with the saving x^(-ε/12) |
+| [ThirdContributionWeights](NairTenenbaum/Contributions/ThirdContributionWeights.lean) | The weighted sum over values with a large smooth radical divisor |
 | [ThirdContribution](NairTenenbaum/Contributions/ThirdContribution.lean) | Large smooth-divisor predicate and sieve-level bound |
 | [BadPrimeMoments](NairTenenbaum/Sieve/BadPrimeMoments.lean) | Uniform positive moments of the full bad-prime tuple kernel, including every valuation |
 | [SmoothMomentUniformity](NairTenenbaum/Smooth/SmoothMomentUniformity.lean) | Totient-modified smooth moments bounded by the original truncated weight sum with uniform constants |
@@ -307,7 +307,6 @@ All names below are in the `NairTenenbaum` namespace.
 | [PrimeBandSummation](NairTenenbaum/Smooth/PrimeBandSummation.lean) | Uniform bound for any finite collection of eligible logarithmic bands |
 | [PrimeBandCutoff](NairTenenbaum/Smooth/PrimeBandCutoff.lean) | A fixed cutoff supplies every band condition; positive moment strength chosen before the polynomials |
 | [PrimeBandCover](NairTenenbaum/Smooth/PrimeBandCover.lean) | Actual prefixes assigned to eligible bands, including the finite-interval cover |
-| [IntermediateContribution](NairTenenbaum/Contributions/IntermediateContribution.lean) | Entire intermediate-prime contribution bounded using the polynomial height hypothesis |
 | [IntermediateContributionReal](NairTenenbaum/Contributions/IntermediateContributionReal.lean) | Real and positive integral cutoffs for the intermediate-prefix predicate |
 | [ConditionalPolynomialSieve](NairTenenbaum/Sieve/ConditionalPolynomialSieve.lean) | The global no-fixed-prime specialization of the local conditional sieve |
 | [PolynomialSieve](NairTenenbaum/Polynomials/PolynomialSieve.lean) | Polynomial-value sieve in integer intervals, with coefficient-independent constants and the congruence remainder discharged |
@@ -343,7 +342,7 @@ All names below are in the `NairTenenbaum` namespace.
 | [AffineWeights](NairTenenbaum/Progressions/AffineWeights.lean) | Exact weight identity with the progression coprimality restriction |
 | [ValueBoundContributions](NairTenenbaum/Contributions/ValueBoundContributions.lean) | All four majorants under a direct bound on polynomial values |
 | [IntegerIntervalDecomposition](NairTenenbaum/Contributions/IntegerIntervalDecomposition.lean) | Exhaustive four-contribution cover on arbitrary integer intervals |
-| [IntegerIntervalBound](NairTenenbaum/Contributions/IntegerIntervalBound.lean) | Common integer-interval bound with growth margin 17gε/24 and the all-scales progression specialization |
+| [IntegerIntervalBound](NairTenenbaum/Contributions/IntegerIntervalBound.lean) | Common integer-interval bound with growth margin 17gε/24, and its all-scales form |
 | [ProgressionIntervals](NairTenenbaum/Progressions/ProgressionIntervals.lean) | Progression reindexing and exact main-term identity |
 | [ProgressionBound](NairTenenbaum/Progressions/ProgressionBound.lean) | Progression estimate at the original scale, with a height threshold independent of β |
 | [CorollaryOne](NairTenenbaum/Results/CorollaryOne.lean) | Proposition `CorollaryOne` and proof `corollaryOne` |

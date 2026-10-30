@@ -59,7 +59,7 @@ theorem smooth_values_sum_le_small_add_tilt {ι : Type*} {k : ℕ} {F : Arithmet
     · rw [ite_eq_right hsmall, zero_add]
       exact smooth_value_le_tilt hF j s hβ hT (v i) hs (le_of_lt (lt_of_not_ge hsmall))
   · rw [ite_eq_right hs]
-    exact add_nonneg (by split_ifs; exact extendArithmeticMap_nonneg hF _; exact le_rfl) hterm
+    exact add_nonneg (by split_ifs <;> [exact extendArithmeticMap_nonneg hF _; exact le_rfl]) hterm
 
 /-- The short sum restricted to polynomial values with the prescribed smoothness. -/
 noncomputable def smoothShortSum {k : ℕ} (Q : Fin k → ℤ[X]) (F : ArithmeticMap k)

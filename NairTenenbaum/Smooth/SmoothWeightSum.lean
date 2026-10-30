@@ -19,7 +19,6 @@ and no prime-support condition is weakened.
 namespace NairTenenbaum
 
 open Polynomial Finset
-open scoped Classical
 
 theorem coordinate_dvd_weightedMass {k r : ℕ} (γ : Fin k → Fin r → ℕ)
     (hγ : ∀ i, 0 < totalExponent γ i) (n : Tuple r) (i : Fin r) :
@@ -77,6 +76,7 @@ theorem sum_weight_mul_eq_sum_weightUpTo {k r : ℕ} (γ : Fin k → Fin r → �
     Subtype.ext ((mem_weightFiber γ hγ D m n).mp hn).1
   rw [he]
 
+open Classical in
 /-- Reindexing with an arbitrary scalar predicate on the weighted mass. -/
 theorem sum_weight_filter_eq {k r : ℕ} (γ : Fin k → Fin r → ℕ)
     (hγ : ∀ i, 0 < totalExponent γ i) (D : ℕ) (F : ArithmeticMap k)

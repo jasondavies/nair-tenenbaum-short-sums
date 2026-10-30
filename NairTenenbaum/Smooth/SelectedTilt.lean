@@ -96,7 +96,9 @@ theorem selectedMoment_le_exp_bigOmega {z κ : ℝ} (hz : 2 ≤ z) (hκ : 0 ≤ 
 theorem bigOmega_coordinate_le {k : ℕ} (n : Tuple k) (j : Fin k) :
     bigOmega (n j) ≤ bigOmega (mass n) := by
   obtain ⟨d, hd⟩ := coordinate_dvd_mass n j
-  have hd₀ : d ≠ 0 := by intro h; simp [h] at hd; exact (mass_pos n).ne' hd
+  have hd₀ : d ≠ 0 := by
+    rintro rfl
+    exact (mass_pos n).ne' (by simpa only [mul_zero] using hd)
   rw [hd, bigOmega_mul (n j).ne_zero hd₀]
   omega
 

@@ -37,7 +37,7 @@ theorem exists_shortSum_mainTerm_bound {g : ℕ} (hg : 0 < g)
     have H : ε * δ / 3 ≤ ε := by nlinarith
     exact (mul_le_mul_of_nonneg_left H (sq_nonneg _)).trans hsmall
   let c : ℝ := (g : ℝ) + 1 / δ + 1 / 8
-  obtain ⟨x₀, hx₀, C, hC, H⟩ := exists_integerSum_mainTerm_bound_of_margin hg hA hB hε hsmall
+  obtain ⟨x₀, hx₀, C, hC, H⟩ := exists_integerSum_mainTerm_bound hg hA hB hε hsmall
     hσ hσsmall (show 0 ≤ c by dsimp [c]; positivity)
     (primeArgument_growth_margin hg hε.le hδ hδ₁)
   obtain ⟨c₀, hc₀, Hinterval⟩ := exists_height_interval_threshold g hδ

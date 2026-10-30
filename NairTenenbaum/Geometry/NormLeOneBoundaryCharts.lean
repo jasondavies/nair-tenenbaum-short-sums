@@ -18,7 +18,7 @@ lattice-counting theorem applies after any real linear change of coordinates.
 
 @[expose] public section
 
-open scoped Classical NNReal Pointwise
+open scoped NNReal Pointwise
 
 namespace NairTenenbaum
 
@@ -31,15 +31,18 @@ variable (K : Type*) [Field K] [NumberField K]
 abbrev NormRegionBoundaryIndex :=
   ({w : InfinitePlace K // IsReal w} → Bool) × InfinitePlace K × Bool
 
+open Classical in
 /-- A chart covering one piece of the norm-region boundary. -/
 noncomputable def normRegionBoundaryChart (j : NormRegionBoundaryIndex K)
     (v : Fin (Fintype.card (NormRegionParameter K) - 1) → ℝ) : mixedSpace K :=
   normRegionRadialChart K j.1 (cubeFaceMap (Sum.inl j.2.1) (if j.2.2 then 1 else 0) v)
 
+open Classical in
 theorem contDiff_normRegionBoundaryChart (j : NormRegionBoundaryIndex K) :
     ContDiff ℝ ⊤ (normRegionBoundaryChart K j) :=
   (contDiff_normRegionRadialChart K j.1).comp (contDiff_cubeFaceMap _ _)
 
+open Classical in
 theorem normLeOne_frontier_boundaryChart {x : mixedSpace K} (hx : x ∈ frontier (normLeOne K)) :
     ∃ j : NormRegionBoundaryIndex K,
       ∃ v : Fin (Fintype.card (NormRegionParameter K) - 1) → ℝ,
@@ -61,6 +64,7 @@ theorem exists_coordinate_normLeOne_lattice_error {ι : Type*} [Fintype ι]
       |(integerLatticeCount (t • (e '' normLeOne K)) : ℝ) -
         t ^ Fintype.card ι * volume.real (e '' normLeOne K)| ≤
         C * t ^ (Module.finrank ℚ K - 1) := by
+  classical
   let f := fun j : NormRegionBoundaryIndex K => e ∘ normRegionBoundaryChart K j
   have hdiff (j : NormRegionBoundaryIndex K) : ContDiff ℝ ⊤ (f j) :=
     e.contDiff.comp (contDiff_normRegionBoundaryChart K j)

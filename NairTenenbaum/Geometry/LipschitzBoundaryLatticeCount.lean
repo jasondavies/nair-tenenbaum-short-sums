@@ -44,7 +44,8 @@ theorem volume_real_smul_coordinate_set {t : ℝ} (ht : 0 ≤ t) (s : Set (ι �
     ENNReal.toReal_mul, ENNReal.toReal_ofReal (pow_nonneg ht _)]
   simp only [Module.finrank_fintype_fun_eq_card, measureReal_def]
 
-theorem exists_lipschitz_boundary_lattice_discrepancy {s : Set (ι → ℝ)}
+omit [Fintype J] in
+theorem exists_lipschitz_boundary_lattice_discrepancy [Finite J] {s : Set (ι → ℝ)}
     (hs : Bornology.IsBounded s) (f : J → (κ → ℝ) → (ι → ℝ)) (L : J → ℝ≥0)
     (hf : ∀ j, LipschitzOnWith (L j) (f j) (Set.Icc (fun _ : κ => (0 : ℝ)) (fun _ => 1)))
     (hcover : ∀ y ∈ frontier s, ∃ j x,
@@ -53,6 +54,7 @@ theorem exists_lipschitz_boundary_lattice_discrepancy {s : Set (ι → ℝ)}
       |(integerLatticeCount (t • s) : ℝ) - t ^ Fintype.card ι * volume.real s| ≤
         C * t ^ Fintype.card κ := by
   classical
+  cases nonempty_fintype J
   choose C hC HC using fun j => exists_integerLattice_near_scaled_chart_bound (hf j) zero_le_one
   refine ⟨∑ j, C j, sum_nonneg (fun j _ => hC j), fun t ht => ?_⟩
   obtain ⟨A, B, hA, herror, hB⟩ := exists_integerLattice_boundary_error (hs.smul₀ t)

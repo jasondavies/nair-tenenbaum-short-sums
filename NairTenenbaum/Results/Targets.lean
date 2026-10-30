@@ -10,7 +10,7 @@ public import NairTenenbaum.Polynomials.PolynomialSystem
 /-! # Statement of the main short-sum estimate
 
 This module records the proposition and the uniformity of its constants.
-`NairTenenbaum.TheoremOne` proves it as `NairTenenbaum.theoremOne`; importing
+`NairTenenbaum.Results.TheoremOne` proves it as `NairTenenbaum.theoremOne`; importing
 this statement module alone does not import that proof. The scope and remaining
 work are recorded in README.md.
 -/

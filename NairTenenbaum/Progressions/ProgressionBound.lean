@@ -107,7 +107,11 @@ theorem exists_progressionSum_mainTerm_bound {g : ℕ} (hg : 0 < g)
     (mul_le_mul_of_nonneg_left hσepsB (sq_nonneg _)).trans hepsBsmall
   obtain ⟨C, hC, H⟩ := exists_integerSum_mainTerm_bound_all_scales hg hA hB hepsB hepsBsmall hσ
       hσsmall
-    (by dsimp [c]; positivity : 0 ≤ c) (progression_growth_margin hg hε.le hβ.le hδ hδ₁)
+    (by dsimp [c]; positivity : 0 ≤ c) (by
+      have H := progression_growth_margin hg hε.le hβ.le hδ hδ₁
+      have hgε : 0 ≤ (g : ℝ) * (ε * β) := mul_nonneg (Nat.cast_nonneg _) hepsB.le
+      dsimp only [c, σ]
+      linarith)
   let E : ℕ → ℝ := fun D => 1 + ∑ d ∈ Finset.range (D + 1), max 0 (C d)
   have hE (D : ℕ) : 0 < E D := by dsimp [E]; positivity
   have hCE {d D : ℕ} (hd : d ≤ D) : C d ≤ E D := by

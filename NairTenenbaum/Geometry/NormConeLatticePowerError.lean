@@ -19,7 +19,7 @@ The boundary count therefore has exponent `(degree-1)/degree`.
 namespace NairTenenbaum
 
 open NumberField NumberField.mixedEmbedding fundamentalCone Module MeasureTheory
-open scoped Pointwise Classical
+open scoped Pointwise
 
 variable (K : Type*) [Field K] [NumberField K]
 
@@ -32,13 +32,15 @@ theorem smul_normLeOne {t : ℝ} (ht : 0 < t) :
     abs_inv, abs_of_pos ht, inv_pow, inv_mul_le_iff₀ (pow_pos ht _), mul_one]
   rfl
 
+open Classical in
 theorem exists_normCone_lattice_power_error
     {L : Submodule ℤ (mixedSpace K)} [DiscreteTopology L] [IsZLattice ℝ (E := mixedSpace K) L]
-    {ι : Type*} [Fintype ι] (b : Basis ι ℤ L) :
+    {ι : Type*} [Finite ι] (b : Basis ι ℤ L) :
     ∃ V C : ℝ, 0 ≤ C ∧ ∀ x : ℝ, 1 ≤ x →
       |(Nat.card {a : L // (a : mixedSpace K) ∈ fundamentalCone K ∧
           mixedEmbedding.norm (a : mixedSpace K) ≤ x} : ℝ) - V * x| ≤
         C * x ^ ((Module.finrank ℚ K - 1 : ℕ) / (Module.finrank ℚ K : ℝ)) := by
+  cases nonempty_fintype ι
   let e := (b.ofZLatticeBasis ℝ).equivFunL
   obtain ⟨C, hC, HC⟩ := exists_coordinate_normLeOne_lattice_error K e
   have hdim : Fintype.card ι = Module.finrank ℚ K :=

@@ -17,7 +17,6 @@ angular parameter each. The total parameter count is the field degree.
 
 @[expose] public section
 
-open scoped Classical
 
 namespace NairTenenbaum
 
@@ -29,6 +28,7 @@ variable (K : Type*) [Field K] [NumberField K]
 /-- The parameter space for radial charts of the number-field norm region. -/
 abbrev NormRegionParameter := InfinitePlace K ⊕ {w : InfinitePlace K // IsComplex w}
 
+open Classical in
 /-- Unit directions used in the radial parametrization of the norm region. -/
 noncomputable def normRegionUnitCoordinates (v : NormRegionParameter K → ℝ) : realSpace K :=
   fun w => if w = w₀ then 0 else v (Sum.inl w)
@@ -39,6 +39,7 @@ noncomputable def normRegionRadialChart
   mixedPolarCoordinates σ (v (Sum.inl w₀) • expMapBasis (normRegionUnitCoordinates K v))
     (fun w => v (Sum.inr w))
 
+open Classical in
 theorem card_normRegionParameter : Fintype.card (NormRegionParameter K) = Module.finrank ℚ K := by
   rw [Fintype.card_sum, card_eq_nrRealPlaces_add_nrComplexPlaces]
   change nrRealPlaces K + nrComplexPlaces K + nrComplexPlaces K = Module.finrank ℚ K
@@ -52,6 +53,7 @@ theorem contDiff_expMapBasis : ContDiff ℝ ⊤ (expMapBasis : realSpace K → r
     Real.exp ((w.mult : ℝ)⁻¹ * ((completeBasis K).equivFunL.symm v) w))
   fun_prop
 
+open Classical in
 theorem contDiff_normRegionRadialChart (σ : {w : InfinitePlace K // IsReal w} → Bool) :
     ContDiff ℝ ⊤ (normRegionRadialChart K σ) := by
   classical
