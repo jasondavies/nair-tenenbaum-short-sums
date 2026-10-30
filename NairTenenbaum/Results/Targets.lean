@@ -11,8 +11,8 @@ public import NairTenenbaum.Polynomials.PolynomialSystem
 
 This module records the proposition and the uniformity of its constants.
 `NairTenenbaum.Results.TheoremOne` proves it as `NairTenenbaum.theoremOne`; importing
-this statement module alone does not import that proof. The scope and remaining
-work are recorded in README.md.
+this statement module alone does not import that proof. The scope is recorded in
+README.md.
 -/
 
 @[expose] public section
