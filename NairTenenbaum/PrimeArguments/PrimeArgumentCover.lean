@@ -34,38 +34,22 @@ theorem PolynomialSystem.primeIntermediatePrefixContribution_le_bands {k r : ℕ
   classical
   let T := (Finset.Ioc a b).filter (fun t => P.HasIntermediatePrefix N X w₀ x u t ∧ t.natAbs.Prime
       ∧ x < t.natAbs)
-  have hex : ∀ t : ℤ, ∃ j : ℕ, t ∈ T →
-      w₀ < x ^ (2 * (u / 2 ^ (j + 1))) ∧
-      P.HasSmoothTailPrefix N (Finset.Icc 0 ⌊x ^ (2 * (u / 2 ^ (j + 1)))⌋₊)
-        X (x ^ (u / 2 ^ (j + 1))) t := by
-    intro t
-    by_cases ht : t ∈ T
-    · obtain ⟨j, hj⟩ := ((Finset.mem_filter.mp ht).2.1).exists_band hx hw₀
-      exact ⟨j, fun _ => hj⟩
-    · exact ⟨0, fun h => (ht h).elim⟩
-  choose f hf using hex
-  refine ⟨T.image f, ?_, ?_⟩
-  · intro j hj
-    obtain ⟨t, ht, rfl⟩ := Finset.mem_image.mp hj
-    exact (hf t ht).1
-  · change (∑ t ∈ T, extendArithmeticMap F (fun j => ((P.Q j).eval t).natAbs)) ≤ _
-    have hmap : ∀ t ∈ T, f t ∈ T.image f := fun t ht => Finset.mem_image.mpr ⟨t, ht, rfl⟩
-    rw [← Finset.sum_fiberwise_of_maps_to hmap]
-    apply Finset.sum_le_sum
-    intro j hj
-    unfold PolynomialSystem.primeSmoothTailPrefixContribution
-    apply Finset.sum_le_sum_of_subset_of_nonneg
-    · intro t ht
-      obtain ⟨ht, heq⟩ := Finset.mem_filter.mp ht
-      have hα : u / 2 ^ (j + 1) ≤ 1 :=
-        (div_le_self hu (one_le_pow₀ (by norm_num : (1 : ℝ) ≤ 2))).trans hu₁
-      have hzx : x ^ (u / 2 ^ (j + 1)) ≤ x := by
-        simpa only [Real.rpow_one] using Real.rpow_le_rpow_of_exponent_le hx.le hα
-      exact Finset.mem_filter.mpr ⟨(Finset.mem_filter.mp ht).1,
-        heq ▸ (hf t ht).2, (Finset.mem_filter.mp ht).2.2.1,
-        hzx.trans_lt (Finset.mem_filter.mp ht).2.2.2⟩
-    · intro t _ _
-      exact extendArithmeticMap_nonneg hF _
+  apply exists_finset_sum_le_cover T
+    (fun j => (Finset.Ioc a b).filter (fun t => P.HasSmoothTailPrefix N (Finset.Icc 0 ⌊x ^ (2 * (u /
+      2 ^ (j + 1)))⌋₊)
+        X (x ^ (u / 2 ^ (j + 1))) t ∧ t.natAbs.Prime ∧
+        x ^ (u / 2 ^ (j + 1)) < t.natAbs))
+    (fun j => w₀ < x ^ (2 * (u / 2 ^ (j + 1))))
+    (fun t => extendArithmeticMap F (fun j => ((P.Q j).eval t).natAbs))
+    (fun _ => extendArithmeticMap_nonneg hF _)
+  intro t ht
+  obtain ⟨j, hj, hprefix⟩ := ((Finset.mem_filter.mp ht).2.1).exists_band hx hw₀
+  have hα : u / 2 ^ (j + 1) ≤ 1 :=
+    (div_le_self hu (one_le_pow₀ (by norm_num : (1 : ℝ) ≤ 2))).trans hu₁
+  have hzx : x ^ (u / 2 ^ (j + 1)) ≤ x := by
+    simpa only [Real.rpow_one] using Real.rpow_le_rpow_of_exponent_le hx.le hα
+  exact ⟨j, hj, Finset.mem_filter.mpr ⟨(Finset.mem_filter.mp ht).1, hprefix,
+    (Finset.mem_filter.mp ht).2.2.1, hzx.trans_lt (Finset.mem_filter.mp ht).2.2.2⟩⟩
 
 theorem exists_primeIntermediatePrefixContribution_value_bound {g : ℕ} (hg : 0 < g)
     {ε A c : ℝ} (hε : 0 < ε) (hsmall : (g : ℝ) ^ 2 * ε ≤ 1 / 8)

@@ -35,17 +35,7 @@ theorem PolynomialSystem.primeSmoothTailPrefixContribution_le {k r : ℕ} (P : P
   classical
   let T := (Finset.Ioc a b).filter (fun t => P.HasSmoothTailPrefix N s X (x ^ α) t ∧
       t.natAbs.Prime ∧ x ^ α < t.natAbs)
-  have hex : ∀ t : ℤ, ∃ (n : Tuple r) (q : ℕ), t ∈ T →
-      (∀ i, (n i : ℕ) = ((P.R i).eval t).natAbs) ∧
-      weightedMass P.exponent (primeSelect n (Finset.range q)) ≤ N ∧
-      (∀ i, (primeSelect n (Finset.range q) i : ℕ) ∈ Nat.factoredNumbers s) ∧
-      X < (weightedMass P.exponent (primeSelect n (Finset.range q)) : ℝ) ∧ x ^ α < (q : ℝ) := by
-    intro t
-    by_cases ht : t ∈ T
-    · obtain ⟨n, q, hn⟩ := (Finset.mem_filter.mp ht).2.1
-      exact ⟨n, q, fun _ => hn⟩
-    · exact ⟨1, 0, fun h => (ht h).elim⟩
-  choose n q hn using hex
+  choose! n q hn using fun t (ht : t ∈ T) => (Finset.mem_filter.mp ht).2.1
   exact P.sum_primeRoughSmoothTailPrefix_le hF hA hB g N s X a b T n q (Finset.filter_subset _ _)
     (fun t ht => (hn t ht).1) hx hα
     (fun t ht => (Finset.mem_filter.mp ht).2.2.1)

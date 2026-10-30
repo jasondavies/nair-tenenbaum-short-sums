@@ -138,6 +138,26 @@ theorem exists_badPrime_sieve_bound {g : ℕ} (hg : 0 < g) {η δ : ℝ} (hη : 
 noncomputable def badPrimeSieveCost (B : ℝ) (g D : ℕ) : ℝ :=
   totientTwist g D * badPrimeMassBound B g D
 
+/-- Transfer a count bound through the auxiliary weight of the bad-prime part.
+The coefficient includes any sieve correction specific to the argument set. -/
+theorem PolynomialSystem.weighted_count_le_badPrimeKernel {k r : ℕ} (P : PolynomialSystem k r)
+    {A B ε : ℝ} {F : ArithmeticMap k} (hF : Admissible A B ε F)
+    (hA : 0 ≤ A) (hB : 1 ≤ B) (u v : Tuple r)
+    (hcross : ∀ i j, Nat.Coprime (u i) (v j)) {C count : ℝ} (hcount : 0 ≤ count)
+    (hbound : count ≤ C * ((rootCount P.radical (tupleLCM u) : ℝ) / tupleLCM u) *
+      ∏ i, ((rootCount (P.R i) (v i) : ℝ) / v i)) :
+    pullback P.exponent F (u * v) * count ≤
+      C * badPrimeTupleKernel A B ε (totalExponent P.exponent) P.radical u *
+        rootTupleWeight P.exponent F P.R v := by
+  have haux : 0 ≤ ∏ i, auxiliary A B ε (totalExponent P.exponent i) (u i) :=
+    Finset.prod_nonneg (fun i _ => auxiliary_nonneg hA (zero_le_one.trans hB) _ _)
+  have Hf := mul_le_mul_of_nonneg_right
+    (hF.pullback_mul_le_auxiliary hA hB P.exponent u v hcross) hcount
+  have H := Hf.trans (mul_le_mul_of_nonneg_left hbound (mul_nonneg haux (hF.nonneg _)))
+  convert H using 1
+  dsimp only [badPrimeTupleKernel, rootTupleWeight]
+  ring
+
 /-- Summing the entire bad-prime part costs only a degree/discriminant constant.
 The good tuple retains the totient-modified root weight required in the main proof. -/
 theorem exists_badPrime_sieve_sum_bound {g : ℕ} (hg : 0 < g) {η δ : ℝ} (hη : 0 < η) (hδ : 0 < δ) :
@@ -156,10 +176,7 @@ theorem exists_badPrime_sieve_sum_bound {g : ℕ} (hg : 0 < g) {η δ : ℝ} (h�
   intro k r P hdeg A B ε F hF hA hB hε hsmall S v hv hs a b z hab hz hzlog hsize
   let C : ℝ := K * ((b : ℝ) - a) * sieveProduct P.total z * totientTwist g P.badDiscriminant *
     rootTupleWeight P.exponent F P.R v * ∏ i, totientTwist g (v i)
-  have hFv : 0 ≤ pullback P.exponent F v := hF.nonneg _
-  have hW : 0 ≤ rootTupleWeight P.exponent F P.R v :=
-    mul_nonneg hFv (Finset.prod_nonneg (fun _ _ => div_nonneg (Nat.cast_nonneg _) (Nat.cast_nonneg
-        _)))
+  have hW := rootTupleWeight_nonneg P.exponent hF.nonneg P.R v
   have hC : 0 ≤ C := mul_nonneg (mul_nonneg (mul_nonneg
     (mul_nonneg (mul_nonneg (zero_le_one.trans hK) (by exact_mod_cast sub_nonneg.mpr hab))
       (sieveProduct_pos P.noFixedPrime z).le) (totientTwist_nonneg g P.badDiscriminant)) hW)
@@ -171,21 +188,15 @@ theorem exists_badPrime_sieve_sum_bound {g : ℕ} (hg : 0 < g) {η δ : ℝ} (h�
     intro u hu
     have hcross (i j : Fin r) : Nat.Coprime (u i) (v j) :=
       factoredNumbers_coprime_of_coprime (hs u hu i) (hv.2 j).symm
-    have haux : 0 ≤ ∏ i, auxiliary A B ε (totalExponent P.exponent i) (u i) :=
-      Finset.prod_nonneg (fun i _ => auxiliary_nonneg hA (zero_le_one.trans hB) _ _)
-    have Hf := mul_le_mul_of_nonneg_right
-      (hF.pullback_mul_le_auxiliary hA hB P.exponent u v hcross)
-      (Nat.cast_nonneg (P.badPrimeSiftedCount u v a b z))
     have Hcount := H k r P hdeg.le u v hv (hs u hu) a b z hab hz hzlog (hsize u hu)
-    calc
-      _ ≤ ((∏ i, auxiliary A B ε (totalExponent P.exponent i) (u i)) * pullback P.exponent F v) *
-          P.badPrimeSiftedCount u v a b z := Hf
-      _ ≤ ((∏ i, auxiliary A B ε (totalExponent P.exponent i) (u i)) * pullback P.exponent F v) *
-          (K * ((b : ℝ) - a) * sieveProduct P.total z * totientTwist g P.badDiscriminant *
-            (∏ i, totientTwist g (v i)) * ((rootCount P.radical (tupleLCM u) : ℝ) / tupleLCM u) *
-              ∏ i, ((rootCount (P.R i) (v i) : ℝ) / v i)) :=
-        mul_le_mul_of_nonneg_left Hcount (mul_nonneg haux hFv)
-      _ = _ := by dsimp [C, badPrimeTupleKernel, rootTupleWeight]; ring
+    have H' := P.weighted_count_le_badPrimeKernel hF hA hB u v hcross
+      (C := K * ((b : ℝ) - a) * sieveProduct P.total z * totientTwist g P.badDiscriminant * (∏ i,
+        totientTwist g (v i)))
+      (Nat.cast_nonneg (P.badPrimeSiftedCount u v a b z)) (by
+        simpa only [mul_assoc, mul_comm, mul_left_comm] using Hcount)
+    convert H' using 1
+    dsimp only [C]
+    ring
   have Hmass := P.badPrimeTupleKernel_sum_le_of_support hA hB hε
     (by simpa only [hdeg] using hg) (by simpa only [hdeg] using hsmall) S hs
   rw [hdeg] at Hmass

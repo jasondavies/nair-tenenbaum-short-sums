@@ -35,36 +35,16 @@ theorem exists_largePrefix_sieve_scales {g : ℕ} (hg : 0 < g) {ε : ℝ} (hε :
       ∀ N y z : ℝ, 0 ≤ N → N ≤ x ^ (3 * (g : ℝ) ^ 2 * ε) →
         x ^ (4 * (g : ℝ) ^ 2 * ε) ≤ y → 0 ≤ z → z ≤ x ^ ((g : ℝ) * ε / 16) →
         L * N * z ^ (4 * (g : ℝ) * (1 + 1 / 16) + 1 / 4) ≤ y / 2 := by
-  let e : ℝ := (g : ℝ) ^ 2 * ε / 2
   have hg₀ : (0 : ℝ) < g := by exact_mod_cast hg
-  have he : 0 < e := by dsimp [e]; positivity
-  let t : ℝ := max 0 (Real.log (2 * L) / e)
-  refine ⟨Real.exp t, Real.one_le_exp_iff.mpr (le_max_left _ _), ?_⟩
-  intro x hx N y z hN hNx hy hz hzx
-  have hx₁ : 1 ≤ x := (Real.one_le_exp_iff.mpr (le_max_left _ _)).trans hx
-  have hx₀ : 0 < x := lt_of_lt_of_le zero_lt_one hx₁
-  have ht : t ≤ Real.log x := by
-    simpa only [Real.log_exp] using Real.log_le_log (Real.exp_pos t) hx
-  have hgap : 2 * L ≤ x ^ e := by
-    have H : Real.log (2 * L) / e ≤ Real.log x := (le_max_right _ _).trans ht
-    have H' : Real.log (2 * L) ≤ Real.log (x ^ e) := by
-      rw [Real.log_rpow hx₀]
-      nlinarith [(div_le_iff₀ he).mp H]
-    exact (Real.log_le_log_iff (by linarith : 0 < 2 * L)
-      (Real.rpow_pos_of_pos hx₀ e)).mp H'
-  have hp : 0 ≤ 4 * (g : ℝ) * (1 + 1 / 16) + 1 / 4 := by positivity
-  have Hz := Real.rpow_le_rpow hz hzx hp
-  rw [← Real.rpow_mul hx₀.le] at Hz
-  have H := mul_le_mul hgap hNx hN (Real.rpow_nonneg hx₀.le e)
-  have H' := mul_le_mul H Hz (Real.rpow_nonneg hz _) (by positivity)
-  rw [← Real.rpow_add hx₀, ← Real.rpow_add hx₀] at H'
-  have hexp : e + 3 * (g : ℝ) ^ 2 * ε +
-      ((g : ℝ) * ε / 16) * (4 * (g : ℝ) * (1 + 1 / 16) + 1 / 4) ≤
-        4 * (g : ℝ) ^ 2 * ε := by
-    dsimp only [e]
-    linarith [largePrefix_scale_exponent hg ε hε.le]
-  have H'' := H'.trans ((Real.rpow_le_rpow_of_exponent_le hx₁ hexp).trans hy)
-  nlinarith
+  obtain ⟨x₀, hx₀, H⟩ := exists_sieve_scale_threshold
+    (m := 3 * (g : ℝ) ^ 2 * ε) (d := 4 * (g : ℝ) ^ 2 * ε)
+    (p := 4 * (g : ℝ) * (1 + 1 / 16) + 1 / 4) hL
+    (show 0 < (g : ℝ) * ε / 16 by positivity)
+    (show 0 < (g : ℝ) ^ 2 * ε / 2 by positivity)
+    (by positivity) (by linarith [largePrefix_scale_exponent hg ε hε.le])
+  refine ⟨x₀, hx₀, ?_⟩
+  intro x hx
+  exact (H x hx).2.2
 
 /-- The original sifted divisor sum at the large-prefix scale. -/
 theorem exists_largePrefixSiftedSum_at_scales {g : ℕ} (hg : 0 < g)

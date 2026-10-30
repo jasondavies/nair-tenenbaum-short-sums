@@ -69,4 +69,28 @@ theorem PolynomialSystem.primeSelect_sieve_coprime {k r : ℕ} (P : PolynomialSy
   exact Finset.mem_inter.mpr ⟨Nat.mem_primeFactors.mpr ⟨hp, hi, (n i).ne_zero⟩,
     Finset.mem_range.mpr hpq⟩
 
+/-- Remove rough remainders from a finite sum once the selected-prefix sum is bounded. -/
+theorem PolynomialSystem.sum_roughPrefix_le_of_selected_sum {k r : ℕ} (P : PolynomialSystem k r)
+    {A B σ : ℝ} {F : ArithmeticMap k} (hF : Admissible A B σ F) (hA : 1 ≤ A) (hB : 0 ≤ B)
+    (T : Finset ℤ) (n : ℤ → Tuple r) (q : ℤ → ℕ)
+    (hn : ∀ t ∈ T, ∀ i, (n t i : ℕ) = ((P.R i).eval t).natAbs)
+    {x α c S : ℝ} (hx : 1 < x) (hα : 0 < α)
+    (hq : ∀ t ∈ T, x ^ α < (q t : ℝ))
+    (hvalue : ∀ t ∈ T, ((P.total.eval t).natAbs : ℝ) ≤ x ^ c)
+    (hselected : (∑ t ∈ T,
+      pullback P.exponent F (primeSelect (n t) (Finset.range (q t)))) ≤ S) :
+    (∑ t ∈ T, extendArithmeticMap F (fun j => ((P.Q j).eval t).natAbs)) ≤
+      A ^ (c / α) * S := by
+  calc
+    _ ≤ ∑ t ∈ T, A ^ (c / α) *
+        pullback P.exponent F (primeSelect (n t) (Finset.range (q t))) := by
+      apply Finset.sum_le_sum
+      intro t ht
+      rw [← P.pullback_valueTuple F (hn t ht)]
+      exact hF.pullback_primeSplit_le_of_rough hA hB P.exponent P.exponent_pos (n t) (q t)
+        hx hα (hq t ht).le (by simpa only [P.weightedMass_valueTuple (hn t ht)] using hvalue t ht)
+    _ = A ^ (c / α) * ∑ t ∈ T,
+        pullback P.exponent F (primeSelect (n t) (Finset.range (q t))) := (Finset.mul_sum ..).symm
+    _ ≤ _ := mul_le_mul_of_nonneg_left hselected (Real.rpow_nonneg (by linarith) _)
+
 end NairTenenbaum

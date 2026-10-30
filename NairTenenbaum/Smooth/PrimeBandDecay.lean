@@ -13,14 +13,14 @@ public import NairTenenbaum.Sieve.SieveCutoffComparison
 
 namespace NairTenenbaum
 
-/-- For a band with upper cutoff `x^(2α)`, the smooth-tail moment can pay
-both the rough remainder and the restoration of the Euler product. -/
-theorem primeBand_decay {A c κ τ α x : ℝ} {g : ℕ}
+/-- A margin `v` in the smooth-tail moment leaves decay `exp(-v / α)` after
+paying for the rough remainder and restoring the Euler product. -/
+theorem primeBand_decay_of_margin {A c κ τ α x v : ℝ} {g : ℕ}
     (hA : 0 < A) (hα : 0 < α) (hx : 1 < x)
-    (hκ : c * Real.log A + 4 * (g : ℝ) * Real.log 4 + 1 ≤ κ * τ / 2) :
+    (hκ : c * Real.log A + 4 * (g : ℝ) * Real.log 4 + v ≤ κ * τ / 2) :
     A ^ (c / α) * Real.exp (4 * (g : ℝ) * Real.log 4 / α) *
         Real.exp (-κ * Real.log (x ^ τ) / Real.log (x ^ (2 * α))) ≤
-      Real.exp (-1 / α) := by
+      Real.exp (-v / α) := by
   rw [Real.log_rpow (by linarith : 0 < x), Real.log_rpow (by linarith : 0 < x),
     Real.rpow_def_of_pos hA, ← Real.exp_add, ← Real.exp_add]
   apply Real.exp_le_exp.mpr
@@ -32,6 +32,16 @@ theorem primeBand_decay {A c κ τ α x : ℝ} {g : ℕ}
     ring
   rw [heq]
   exact div_le_div_of_nonneg_right (by linarith) hα.le
+
+/-- For a band with upper cutoff `x^(2α)`, the smooth-tail moment can pay
+both the rough remainder and the restoration of the Euler product. -/
+theorem primeBand_decay {A c κ τ α x : ℝ} {g : ℕ}
+    (hA : 0 < A) (hα : 0 < α) (hx : 1 < x)
+    (hκ : c * Real.log A + 4 * (g : ℝ) * Real.log 4 + 1 ≤ κ * τ / 2) :
+    A ^ (c / α) * Real.exp (4 * (g : ℝ) * Real.log 4 / α) *
+        Real.exp (-κ * Real.log (x ^ τ) / Real.log (x ^ (2 * α))) ≤
+      Real.exp (-1 / α) := by
+  exact primeBand_decay_of_margin hA hα hx hκ
 
 /-- The dyadic logarithmic bands have a summable decay, uniformly in their
 number. This deliberately uses the weaker geometric decay `exp(-j)`. -/

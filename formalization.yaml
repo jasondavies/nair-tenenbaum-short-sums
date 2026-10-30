@@ -258,7 +258,7 @@ review:
     the transitive axiom audit. No independent human mathematical review is
     recorded. Challenge and Solution both compile. The compiled theorem types
     and all 19,610 transitive statement constants agree exactly, checked by
-    scripts/CheckStatements.lean. The complete axiom audit covers 3,032 library
+    scripts/CheckStatements.lean. The complete axiom audit covers 3,039 library
     and Solution declarations. On 2026-10-30 the refactored working tree also
     passed scripts/verify-comparator.sh with host permissions for Bubblewrap's
     namespace sandbox. Sandboxed Comparator exported the proofs, and con-ron,

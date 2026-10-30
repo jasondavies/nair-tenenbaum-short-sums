@@ -44,15 +44,7 @@ theorem PolynomialSystem.smallRoughContribution_le {k r : ℕ} (P : PolynomialSy
       A ^ (c / α) * P.smallDivisorSiftedSum F N a b (x ^ α) := by
   classical
   let T := (Finset.Ioc a b).filter (P.HasSmallRoughPrefix N (x ^ α))
-  have hex : ∀ t : ℤ, ∃ (n : Tuple r) (q : ℕ), t ∈ T →
-      (∀ i, (n i : ℕ) = ((P.R i).eval t).natAbs) ∧
-      weightedMass P.exponent (primeSelect n (Finset.range q)) ≤ N ∧ x ^ α < (q : ℝ) := by
-    intro t
-    by_cases ht : t ∈ T
-    · obtain ⟨n, q, hn⟩ := (Finset.mem_filter.mp ht).2
-      exact ⟨n, q, fun _ => hn⟩
-    · exact ⟨1, 0, fun h => (ht h).elim⟩
-  choose n q hn using hex
+  choose! n q hn using fun t (ht : t ∈ T) => (Finset.mem_filter.mp ht).2
   exact P.sum_roughPrefix_le hF hA hB N a b T n q (Finset.filter_subset _ _)
     (fun t ht => (hn t ht).1) hx hα (fun t ht => (hn t ht).2.2)
     (fun t ht => (hn t ht).2.1) (fun t ht => hvalue t (Finset.mem_filter.mp ht).1)

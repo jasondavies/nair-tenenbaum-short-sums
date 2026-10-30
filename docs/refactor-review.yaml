@@ -1,0 +1,417 @@
+baseline_commit: 2e508dc65ebc056084e2ad6291a2143692fd68ef
+baseline_note: The actual clean main was 2e508dc, newer than the 3856350 in the task prompt.
+scope: Refactor; no theorem statements, submission interfaces, or counterexample evidence
+  changed.
+counts:
+  baseline:
+    modules: 353
+    source_lines: 34159
+    code_lines: 25896
+    code_characters: 1037588
+  final:
+    modules: 353
+    source_lines: 34052
+    code_lines: 25771
+    code_characters: 1032832
+  net_source_lines_removed: 107
+  net_code_lines_removed: 125
+  code_line_definition: Nonblank lines after removing nested Lean block comments and line comments; string
+    contents retained.
+  modules_changed: 22
+  modules_added_or_removed: 0
+  shared_helpers_added: 6
+  readme_rows_added: 65
+merged_families:
+- family: Selection majorants
+  code_lines_removed: 10
+  source_lines_removed: 8
+  helper: PolynomialSystem.sum_roughPrefix_le_of_selected_sum
+- family: Bad-prime sieve, smooth-tail sieve, and mass/moment product
+  code_lines_removed: 15
+  source_lines_removed: 8
+  helpers:
+  - PolynomialSystem.weighted_count_le_badPrimeKernel
+  - sum_prod_fractionalAuxiliary_le
+- family: Scale thresholds, finite band covers, band decay, and witness selection
+  code_lines_removed: 94
+  source_lines_removed: 84
+  helpers:
+  - exists_sieve_scale_threshold
+  - exists_finset_sum_le_cover
+  - primeBand_decay_of_margin
+- family: Small proof cleanups
+  code_lines_removed: 6
+  source_lines_removed: 7
+  change: Reuse rootTupleWeight_nonneg twice; clarify the margin helper docstring and remove a blank line.
+proof_development: Each new generic helper was proved in a scratch file and used to recover at least two
+  exact existing theorem statements before library edits. Full checks and all three Comparator kernels
+  passed after each merged family.
+candidate_decisions:
+- candidates:
+  - SmallDivisorMajorant
+  - SmoothTailMajorant
+  - PrimeArgumentMajorant
+  - PrimeArgumentTailMajorant
+  decision: Shared rough-prefix estimate; retain the four exact statements and their selected-divisor
+    hypotheses.
+- candidates:
+  - SmallDivisorSieve
+  - PrimeArgumentSmallSieve
+  decision: 'Retain uniform wrappers: the prime version uses a different totient exponent and extra prime
+    factor. Both use the shared bad-prime kernel below.'
+- candidates:
+  - SmoothTailSieve
+  - PrimeArgumentTailSieve
+  decision: Shared weighted-count transfer; retain the distinct moment costs, sieve inputs, and prime
+    factor.
+- candidates:
+  - BadPrimeSieve
+  - PrimeArgumentBadSieve
+  decision: Shared weighted-count transfer; retain the distinct pointwise sieve constructions and main-term
+    factors.
+- candidates:
+  - SplitSmoothTail
+  - PrimeArgumentSplitTail
+  decision: Already share finite mass/moment bounds; the remaining good-part comparison has different
+    totient exponents.
+- candidates:
+  - SieveLevel
+  - PrimeArgumentSieveLevel
+  decision: Already share absorb_sieve_remainder; prime inverse-density, logarithm, and constant-term
+    corrections remain explicit.
+- candidates:
+  - PrimeBandMajorant
+  - PrimeArgumentBand
+  decision: Shared margin-dependent decay; retain distinct cutoff, Euler-product, and reciprocal-logarithm
+    assembly.
+- candidates:
+  - PrimeBandSummation
+  - PrimeArgumentBands
+  decision: Already share sum_le_dyadic_primeBand_bound; retain the two contribution and cost specializations.
+- candidates:
+  - PrimeBandCover
+  - PrimeArgumentCover
+  decision: Shared finite-cover lemma; prime membership and cutoff conditions remain explicit.
+- candidates:
+  - PrimeBandContribution
+  - PrimeArgumentBandContribution
+  decision: Shortened witness selection using choose!; keep the distinct public contribution definitions.
+- candidates:
+  - primeBand_decay
+  - primeArgument_band_decay
+  decision: Shared primeBand_decay_of_margin; the prime wrapper pays a reciprocal cutoff using its larger
+    margin.
+- candidates:
+  - IntegerIntervalBound
+  - PrimeArgumentIntervalBound
+  decision: Keep the four-term assembly explicit. Abstracting contributions, costs, main terms, and hypotheses
+    would obscure the two statements.
+- candidates:
+  - IntegerIntervalDecomposition
+  - PrimeArgumentDecomposition
+  decision: Keep prime cutoff filters explicit. Prefix classification is already shared; a generic four-predicate
+    decomposition adds plumbing.
+- candidates:
+  - FirstContribution
+  - PrimeArgumentFirstContribution
+  decision: Shortened witness selection using choose!; both use shared rough-prefix bounds.
+- candidates:
+  - SieveScales
+  - PrimeArgumentScales
+  - LargePrefixScales
+  decision: Shared analytic threshold lemma from an exponent gap; retain the named exponent inequalities
+    and exact application statements.
+- candidates:
+  - LargePrefixMainTerm
+  - PrimeArgumentMainTerm
+  decision: Keep explicit assembly of the extra reciprocal logarithm and Q(0) nonvanishing hypothesis;
+    a generic coefficient interface is not clearer.
+- candidates:
+  - BadPrimeMass
+  - BadPrimeMoments
+  decision: Shared fractional-auxiliary product sum; retain distinct moment hypotheses and constants.
+unused_audit:
+  method: Lean metaprogram walks ConstantInfo.getUsedConstantsAsSet (types and bodies, including opaque
+    bodies) from the submission targets, family targets, and linearSystem_comparison_fails. A second explicit
+    type/body traversal returned identical reachability. Compiler declaration ranges identify explicit
+    source declarations; generated declarations are traversed but not counted as source declarations.
+  roots:
+  - NairTenenbaum.LemmaOneObstruction.linearSystem_comparison_fails
+  - NairTenenbaum.theoremOne_for_families
+  - NairTenenbaum.theoremThree_for_families
+  - NairTenenbaum.corollaryThree_for_families
+  - NairTenenbaum.corollaryOne_for_families
+  - NairTenenbaum.corollarySix_for_families
+  - NairTenenbaum.Submission.theoremOne
+  - NairTenenbaum.Submission.theoremTwo
+  - NairTenenbaum.Submission.theoremThree
+  - NairTenenbaum.Submission.corollaryOne
+  - NairTenenbaum.Submission.corollaryTwo
+  - NairTenenbaum.Submission.corollaryThree
+  - NairTenenbaum.Submission.corollaryFour
+  - NairTenenbaum.Submission.corollaryFive
+  - NairTenenbaum.Submission.corollarySix
+  - NairTenenbaum.Submission.corollarySeven
+  - NairTenenbaum.Submission.corollaryEight
+  - NairTenenbaum.Submission.corollaryNine
+  - NairTenenbaum.Submission.corollaryTen
+  - NairTenenbaum.Submission.lemmaTwo
+  explicit_source_declarations_classified: 1897
+  unreachable_outside_counterexamples: 74
+  compiler_range_lines: 1093
+  directly_named_in_proof_docs: 27
+  dependencies_of_documented_results: 38
+  source_elaboration_helpers: 6
+  useful_public_api: 3
+  deleted: 0
+  documentation_rule: Direct names are matched in README, BLUEPRINT, formalization.yaml, and completion-audit.yaml;
+    module descriptions alone do not count as direct declaration mentions. The dependency closure of documented
+    results and Counterexamples is protected.
+  owner_decision: All documented results and their dependencies are retained. Removing standalone normalization,
+    sieve, or tail APIs would require an explicit scope decision; the two obstruction examples should
+    remain evidence.
+  documented_declarations_retained:
+  - declaration: NairTenenbaum.Admissible.eq_zero_of_one
+    module: NairTenenbaum.Arithmetic.Arithmetic
+    reason: Vanishing at the unit implies the function is zero; used by normalization.
+  - declaration: NairTenenbaum.Admissible.minimalMajorant_admissible
+    module: NairTenenbaum.Arithmetic.MinimalMajorant
+    reason: The minimal majorant preserves admissibility.
+  - declaration: NairTenenbaum.Admissible.minimalMajorant_le_primeMajorant
+    module: NairTenenbaum.Arithmetic.PrimeMajorant
+    reason: Comparison of two explicit arithmetic majorants.
+  - declaration: NairTenenbaum.Admissible.smul
+    module: NairTenenbaum.Arithmetic.Arithmetic
+    reason: Admissibility is preserved by nonnegative scaling; used by normalization.
+  - declaration: NairTenenbaum.PolynomialSystem.badPrime_weighted_congruence_sum_le
+    module: NairTenenbaum.Sieve.BadPrimeCongruence
+    reason: Repaired bad-prime congruence estimate cited in the completion audit.
+  - declaration: NairTenenbaum.PolynomialSystem.factor_moment_product_bound
+    module: NairTenenbaum.Smooth.MomentPrimeBounds
+    reason: Product of the factorwise moment bounds.
+  - declaration: NairTenenbaum.PolynomialSystem.factor_scalar_totient_comparison
+    module: NairTenenbaum.Arithmetic.ScalarComparison
+    reason: Factorwise scalar totient comparison.
+  - declaration: NairTenenbaum.PolynomialSystem.root_smooth_tail
+    module: NairTenenbaum.Smooth.RootSmoothTail
+    reason: Infinite root-weighted tail for a polynomial system.
+  - declaration: NairTenenbaum.PolynomialSystem.root_smooth_tail_uniform
+    module: NairTenenbaum.Smooth.SmoothTailUniformity
+    reason: Uniform constant for the root-weighted tail.
+  - declaration: NairTenenbaum.PolynomialSystem.smooth_tail_bound
+    module: NairTenenbaum.Smooth.SmoothMoment
+    reason: Polynomial-system smooth-tail estimate.
+  - declaration: NairTenenbaum.PolynomialSystem.totient_comparison_theoremOne_parameters
+    module: NairTenenbaum.Arithmetic.ComparisonUniformity
+    reason: Comparison specialized to the parameters of Theorem 1.
+  - declaration: NairTenenbaum.PolynomialSystem.totient_smooth_tail_theoremOne_parameters
+    module: NairTenenbaum.Smooth.SmoothTailUniformity
+    reason: Totient tail specialized to the parameters of Theorem 1.
+  - declaration: NairTenenbaum.PolynomialSystem.totient_smooth_tail_uniform
+    module: NairTenenbaum.Smooth.SmoothTailUniformity
+    reason: Uniform constant for the totient-weighted tail.
+  - declaration: NairTenenbaum.PolynomialSystem.weight_smooth_tail_bound
+    module: NairTenenbaum.Smooth.SmoothWeightSum
+    reason: Scalar weighted smooth-tail estimate.
+  - declaration: NairTenenbaum.adjoining_X_can_introduce_fixed_prime
+    module: NairTenenbaum.PrimeArguments.PrimeArgumentRoots
+    reason: Intentional counterexample to admissibility after adjoining X.
+  - declaration: NairTenenbaum.auxiliaryLocal_summable
+    module: NairTenenbaum.Arithmetic.AuxiliarySeries
+    reason: Convergence of the local auxiliary series.
+  - declaration: NairTenenbaum.auxiliaryLocal_tail_le
+    module: NairTenenbaum.Arithmetic.AuxiliarySeries
+    reason: Local auxiliary prime-power tail estimate.
+  - declaration: NairTenenbaum.auxiliary_smooth_hasSum
+    module: NairTenenbaum.Arithmetic.AuxiliarySeries
+    reason: Euler product identity for the smooth auxiliary series.
+  - declaration: NairTenenbaum.bound_of_normalized_bound
+    module: NairTenenbaum.Arithmetic.Normalization
+    reason: Reduction from general admissible functions to normalized ones.
+  - declaration: NairTenenbaum.exists_polynomial_sieve_bound
+    module: NairTenenbaum.Polynomials.PolynomialSieve
+    reason: Standalone coefficient-uniform polynomial sieve theorem.
+  - declaration: NairTenenbaum.exists_smallDivisorSiftedSum_mainTerm_bound
+    module: NairTenenbaum.Sieve.SmallDivisorMainTerm
+    reason: Standalone repaired_sieve result cited in the completion audit; retains SieveScales.
+  - declaration: NairTenenbaum.gcd_removal_not_coprime
+    module: NairTenenbaum.Polynomials.DiscriminantSplitting
+    reason: Intentional counterexample to the single-gcd removal argument.
+  - declaration: NairTenenbaum.root_weight_smooth_tail
+    module: NairTenenbaum.Smooth.RootSmoothTail
+    reason: Infinite root-vector-weighted smooth-tail estimate.
+  - declaration: NairTenenbaum.scalar_totient_comparison_uniform
+    module: NairTenenbaum.Arithmetic.ScalarComparison
+    reason: Uniform scalar totient comparison.
+  - declaration: NairTenenbaum.totient_weight_smooth_tail
+    module: NairTenenbaum.Smooth.TotientSmoothTail
+    reason: Convergent infinite totient-twisted tail estimate.
+  - declaration: NairTenenbaum.unitary_comparison_sum
+    module: NairTenenbaum.Arithmetic.UnitaryComparison
+    reason: Finite unitary comparison theorem.
+  - declaration: NairTenenbaum.unitary_comparison_uniform
+    module: NairTenenbaum.Arithmetic.ComparisonKernel
+    reason: Uniform constant for the unitary comparison theorem.
+  protected_dependencies:
+  - declaration: NairTenenbaum.Admissible.normalize
+    retained_by: NairTenenbaum.bound_of_normalized_bound
+  - declaration: NairTenenbaum.Admissible.scalar_mul_le_auxiliary
+    retained_by: NairTenenbaum.PolynomialSystem.factor_scalar_totient_comparison
+  - declaration: NairTenenbaum.Admissible.scalar_weight_mul_le
+    retained_by: NairTenenbaum.PolynomialSystem.factor_scalar_totient_comparison
+  - declaration: NairTenenbaum.PolynomialSystem.badPrime_congruence_sum_le
+    retained_by: NairTenenbaum.PolynomialSystem.badPrime_weighted_congruence_sum_le
+  - declaration: NairTenenbaum.PolynomialSystem.jointCongruenceCount_le_mixed
+    retained_by: NairTenenbaum.PolynomialSystem.badPrime_weighted_congruence_sum_le
+  - declaration: NairTenenbaum.PolynomialSystem.totient_smooth_tail
+    retained_by: NairTenenbaum.PolynomialSystem.totient_smooth_tail_theoremOne_parameters
+  - declaration: NairTenenbaum.comparison_exponent_of_theoremOne
+    retained_by: NairTenenbaum.PolynomialSystem.totient_comparison_theoremOne_parameters
+  - declaration: NairTenenbaum.exists_smallDivisorSiftedSum_at_scales
+    retained_by: NairTenenbaum.exists_smallDivisorSiftedSum_mainTerm_bound
+  - declaration: NairTenenbaum.exists_smallDivisor_sieve_scales
+    retained_by: NairTenenbaum.exists_smallDivisorSiftedSum_mainTerm_bound
+  - declaration: NairTenenbaum.extendArithmeticMap_smul
+    retained_by: NairTenenbaum.bound_of_normalized_bound
+  - declaration: NairTenenbaum.jointCongruenceCount_le
+    retained_by: NairTenenbaum.PolynomialSystem.badPrime_weighted_congruence_sum_le
+  - declaration: NairTenenbaum.mainTerm_smul
+    retained_by: NairTenenbaum.bound_of_normalized_bound
+  - declaration: NairTenenbaum.mainTerm_zero
+    retained_by: NairTenenbaum.bound_of_normalized_bound
+  - declaration: NairTenenbaum.mass_primePart
+    retained_by: NairTenenbaum.Admissible.minimalMajorant_le_primeMajorant
+  - declaration: NairTenenbaum.mixedCongruenceCount_le
+    retained_by: NairTenenbaum.PolynomialSystem.badPrime_weighted_congruence_sum_le
+  - declaration: NairTenenbaum.normalize
+    retained_by: NairTenenbaum.bound_of_normalized_bound
+  - declaration: NairTenenbaum.normalize_one
+    retained_by: NairTenenbaum.bound_of_normalized_bound
+  - declaration: NairTenenbaum.polynomialBoundingSieve
+    retained_by: NairTenenbaum.exists_polynomial_sieve_bound
+  - declaration: NairTenenbaum.polynomialBoundingSieve_multSum
+    retained_by: NairTenenbaum.exists_polynomial_sieve_bound
+  - declaration: NairTenenbaum.polynomialBoundingSieve_rem_le
+    retained_by: NairTenenbaum.exists_polynomial_sieve_bound
+  - declaration: NairTenenbaum.polynomialBoundingSieve_siftedSum
+    retained_by: NairTenenbaum.exists_polynomial_sieve_bound
+  - declaration: NairTenenbaum.polynomialSiftedCount
+    retained_by: NairTenenbaum.exists_polynomial_sieve_bound
+  - declaration: NairTenenbaum.primeMajorant
+    retained_by: NairTenenbaum.Admissible.minimalMajorant_le_primeMajorant
+  - declaration: NairTenenbaum.primePart_coprime
+    retained_by: NairTenenbaum.Admissible.minimalMajorant_le_primeMajorant
+  - declaration: NairTenenbaum.root_weight_smooth_tail_finite
+    retained_by: NairTenenbaum.PolynomialSystem.root_smooth_tail
+  - declaration: NairTenenbaum.scalar_totient_comparison
+    retained_by: NairTenenbaum.PolynomialSystem.factor_scalar_totient_comparison
+  - declaration: NairTenenbaum.scalar_weight_twist
+    retained_by: NairTenenbaum.PolynomialSystem.factor_scalar_totient_comparison
+  - declaration: NairTenenbaum.scale_normalize
+    retained_by: NairTenenbaum.bound_of_normalized_bound
+  - declaration: NairTenenbaum.shortSum_smul
+    retained_by: NairTenenbaum.bound_of_normalized_bound
+  - declaration: NairTenenbaum.shortSum_zero
+    retained_by: NairTenenbaum.bound_of_normalized_bound
+  - declaration: NairTenenbaum.smallDivisor_scale_exponent
+    retained_by: NairTenenbaum.exists_smallDivisorSiftedSum_mainTerm_bound
+  - declaration: NairTenenbaum.smooth_exponent_of_theoremOne
+    retained_by: NairTenenbaum.PolynomialSystem.totient_smooth_tail_theoremOne_parameters
+  - declaration: NairTenenbaum.sum_smooth_totient_weight_tail_eq
+    retained_by: NairTenenbaum.totient_weight_smooth_tail
+  - declaration: NairTenenbaum.sum_smooth_weight_eq
+    retained_by: NairTenenbaum.PolynomialSystem.weight_smooth_tail_bound
+  - declaration: NairTenenbaum.sum_smooth_weight_tail_eq
+    retained_by: NairTenenbaum.PolynomialSystem.root_smooth_tail
+  - declaration: NairTenenbaum.totient_weight_smooth_tail_finite
+    retained_by: NairTenenbaum.totient_weight_smooth_tail
+  - declaration: NairTenenbaum.unitary_comparison_pointwise
+    retained_by: NairTenenbaum.unitary_comparison_sum
+  - declaration: NairTenenbaum.weight_smul
+    retained_by: NairTenenbaum.bound_of_normalized_bound
+  elaboration_helpers_retained:
+  - declaration: NairTenenbaum.PolynomialSystem.ofIrreducible_badDiscriminant
+    module: NairTenenbaum.Polynomials.IrreducibleSystem
+    reason: Used by Results/CorollaryTwo.lean; a definitional simp lemma disappears from the compiled
+      dependency graph.
+  - declaration: NairTenenbaum.arithmeticConstantJet_apply
+    module: NairTenenbaum.NumberFields.ArithmeticLogDerivativeSupport
+    reason: Used by NumberFields/ArithmeticLogDerivativeSupport.lean; definitional evaluation helper.
+  - declaration: NairTenenbaum.arithmeticLogJet_apply
+    module: NairTenenbaum.NumberFields.ArithmeticLogDerivativeSupport
+    reason: Used by NumberFields/ArithmeticLogDerivativeSupport.lean; definitional evaluation helper.
+  - declaration: NairTenenbaum.badSieveModuli_succ
+    module: NairTenenbaum.Sieve.BadPrimeSieve
+    reason: Used by Sieve/BadPrimeSieve.lean; definitional simplification of the remaining coordinates.
+  - declaration: NairTenenbaum.badSieveModuli_zero
+    module: NairTenenbaum.Sieve.BadPrimeSieve
+    reason: Used by Sieve/BadPrimeSieve.lean; definitional simplification of the first coordinate.
+  - declaration: NairTenenbaum.rootDensity_apply
+    module: NairTenenbaum.Polynomials.PolynomialSieve
+    reason: Used by PolynomialSieve.lean and LocalConditionalSieve.lean; definitional density helper.
+  public_api_retained:
+  - declaration: NairTenenbaum.Admissible.add
+    module: NairTenenbaum.Arithmetic.Arithmetic
+    reason: Closure of admissibility under addition; useful algebraic API (5 lines).
+  - declaration: NairTenenbaum.coprime_one_left
+    module: NairTenenbaum.Arithmetic.Arithmetic
+    reason: Basic simp API, symmetric to the used coprime_one_right lemma (2 lines).
+  - declaration: NairTenenbaum.rootCount_prime_pow_le
+    module: NairTenenbaum.Arithmetic.PrimePowerRoots
+    reason: Public prime-power root bound assuming separable reduction (10 lines).
+smaller_cleanup_decisions:
+  thresholds: IntegerIntervalBound and PrimeArgumentIntervalBound already extract max thresholds with
+    one simp conjunction; TheoremOne delegates the common height threshold. No extra helper improves these.
+    The scale-threshold ladders were merged in Task 1.
+  gcongr: Kept existing explicit monotonicity steps where replacing them required additional typed intermediate
+    inequalities and did not shorten the proof.
+  transparency: Retained the existing option in Smooth/LiftedWeightSums.lean. Removing it fails on inequivalent
+    synthesized decidability instances; direct membership destructuring and simp-only rewrites also failed.
+  le_max_left_right_uses:
+    baseline: 217
+    final: 202
+  gcongr_uses:
+    baseline: 3
+    final: 3
+verification:
+  status: passed
+  audited_declarations: 3039
+  build_jobs: 9405
+  theorems_compared: 14
+  matching_statement_constants: 19610
+  build_warnings_outside_challenge: 0
+  unused_argument_lint_errors: 0
+  allowed_axioms:
+  - propext
+  - Classical.choice
+  - Quot.sound
+  protected_files_unchanged:
+  - Challenge.lean
+  - Solution.lean
+  - comparator.json
+  - NairTenenbaum/Counterexamples/
+  retained_declaration_headers_checked: 104
+  changed_headers: 0
+  lines_over_100_characters: 0
+  commands:
+    bash scripts/check.sh: passed
+    python3 scripts/check-submission.py: passed
+    bash scripts/verify-comparator.sh: passed
+  accepting_kernels:
+  - con-ron
+  - NanoDa
+  - Lean
+  comparator_result: Your solution is okay!
+  con_ron_declarations_accepted: 79465
+  challenge_warnings_expected: 14
+  submission_source_files: 359
+  final_dependency_walk: Same 74 unreachable source declarations after the final proof cleanups.
+  compiled_types_compared: 2116
+  changed_compiled_types: 0
+  compiled_type_comparison_scope: Public project constants captured after the first family, including
+    its new helper; all 2115 pre-existing public constant types are present and unchanged. No pre-existing
+    declaration was removed.
+  readme_module_rows: 353
+  broken_readme_blueprint_links: 0
+  palomar_v0_4_schema: passed
+  git_diff_check: passed

@@ -105,10 +105,7 @@ theorem exists_primeArgument_bad_sieve_sum_bound {g : ℕ} (hg : 0 < g) {η δ :
   let C : ℝ := K * ((b : ℝ) - a) * sieveProduct P.total z * totientTwist (g + 1) P.badDiscriminant *
     rootTupleWeight P.exponent F P.R v * (∏ i, totientTwist (g + 1) (v i)) * primeArgumentFactor
         P.total z
-  have hFv : 0 ≤ pullback P.exponent F v := hF.nonneg _
-  have hW : 0 ≤ rootTupleWeight P.exponent F P.R v :=
-    mul_nonneg hFv (Finset.prod_nonneg (fun _ _ => div_nonneg (Nat.cast_nonneg _) (Nat.cast_nonneg
-        _)))
+  have hW := rootTupleWeight_nonneg P.exponent hF.nonneg P.R v
   have hC : 0 ≤ C := mul_nonneg (
     mul_nonneg (mul_nonneg (mul_nonneg
     (mul_nonneg (mul_nonneg (zero_le_one.trans hK) (by exact_mod_cast sub_nonneg.mpr hab))
@@ -123,22 +120,15 @@ theorem exists_primeArgument_bad_sieve_sum_bound {g : ℕ} (hg : 0 < g) {η δ :
     intro u hu
     have hcross (i j : Fin r) : Nat.Coprime (u i) (v j) :=
       factoredNumbers_coprime_of_coprime (hs u hu i) (hv.2 j).symm
-    have haux : 0 ≤ ∏ i, auxiliary A B ε (totalExponent P.exponent i) (u i) :=
-      Finset.prod_nonneg (fun i _ => auxiliary_nonneg hA (zero_le_one.trans hB) _ _)
-    have Hf := mul_le_mul_of_nonneg_right
-      (hF.pullback_mul_le_auxiliary hA hB P.exponent u v hcross)
-      (Nat.cast_nonneg (P.primeArgumentBadSiftedCount g u v a b z))
     have Hcount := H k r P hdeg.le hzero u v hv (hs u hu) a b z hab hz hzlog (hsize u hu)
-    calc
-      _ ≤ ((∏ i, auxiliary A B ε (totalExponent P.exponent i) (u i)) * pullback P.exponent F v) *
-          P.primeArgumentBadSiftedCount g u v a b z := Hf
-      _ ≤ ((∏ i, auxiliary A B ε (totalExponent P.exponent i) (u i)) * pullback P.exponent F v) *
-          (K * ((b : ℝ) - a) * sieveProduct P.total z * totientTwist (g + 1) P.badDiscriminant *
-            (∏ i, totientTwist (g + 1) (v i)) * ((rootCount P.radical (tupleLCM u) : ℝ) / tupleLCM
-                u) *
-              (∏ i, ((rootCount (P.R i) (v i) : ℝ) / v i)) * primeArgumentFactor P.total z) :=
-        mul_le_mul_of_nonneg_left Hcount (mul_nonneg haux hFv)
-      _ = _ := by dsimp [C, badPrimeTupleKernel, rootTupleWeight]; ring
+    have H' := P.weighted_count_le_badPrimeKernel hF hA hB u v hcross
+      (C := K * ((b : ℝ) - a) * sieveProduct P.total z * totientTwist (g + 1) P.badDiscriminant * (∏
+        i, totientTwist (g + 1) (v i)) * primeArgumentFactor P.total z)
+      (Nat.cast_nonneg (P.primeArgumentBadSiftedCount g u v a b z)) (by
+        simpa only [mul_assoc, mul_comm, mul_left_comm] using Hcount)
+    convert H' using 1
+    dsimp only [C]
+    ring
   have Hmass := P.badPrimeTupleKernel_sum_le_of_support hA hB hε
     (by simpa only [hdeg] using hg) (by simpa only [hdeg] using hsmall) S hs
   rw [hdeg] at Hmass

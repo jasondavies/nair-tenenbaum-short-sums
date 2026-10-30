@@ -13,6 +13,46 @@ public import NairTenenbaum.Sieve.SmallDivisorSum
 
 namespace NairTenenbaum
 
+/-- A positive exponent gap pays the fixed sieve constant uniformly in every
+smaller cutoff. The same threshold supplies the logarithmic lower bound. -/
+theorem exists_sieve_scale_threshold {L α m d p e : ℝ}
+    (hL : 1 ≤ L) (hα : 0 < α) (he : 0 < e) (hp : 0 ≤ p)
+    (hgap : e + m + α * p ≤ d) :
+    ∃ x₀ : ℝ, 1 ≤ x₀ ∧ ∀ x : ℝ, x₀ ≤ x →
+      2 ≤ x ^ α ∧ 16 ≤ Real.log (x ^ α) ∧
+      ∀ N y z : ℝ, 0 ≤ N → N ≤ x ^ m → x ^ d ≤ y → 0 ≤ z → z ≤ x ^ α →
+        L * N * z ^ p ≤ y / 2 := by
+  let t := max 0 (max (16 / α) (Real.log (2 * L) / e))
+  have ⟨ht₀, htα, hte⟩ : 0 ≤ t ∧ 16 / α ≤ t ∧ Real.log (2 * L) / e ≤ t := by
+    simp [t, le_max_iff]
+  refine ⟨Real.exp t, Real.one_le_exp_iff.mpr ht₀, ?_⟩
+  intro x hx
+  have hx₁ : 1 ≤ x := (Real.one_le_exp_iff.mpr ht₀).trans hx
+  have hx₀ : 0 < x := lt_of_lt_of_le zero_lt_one hx₁
+  have ht : t ≤ Real.log x := by
+    simpa only [Real.log_exp] using Real.log_le_log (Real.exp_pos t) hx
+  have hlog : 16 ≤ Real.log (x ^ α) := by
+    rw [Real.log_rpow hx₀]
+    nlinarith [(div_le_iff₀ hα).mp (htα.trans ht)]
+  have htwo : 2 ≤ x ^ α := by
+    have H := Real.add_one_le_exp (Real.log (x ^ α))
+    rw [Real.exp_log (Real.rpow_pos_of_pos hx₀ α)] at H
+    linarith
+  have hconstant : 2 * L ≤ x ^ e := by
+    apply (Real.log_le_log_iff (by linarith : 0 < 2 * L)
+      (Real.rpow_pos_of_pos hx₀ e)).mp
+    rw [Real.log_rpow hx₀]
+    nlinarith [(div_le_iff₀ he).mp (hte.trans ht)]
+  refine ⟨htwo, hlog, ?_⟩
+  intro N y z hN hNx hy hz hzx
+  have Hz := Real.rpow_le_rpow hz hzx hp
+  rw [← Real.rpow_mul hx₀.le] at Hz
+  have H := mul_le_mul hconstant hNx hN (Real.rpow_nonneg hx₀.le e)
+  have H' := mul_le_mul H Hz (Real.rpow_nonneg hz _) (by positivity)
+  rw [← Real.rpow_add hx₀, ← Real.rpow_add hx₀] at H'
+  have H'' := H'.trans ((Real.rpow_le_rpow_of_exponent_le hx₁ hgap).trans hy)
+  nlinarith
+
 /-- The small-divisor and prime cutoffs leave a positive exponent gap beneath
 Theorem 1's lower bound on the interval length. -/
 theorem smallDivisor_scale_exponent {g : ℕ} (hg : 0 < g) (ε : ℝ) (hε : 0 ≤ ε) :
@@ -34,48 +74,19 @@ theorem exists_smallDivisor_sieve_scales {g : ℕ} (hg : 0 < g) {ε : ℝ} (hε 
         x ^ (4 * (g : ℝ) ^ 2 * ε) ≤ y →
         L * N * (x ^ ((g : ℝ) * ε / 2)) ^
           (4 * (g : ℝ) * (1 + 1 / 16) + 1 / 4) ≤ y / 2 := by
-  let α : ℝ := (g : ℝ) * ε / 2
-  let e : ℝ := (g : ℝ) ^ 2 * ε / 4
   have hg₀ : (0 : ℝ) < g := by exact_mod_cast hg
-  have hα : 0 < α := by dsimp [α]; positivity
-  have he : 0 < e := by dsimp [e]; positivity
-  let t : ℝ := max 0 (max (16 / α) (Real.log (2 * L) / e))
-  refine ⟨Real.exp t, Real.one_le_exp_iff.mpr (le_max_left _ _), ?_⟩
+  obtain ⟨x₀, hx₀, H⟩ := exists_sieve_scale_threshold
+    (m := 3 * (g : ℝ) ^ 2 * ε / 2) (d := 4 * (g : ℝ) ^ 2 * ε)
+    (p := 4 * (g : ℝ) * (1 + 1 / 16) + 1 / 4) hL
+    (show 0 < (g : ℝ) * ε / 2 by positivity)
+    (show 0 < (g : ℝ) ^ 2 * ε / 4 by positivity)
+    (by positivity) (by linarith [smallDivisor_scale_exponent hg ε hε.le])
+  refine ⟨x₀, hx₀, ?_⟩
   intro x hx
-  have hx₁ : 1 ≤ x := (Real.one_le_exp_iff.mpr (le_max_left _ _)).trans hx
-  have hx₀ : 0 < x := lt_of_lt_of_le zero_lt_one hx₁
-  have ht : t ≤ Real.log x := by
-    simpa only [Real.log_exp] using Real.log_le_log (Real.exp_pos t) hx
-  have hlog : 16 ≤ Real.log (x ^ α) := by
-    rw [Real.log_rpow hx₀]
-    have H : 16 / α ≤ Real.log x := (le_max_left _ _).trans ((le_max_right _ _).trans ht)
-    exact (div_le_iff₀ hα).mp H |>.trans_eq (mul_comm _ _)
-  have htwo : 2 ≤ x ^ α := by
-    have H := Real.add_one_le_exp (Real.log (x ^ α))
-    rw [Real.exp_log (Real.rpow_pos_of_pos hx₀ α)] at H
-    linarith
-  have hgap : 2 * L ≤ x ^ e := by
-    have H : Real.log (2 * L) / e ≤ Real.log x :=
-      (le_max_right _ _).trans ((le_max_right _ _).trans ht)
-    have H' : Real.log (2 * L) ≤ Real.log (x ^ e) := by
-      rw [Real.log_rpow hx₀]
-      nlinarith [(div_le_iff₀ he).mp H]
-    exact (Real.log_le_log_iff (by linarith : 0 < 2 * L)
-      (Real.rpow_pos_of_pos hx₀ e)).mp H'
-  refine ⟨htwo, hlog, ?_⟩
+  obtain ⟨hz, hlog, hlevel⟩ := H x hx
+  refine ⟨hz, hlog, ?_⟩
   intro N y hN hNx hy
-  have hpow := Real.rpow_nonneg hx₀.le (α * (4 * (g : ℝ) * (1 + 1 / 16) + 1 / 4))
-  have H := mul_le_mul hgap hNx hN (Real.rpow_nonneg hx₀.le e)
-  have H' := mul_le_mul_of_nonneg_right H hpow
-  rw [← Real.rpow_add hx₀, ← Real.rpow_add hx₀] at H'
-  have hexp : e + 3 * (g : ℝ) ^ 2 * ε / 2 +
-      α * (4 * (g : ℝ) * (1 + 1 / 16) + 1 / 4) ≤ 4 * (g : ℝ) ^ 2 * ε := by
-    dsimp only [e, α]
-    linarith [smallDivisor_scale_exponent hg ε hε.le]
-  have H'' := H'.trans ((Real.rpow_le_rpow_of_exponent_le hx₁ hexp).trans hy)
-  rw [Real.rpow_mul hx₀.le] at H''
-  change L * N * (x ^ α) ^ (4 * (g : ℝ) * (1 + 1 / 16) + 1 / 4) ≤ y / 2
-  nlinarith
+  exact hlevel N y _ hN hNx hy (by positivity) le_rfl
 
 /-- The small-divisor sum at the paper's scales, with constants chosen before
 all polynomial coefficients and the admissible arithmetic function. -/

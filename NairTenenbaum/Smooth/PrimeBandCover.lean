@@ -74,6 +74,28 @@ theorem PolynomialSystem.HasIntermediatePrefix.exists_band {k r : ℕ} {P : Poly
   obtain ⟨j, hjw, hjq, hjs⟩ := primeSelect_mem_dyadic_band n q hx hw₀ hu hw
   exact ⟨j, hjw, n, q, hn, hN, hjs, hX, hjq⟩
 
+/-- A finite weighted set covered by eligible finite sets uses only finitely
+many of them. Overlap is harmless for nonnegative weights. -/
+theorem exists_finset_sum_le_cover {ι κ : Type*} [Nonempty κ]
+    (T : Finset ι) (U : κ → Finset ι) (eligible : κ → Prop) (w : ι → ℝ)
+    (hw : ∀ i, 0 ≤ w i) (hcover : ∀ i ∈ T, ∃ j, eligible j ∧ i ∈ U j) :
+    ∃ J : Finset κ, (∀ j ∈ J, eligible j) ∧ (∑ i ∈ T, w i) ≤ ∑ j ∈ J, ∑ i ∈ U j, w i := by
+  classical
+  choose! f hf using hcover
+  refine ⟨T.image f, ?_, ?_⟩
+  · intro j hj
+    obtain ⟨i, hi, rfl⟩ := Finset.mem_image.mp hj
+    exact (hf i hi).1
+  · have hmap : ∀ i ∈ T, f i ∈ T.image f := fun i hi => Finset.mem_image.mpr ⟨i, hi, rfl⟩
+    rw [← Finset.sum_fiberwise_of_maps_to hmap]
+    apply Finset.sum_le_sum
+    intro j _
+    apply Finset.sum_le_sum_of_subset_of_nonneg
+    · intro i hi
+      obtain ⟨hi, heq⟩ := Finset.mem_filter.mp hi
+      exact heq ▸ (hf i hi).2
+    · exact fun i _ _ => hw i
+
 /-- The finite interval needs only finitely many eligible bands. Overlap causes
 no loss because all arithmetic weights are nonnegative. -/
 theorem PolynomialSystem.intermediatePrefixContribution_le_bands {k r : ℕ} (P : PolynomialSystem k
@@ -86,31 +108,15 @@ theorem PolynomialSystem.intermediatePrefixContribution_le_bands {k r : ℕ} (P 
           (Finset.Icc 0 ⌊x ^ (2 * (u / 2 ^ (j + 1)))⌋₊) X a b (x ^ (u / 2 ^ (j + 1))) := by
   classical
   let T := (Finset.Ioc a b).filter (P.HasIntermediatePrefix N X w₀ x u)
-  have hex : ∀ t : ℤ, ∃ j : ℕ, t ∈ T →
-      w₀ < x ^ (2 * (u / 2 ^ (j + 1))) ∧
-      P.HasSmoothTailPrefix N (Finset.Icc 0 ⌊x ^ (2 * (u / 2 ^ (j + 1)))⌋₊)
-        X (x ^ (u / 2 ^ (j + 1))) t := by
-    intro t
-    by_cases ht : t ∈ T
-    · obtain ⟨j, hj⟩ := ((Finset.mem_filter.mp ht).2).exists_band hx hw₀
-      exact ⟨j, fun _ => hj⟩
-    · exact ⟨0, fun h => (ht h).elim⟩
-  choose f hf using hex
-  refine ⟨T.image f, ?_, ?_⟩
-  · intro j hj
-    obtain ⟨t, ht, rfl⟩ := Finset.mem_image.mp hj
-    exact (hf t ht).1
-  · change (∑ t ∈ T, extendArithmeticMap F (fun j => ((P.Q j).eval t).natAbs)) ≤ _
-    have hmap : ∀ t ∈ T, f t ∈ T.image f := fun t ht => Finset.mem_image.mpr ⟨t, ht, rfl⟩
-    rw [← Finset.sum_fiberwise_of_maps_to hmap]
-    apply Finset.sum_le_sum
-    intro j hj
-    unfold PolynomialSystem.smoothTailPrefixContribution
-    apply Finset.sum_le_sum_of_subset_of_nonneg
-    · intro t ht
-      obtain ⟨ht, heq⟩ := Finset.mem_filter.mp ht
-      exact Finset.mem_filter.mpr ⟨(Finset.mem_filter.mp ht).1, heq ▸ (hf t ht).2⟩
-    · intro t _ _
-      exact extendArithmeticMap_nonneg hF _
+  apply exists_finset_sum_le_cover T
+    (fun j => (Finset.Ioc a b).filter (fun t => P.HasSmoothTailPrefix N (Finset.Icc 0 ⌊x ^ (2 * (u /
+      2 ^ (j + 1)))⌋₊)
+        X (x ^ (u / 2 ^ (j + 1))) t))
+    (fun j => w₀ < x ^ (2 * (u / 2 ^ (j + 1))))
+    (fun t => extendArithmeticMap F (fun j => ((P.Q j).eval t).natAbs))
+    (fun _ => extendArithmeticMap_nonneg hF _)
+  intro t ht
+  obtain ⟨j, hj, hprefix⟩ := ((Finset.mem_filter.mp ht).2).exists_band hx hw₀
+  exact ⟨j, hj, Finset.mem_filter.mpr ⟨(Finset.mem_filter.mp ht).1, hprefix⟩⟩
 
 end NairTenenbaum

@@ -104,18 +104,18 @@ theorem PolynomialSystem.radical_rootCount_bad_supported {k r : ℕ} (P : Polyno
       (Nat.dvd_of_mem_primeFactors hp) ν) hn
   simpa only [Finset.filter_eq_self.mpr (fun _ hp => Nat.prime_of_mem_primeFactors hp)] using H
 
-/-- A finite sum over arbitrary bad-prime tuples is bounded independently of
-its coordinate cutoff. -/
-theorem auxiliary_tupleLCM_sum_le {r G : ℕ} {A B ε σ : ℝ}
-    (hA : 0 ≤ A) (hB : 1 ≤ B) (hε : 0 < ε) (hσ : σ < 0) (hG : 0 < G) (hr : r ≤ G)
-    (η : Fin r → ℕ) (hη : ∀ i, (η i : ℝ) * ε - 1 / (G : ℝ) ≤ σ)
+/-- Sum a product of fractional auxiliary weights over any supported finite
+set of tuples, using a common geometric exponent gap. -/
+theorem sum_prod_fractionalAuxiliary_le {r G : ℕ} {A B ε σ : ℝ}
+    (hA : 0 ≤ A) (hB : 1 ≤ B) (hε : 0 < ε) (hσ : σ < 0) (hr : r ≤ G)
+    (η : Fin r → ℕ) (θ : Fin r → ℝ) (hη : ∀ i, (η i : ℝ) * ε - θ i ≤ σ)
     (s : Finset ℕ) (S : Finset (Tuple r)) (N : ℕ+)
     (hbox : ∀ n ∈ S, ∀ i, n i ≤ N) (hs : ∀ n ∈ S, ∀ i, (n i : ℕ) ∈ Nat.factoredNumbers s) :
-    (∑ n ∈ S, (∏ i, auxiliary A B ε (η i) (n i)) / (tupleLCM n : ℝ)) ≤
+    (∑ n ∈ S, ∏ i, fractionalAuxiliary A B ε (θ i) (η i) (n i)) ≤
       (B / (1 - (2 : ℝ) ^ σ)) ^ (G * (s.filter Nat.Prime).card) := by
   classical
   let T := (Finset.Icc 1 N).filter (fun n : ℕ+ => (n : ℕ) ∈ Nat.factoredNumbers s)
-  let U := fun i (n : ℕ+) => fractionalAuxiliary A B ε (1 / (G : ℝ)) (η i) n
+  let U := fun i (n : ℕ+) => fractionalAuxiliary A B ε (θ i) (η i) n
   let K := B / (1 - (2 : ℝ) ^ σ)
   have hU : ∀ i n, 0 ≤ U i n := fun i n => fractionalAuxiliary_nonneg hA (zero_le_one.trans hB) _ _
   have hK : 1 ≤ K := by
@@ -127,8 +127,6 @@ theorem auxiliary_tupleLCM_sum_le {r G : ℕ} {A B ε σ : ℝ}
     exact Fintype.mem_piFinset.mpr (fun i => Finset.mem_filter.mpr
       ⟨Finset.mem_Icc.mpr ⟨one_le, hbox n hn i⟩, hs n hn i⟩)
   calc
-    _ ≤ ∑ n ∈ S, ∏ i, U i (n i) := Finset.sum_le_sum
-      (fun n _ => auxiliary_prod_div_tupleLCM_le hA (zero_le_one.trans hB) η n hG hr)
     _ ≤ ∑ n ∈ Fintype.piFinset (fun _ : Fin r => T), ∏ i, U i (n i) :=
       Finset.sum_le_sum_of_subset_of_nonneg hsub (fun n _ _ => Finset.prod_nonneg (fun i _ => hU i
           _))
@@ -141,6 +139,21 @@ theorem auxiliary_tupleLCM_sum_le {r G : ℕ} {A B ε σ : ℝ}
     _ = K ^ (r * (s.filter Nat.Prime).card) := by
       simp only [Finset.prod_const, Finset.card_univ, Fintype.card_fin, ← pow_mul, Nat.mul_comm]
     _ ≤ _ := pow_le_pow_right₀ hK (Nat.mul_le_mul_right _ hr)
+
+
+/-- A finite sum over arbitrary bad-prime tuples is bounded independently of
+its coordinate cutoff. -/
+theorem auxiliary_tupleLCM_sum_le {r G : ℕ} {A B ε σ : ℝ}
+    (hA : 0 ≤ A) (hB : 1 ≤ B) (hε : 0 < ε) (hσ : σ < 0) (hG : 0 < G) (hr : r ≤ G)
+    (η : Fin r → ℕ) (hη : ∀ i, (η i : ℝ) * ε - 1 / (G : ℝ) ≤ σ)
+    (s : Finset ℕ) (S : Finset (Tuple r)) (N : ℕ+)
+    (hbox : ∀ n ∈ S, ∀ i, n i ≤ N) (hs : ∀ n ∈ S, ∀ i, (n i : ℕ) ∈ Nat.factoredNumbers s) :
+    (∑ n ∈ S, (∏ i, auxiliary A B ε (η i) (n i)) / (tupleLCM n : ℝ)) ≤
+      (B / (1 - (2 : ℝ) ^ σ)) ^ (G * (s.filter Nat.Prime).card) := by
+  exact (Finset.sum_le_sum (fun n _ =>
+    auxiliary_prod_div_tupleLCM_le hA (zero_le_one.trans hB) η n hG hr)).trans
+      (sum_prod_fractionalAuxiliary_le hA hB hε hσ hr η (fun _ => 1 / (G : ℝ))
+        hη s S N hbox hs)
 
 /-- The cost of a bad-prime tuple, retaining a congruence density for its
 least common multiple instead of discarding the removed congruences. -/

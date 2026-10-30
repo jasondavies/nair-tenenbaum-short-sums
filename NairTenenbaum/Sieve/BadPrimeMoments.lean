@@ -52,35 +52,11 @@ theorem auxiliary_tupleLCM_moment_sum_le {k r G : ℕ} {A B ε β σ : ℝ}
     (∑ n ∈ S, ((∏ i, auxiliary A B ε (totalExponent γ i) (n i)) / (tupleLCM n : ℝ)) *
       (weightedMass γ n : ℝ) ^ β) ≤
       (B / (1 - (2 : ℝ) ^ σ)) ^ (G * (s.filter Nat.Prime).card) := by
-  classical
-  let T := (Finset.Icc 1 N).filter (fun n : ℕ+ => (n : ℕ) ∈ Nat.factoredNumbers s)
-  let U := fun i (n : ℕ+) => fractionalAuxiliary A B ε
-    (1 / (G : ℝ) - (totalExponent γ i : ℝ) * β) (totalExponent γ i) n
-  let K := B / (1 - (2 : ℝ) ^ σ)
-  have hU : ∀ i n, 0 ≤ U i n := fun i n => fractionalAuxiliary_nonneg hA (zero_le_one.trans hB) _ _
-  have hK : 1 ≤ K := by
-    apply (le_div_iff₀ (sub_pos.mpr (Real.rpow_lt_one_of_one_lt_of_neg (by norm_num) hσ))).mpr
-    have : 0 ≤ (2 : ℝ) ^ σ := by positivity
-    linarith
-  have hsub : S ⊆ Fintype.piFinset (fun _ : Fin r => T) := by
-    intro n hn
-    exact Fintype.mem_piFinset.mpr (fun i => Finset.mem_filter.mpr
-      ⟨Finset.mem_Icc.mpr ⟨one_le, hbox n hn i⟩, hs n hn i⟩)
-  calc
-    _ ≤ ∑ n ∈ S, ∏ i, U i (n i) := Finset.sum_le_sum
-      (fun n _ => auxiliary_tupleLCM_moment_le hA (zero_le_one.trans hB) γ n hG hr)
-    _ ≤ ∑ n ∈ Fintype.piFinset (fun _ : Fin r => T), ∏ i, U i (n i) :=
-      Finset.sum_le_sum_of_subset_of_nonneg hsub (fun n _ _ => Finset.prod_nonneg (fun i _ => hU i
-          _))
-    _ = ∏ i, ∑ n ∈ T, U i n := (Finset.prod_univ_sum _ _).symm
-    _ ≤ ∏ _i : Fin r, K ^ (s.filter Nat.Prime).card := by
-      apply Finset.prod_le_prod₀ (fun i _ => Finset.sum_nonneg (fun n _ => hU i n))
-      intro i _
-      exact fractionalAuxiliary_sum_le hA hB hε hσ (totalExponent γ i) (by nlinarith [hγ i]) s T
-        (fun n hn => (Finset.mem_filter.mp hn).2)
-    _ = K ^ (r * (s.filter Nat.Prime).card) := by
-      simp only [Finset.prod_const, Finset.card_univ, Fintype.card_fin, ← pow_mul, Nat.mul_comm]
-    _ ≤ _ := pow_le_pow_right₀ hK (Nat.mul_le_mul_right _ hr)
+  exact (Finset.sum_le_sum (fun n _ =>
+    auxiliary_tupleLCM_moment_le hA (zero_le_one.trans hB) γ n hG hr)).trans
+      (sum_prod_fractionalAuxiliary_le hA hB hε hσ hr (totalExponent γ)
+        (fun i => 1 / (G : ℝ) - (totalExponent γ i : ℝ) * β)
+        (fun i => by nlinarith [hγ i]) s S N hbox hs)
 
 /-- Uniform bound for moments of the full bad-prime tuple kernel. -/
 noncomputable def badPrimeMomentBound (B : ℝ) (g D : ℕ) : ℝ :=

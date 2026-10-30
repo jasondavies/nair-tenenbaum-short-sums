@@ -61,14 +61,6 @@ theorem PolynomialSystem.sum_roughSmoothTailPrefix_le {k r : ℕ} (P : Polynomia
       simpa only [hn t ht i] using primeSelect_coordinate_dvd (n t) (Finset.range (q t)) i))
     hsmooth hlarge
     (fun t ht => P.primeSelect_sieve_coprime (hn t ht) (Real.rpow_nonneg (by linarith) _) (hq t ht))
-  calc
-    _ ≤ ∑ t ∈ T, A ^ (c / α) * pullback P.exponent F (m t) := by
-      apply Finset.sum_le_sum
-      intro t ht
-      rw [← P.pullback_valueTuple F (hn t ht)]
-      exact hF.pullback_primeSplit_le_of_rough hA hB P.exponent P.exponent_pos (n t) (q t)
-        hx hα (hq t ht).le (by simpa only [P.weightedMass_valueTuple (hn t ht)] using hvalue t ht)
-    _ = A ^ (c / α) * ∑ t ∈ T, pullback P.exponent F (m t) := (Finset.mul_sum _ _ _).symm
-    _ ≤ _ := mul_le_mul_of_nonneg_left H (Real.rpow_nonneg (by linarith) _)
+  exact P.sum_roughPrefix_le_of_selected_sum hF hA hB T n q hn hx hα hq hvalue H
 
 end NairTenenbaum

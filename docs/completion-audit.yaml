@@ -493,7 +493,7 @@ allowed_axioms:
 verification: bash scripts/check.sh
 verification_result:
   build_jobs: 9405
-  audited_declarations: 3032
+  audited_declarations: 3039
   compared_theorems: 14
   matching_statement_constants: 19610
   unused_argument_lint_errors: 0

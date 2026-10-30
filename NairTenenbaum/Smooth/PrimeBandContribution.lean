@@ -39,17 +39,7 @@ theorem PolynomialSystem.smoothTailPrefixContribution_le {k r : ℕ} (P : Polyno
       A ^ (c / α) * P.smoothTailSiftedSum F N s X a b (x ^ α) := by
   classical
   let T := (Finset.Ioc a b).filter (P.HasSmoothTailPrefix N s X (x ^ α))
-  have hex : ∀ t : ℤ, ∃ (n : Tuple r) (q : ℕ), t ∈ T →
-      (∀ i, (n i : ℕ) = ((P.R i).eval t).natAbs) ∧
-      weightedMass P.exponent (primeSelect n (Finset.range q)) ≤ N ∧
-      (∀ i, (primeSelect n (Finset.range q) i : ℕ) ∈ Nat.factoredNumbers s) ∧
-      X < (weightedMass P.exponent (primeSelect n (Finset.range q)) : ℝ) ∧ x ^ α < (q : ℝ) := by
-    intro t
-    by_cases ht : t ∈ T
-    · obtain ⟨n, q, hn⟩ := (Finset.mem_filter.mp ht).2
-      exact ⟨n, q, fun _ => hn⟩
-    · exact ⟨1, 0, fun h => (ht h).elim⟩
-  choose n q hn using hex
+  choose! n q hn using fun t (ht : t ∈ T) => (Finset.mem_filter.mp ht).2
   exact P.sum_roughSmoothTailPrefix_le hF hA hB N s X a b T n q (Finset.filter_subset _ _)
     (fun t ht => (hn t ht).1) hx hα (fun t ht => (hn t ht).2.2.2.2)
     (fun t ht => (hn t ht).2.1) (fun t ht => (hn t ht).2.2.1)

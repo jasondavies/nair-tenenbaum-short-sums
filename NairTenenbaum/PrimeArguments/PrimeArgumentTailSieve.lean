@@ -86,16 +86,14 @@ theorem exists_primeSmoothTailSiftedSum_bound {g : ℕ} (hg : 0 < g) {η δ : �
       (Finset.Icc 0 ⌊w⌋₊) N v).mp hv).1.2
     have hcross (i j : Fin r) : Nat.Coprime (u i) (v j) :=
       factoredNumbers_coprime_of_coprime (hsupport v u hu' i) (hv'.2 j).symm
-    have haux : 0 ≤ ∏ i, auxiliary A B ε (totalExponent P.exponent i) (u i) :=
-      Finset.prod_nonneg (fun i _ => auxiliary_nonneg hA (zero_le_one.trans hB) _ _)
-    have Hf := mul_le_mul_of_nonneg_right
-      (hF.pullback_mul_le_auxiliary hA hB P.exponent u v hcross)
-      (Nat.cast_nonneg (P.primeArgumentBadSiftedCount g u v a b z))
     have Hcount := H k r P hdeg.le hzero u v hv' (hsupport v u hu') a b z hab hz hzlog (hsize v u
-        hu')
-    have H' := Hf.trans (mul_le_mul_of_nonneg_left Hcount (mul_nonneg haux (hF.nonneg _)))
+      hu')
+    have H' := P.weighted_count_le_badPrimeKernel hF hA hB u v hcross
+      (C := C * ∏ i, totientTwist (g + 1) (v i))
+      (Nat.cast_nonneg (P.primeArgumentBadSiftedCount g u v a b z)) (by
+        simpa only [C, mul_assoc, mul_comm, mul_left_comm] using Hcount)
     convert H' using 1
-    dsimp only [C, W, badPrimeTupleKernel, rootTupleWeight]
+    dsimp only [W]
     ring
   have hgP : 0 < P.total.natDegree := by simpa only [hdeg] using hg
   obtain ⟨hgood, hbad, hcut⟩ := primeArgument_split_moment_conditions hg hε.le hκ hw hsmall hwlog

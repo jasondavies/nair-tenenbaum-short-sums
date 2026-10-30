@@ -554,6 +554,16 @@ mass-tail split lemmas, and one fiber-counting proof for the four selection
 lemmas. `ConditionalPolynomialSieve` specializes `LocalConditionalSieve`.
 `absorb_sieve_remainder` handles both sieve-level remainder arguments, while
 common finite-sum moment and dyadic-band lemmas serve both pipelines.
+`PolynomialSystem.sum_roughPrefix_le_of_selected_sum` combines the rough
+remainder bound with any selected-prefix estimate. The bad-prime sieve and
+smooth-tail arguments share `weighted_count_le_badPrimeKernel`, and the mass
+and moment estimates share `sum_prod_fractionalAuxiliary_le`.
+`exists_sieve_scale_threshold` supplies the common analytic threshold from an
+explicit exponent gap. `exists_finset_sum_le_cover` assembles both finite band
+covers, while `primeBand_decay_of_margin` leaves the required exponential decay
+after paying the arithmetic and Euler-product costs. The prime-specific
+reciprocal logarithm, constant-term hypothesis, and totient exponents remain
+explicit in their application lemmas.
 
 `AffineRootCounts` begins the arithmetic-progression applications. It proves
 that substitution by `qX+a` preserves root counts at moduli coprime to `q`,
@@ -1130,7 +1140,7 @@ All fifteen numbered results are accounted for: Theorems 1–3, Corollaries 1–
 and Lemma 2 have proofs with the scope and corrections recorded above; the
 printed Lemma 1 is refuted and the needed replacements are proved. No result
 has been substituted by an axiom or a structure field containing the desired
-conclusion. The full build and audit check 3,032 declarations and allow only
+conclusion. The full build and audit check 3,039 declarations and allow only
 `propext`, `Classical.choice`, and `Quot.sound`.
 
 

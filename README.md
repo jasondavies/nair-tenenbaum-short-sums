@@ -203,11 +203,13 @@ the `unusedArguments` declaration linter and audits every declaration defined by
 modules, including private and generated declarations. The only permitted axioms
 are `propext`, `Classical.choice`, and `Quot.sound`. A source module missing from
 the audit's explicit `import all` list is an error. No library or Solution proof uses `sorry` or an additional axiom.
-Challenge contains only the deliberate statement placeholders described above. The completed audit checks **3,032 declarations**.
+Challenge contains only the deliberate statement placeholders described above. The completed audit checks **3,039 declarations**.
 The statement map above and [completion audit](docs/completion-audit.yaml) record
 which printed statements are proved, corrected, or refuted. The additional
 submission audit checks every theorem listed in `comparator.json` and confirms
 that `Solution` does not import `Challenge`.
+The [refactor review](docs/refactor-review.yaml) records the shared proof helpers
+and the documented standalone results retained after dependency analysis.
 
 During initial development the already-cached dependency packages from
 `../iwaniec-linear-sieve` were copied into this project's ignored `.lake` directory.
@@ -453,6 +455,71 @@ All names below are in the `NairTenenbaum` namespace.
 | [PrimeRootReciprocalLowerBound](NairTenenbaum/NumberFields/PrimeRootReciprocalLowerBound.lean) | Truncated prime-root reciprocal sum bounded below by log log x minus a constant |
 | [IrreducibleSieveProduct](NairTenenbaum/NumberFields/IrreducibleSieveProduct.lean) | Irreducible-polynomial sieve product bounded by a constant divided by log x |
 | [CorollaryFour](NairTenenbaum/Results/CorollaryFour.lean) | Corollary 4 for every moment order at least one and every positive interval exponent |
+| [CompleteResidueBlock](NairTenenbaum/Arithmetic/CompleteResidueBlock.lean) | Complete residue blocks inside real short intervals |
+| [PrimePowerLogCutoff](NairTenenbaum/Arithmetic/PrimePowerLogCutoff.lean) | A logarithmic cutoff for prime-power divisibility |
+| [PrimePowerLogExpansion](NairTenenbaum/Arithmetic/PrimePowerLogExpansion.lean) | Prime-power divisibility counts in the smooth logarithmic mass |
+| [ScalarPrimeSplit](NairTenenbaum/Arithmetic/ScalarPrimeSplit.lean) | Smooth and rough parts at a real cutoff |
+| [TotientComparisonExponents](NairTenenbaum/Arithmetic/TotientComparisonExponents.lean) | Uniform comparison with an independent totient exponent |
+| [ShortIntervalCardinality](NairTenenbaum/Contributions/ShortIntervalCardinality.lean) | Rounding errors in the number of integers in a short interval |
+| [ShortIntervalCongruenceUpper](NairTenenbaum/Contributions/ShortIntervalCongruenceUpper.lean) | Upper congruence counts with the rounding error retained |
+| [DivisorHitFixedPrime](NairTenenbaum/DivisorSums/DivisorHitFixedPrime.lean) | Divisor hits without a restriction on fixed prime divisors |
+| [DivisorWindowMoments](NairTenenbaum/DivisorSums/DivisorWindowMoments.lean) | Divisor windows and moment truncation for Theorem 2 |
+| [GreatestPrimeFactorCount](NairTenenbaum/DivisorSums/GreatestPrimeFactorCount.lean) | Greatest prime factors and divisor hits |
+| [GreatestPrimeFactorExponent](NairTenenbaum/DivisorSums/GreatestPrimeFactorExponent.lean) | The exponent margin in Theorem 2 |
+| [PolynomialDivisorWindowCount](NairTenenbaum/DivisorSums/PolynomialDivisorWindowCount.lean) | Double counting polynomial divisors in a dyadic window |
+| [PrimeFactorLogGain](NairTenenbaum/DivisorSums/PrimeFactorLogGain.lean) | Quantitative logarithmic gain from saved prime factors |
+| [RoughCofactorBounds](NairTenenbaum/DivisorSums/RoughCofactorBounds.lean) | Prime-factor counts of the rough cofactor in Theorem 2 |
+| [RoughLogMass](NairTenenbaum/DivisorSums/RoughLogMass.lean) | Counting a saved prime factor in the total rough logarithmic mass |
+| [ScalarRoughLogMass](NairTenenbaum/DivisorSums/ScalarRoughLogMass.lean) | Logarithmic mass of the canonical rough parts |
+| [HooleyAffineReduction](NairTenenbaum/Hooley/HooleyAffineReduction.lean) | Reducing Hooley short sums to primitive affine restrictions |
+| [HooleyCoarseLogBound](NairTenenbaum/Hooley/HooleyCoarseLogBound.lean) | Absorbing the subexponential factor into a logarithmic margin |
+| [HooleyDivisorTail](NairTenenbaum/Hooley/HooleyDivisorTail.lean) | A uniform negligible tail for large divisor-window counts |
+| [HooleyFixedFactor](NairTenenbaum/Hooley/HooleyFixedFactor.lean) | Absorbing a fixed factor in Hooley's function |
+| [HooleyFixedPrimeBound](NairTenenbaum/Hooley/HooleyFixedPrimeBound.lean) | Hooley moments without the no-fixed-prime-divisor restriction |
+| [HooleyFixedPrimeTail](NairTenenbaum/Hooley/HooleyFixedPrimeTail.lean) | Divisor-window tail saving in the presence of fixed prime divisors |
+| [HooleyLogarithmicSaving](NairTenenbaum/Hooley/HooleyLogarithmicSaving.lean) | Choosing a Hooley moment that gives logarithmic tail saving |
+| [PolynomialLogMass](NairTenenbaum/Polynomials/PolynomialLogMass.lean) | Quantitative lower logarithmic mass of polynomial values |
+| [PolynomialLogMassLength](NairTenenbaum/Polynomials/PolynomialLogMassLength.lean) | The total logarithmic mass with an explicit interval-length error |
+| [PolynomialLogParts](NairTenenbaum/Polynomials/PolynomialLogParts.lean) | Canonical smooth and rough logarithmic masses of polynomial values |
+| [PolynomialSmoothPrimeBound](NairTenenbaum/Polynomials/PolynomialSmoothPrimeBound.lean) | Small-prime logarithmic mass reduced to the weighted prime-root sum |
+| [PrimitivePrimePowerRoots](NairTenenbaum/Polynomials/PrimitivePrimePowerRoots.lean) | Uniform prime-power roots for primitive polynomials |
+| [PrimitiveResidueRoots](NairTenenbaum/Polynomials/PrimitiveResidueRoots.lean) | Residue roots of primitive integral polynomials |
+| [PrimeArgumentBadSieve](NairTenenbaum/PrimeArguments/PrimeArgumentBadSieve.lean) | Full bad-prime summation for the prime-argument sieve |
+| [PrimeArgumentBand](NairTenenbaum/PrimeArguments/PrimeArgumentBand.lean) | A logarithmic prime band with the additional prime-argument saving |
+| [PrimeArgumentBandContribution](NairTenenbaum/PrimeArguments/PrimeArgumentBandContribution.lean) | The weighted contribution of a smooth prefix at prime arguments |
+| [PrimeArgumentBands](NairTenenbaum/PrimeArguments/PrimeArgumentBands.lean) | Summing logarithmic prefix bands at prime arguments |
+| [PrimeArgumentCover](NairTenenbaum/PrimeArguments/PrimeArgumentCover.lean) | Covering the fourth class at prime arguments by logarithmic bands |
+| [PrimeArgumentDecomposition](NairTenenbaum/PrimeArguments/PrimeArgumentDecomposition.lean) | The four contribution classes restricted to prime arguments |
+| [PrimeArgumentEuler](NairTenenbaum/PrimeArguments/PrimeArgumentEuler.lean) | The extra logarithm in the prime-argument Euler product |
+| [PrimeArgumentExceptional](NairTenenbaum/PrimeArguments/PrimeArgumentExceptional.lean) | Power savings with the growth margin of Theorem 3 |
+| [PrimeArgumentFirstContribution](NairTenenbaum/PrimeArguments/PrimeArgumentFirstContribution.lean) | The small-prefix contribution at prime arguments |
+| [PrimeArgumentHeight](NairTenenbaum/PrimeArguments/PrimeArgumentHeight.lean) | Common height and growth margins for Theorems 1 and 3 |
+| [PrimeArgumentIntervalBound](NairTenenbaum/PrimeArguments/PrimeArgumentIntervalBound.lean) | The four prime-argument contributions assembled with uniform constants |
+| [PrimeArgumentMainTerm](NairTenenbaum/PrimeArguments/PrimeArgumentMainTerm.lean) | The sifted small-divisor sum bounded by the original main term |
+| [PrimeArgumentMajorant](NairTenenbaum/PrimeArguments/PrimeArgumentMajorant.lean) | Prime arguments in the selected-prefix majorant |
+| [PrimeArgumentMoment](NairTenenbaum/PrimeArguments/PrimeArgumentMoment.lean) | Smooth moments with the additional prime-argument totient power |
+| [PrimeArgumentRoots](NairTenenbaum/PrimeArguments/PrimeArgumentRoots.lean) | Adjoining the prime argument to the sieve polynomial |
+| [PrimeArgumentScales](NairTenenbaum/PrimeArguments/PrimeArgumentScales.lean) | Sieve levels for prime arguments with the original degree and growth exponent |
+| [PrimeArgumentSieve](NairTenenbaum/PrimeArguments/PrimeArgumentSieve.lean) | The conditional sieve for prime arguments |
+| [PrimeArgumentSieveLevel](NairTenenbaum/PrimeArguments/PrimeArgumentSieveLevel.lean) | Absorbing the prime-argument sieve remainder |
+| [PrimeArgumentSmallSieve](NairTenenbaum/PrimeArguments/PrimeArgumentSmallSieve.lean) | Summing the prime-argument sieve over the small good tuples |
+| [PrimeArgumentSmallSum](NairTenenbaum/PrimeArguments/PrimeArgumentSmallSum.lean) | The prime-argument sieve in the original divisor tuple variables |
+| [PrimeArgumentSplitTail](NairTenenbaum/PrimeArguments/PrimeArgumentSplitTail.lean) | Prime-argument smooth tails retaining the full bad-prime mass |
+| [PrimeArgumentTailMajorant](NairTenenbaum/PrimeArguments/PrimeArgumentTailMajorant.lean) | Selected smooth prefixes at prime arguments with a lower mass cutoff |
+| [PrimeArgumentTailReindex](NairTenenbaum/PrimeArguments/PrimeArgumentTailReindex.lean) | Reindexing the smooth prefix tail for prime arguments |
+| [PrimeArgumentTailSieve](NairTenenbaum/PrimeArguments/PrimeArgumentTailSieve.lean) | The conditional sieve on a smooth mass tail |
+| [PrimeShortSum](NairTenenbaum/PrimeArguments/PrimeShortSum.lean) | The sum over prime arguments in a real interval |
+| [AffineIntervalRange](NairTenenbaum/Progressions/AffineIntervalRange.lean) | Uniform interval ranges under finitely many affine substitutions |
+| [AffineIrreducibility](NairTenenbaum/Progressions/AffineIrreducibility.lean) | Irreducibility survives the affine primitive-part reduction |
+| [AffineNoFixedPrime](NairTenenbaum/Progressions/AffineNoFixedPrime.lean) | Removing fixed prime divisors on finitely many progressions |
+| [AffinePolynomialContent](NairTenenbaum/Progressions/AffinePolynomialContent.lean) | Content after restriction to an arithmetic progression |
+| [TheoremTwoDivisorHits](NairTenenbaum/Results/TheoremTwoDivisorHits.lean) | Divisor hits in the interval prescribed by Theorem 2 |
+| [TheoremTwoStatement](NairTenenbaum/Results/TheoremTwoStatement.lean) | Statement of Theorem 2 |
+| [LocalConditionalSieve](NairTenenbaum/Sieve/LocalConditionalSieve.lean) | Conditional sieves using admissibility only at the selected primes |
+| [SmoothLogCountingError](NairTenenbaum/Smooth/SmoothLogCountingError.lean) | A linear error for the small-prime logarithmic mass |
+| [SmoothLogExpansion](NairTenenbaum/Smooth/SmoothLogExpansion.lean) | Exact logarithmic expansion of the smooth part |
+| [SmoothLogHigherPowers](NairTenenbaum/Smooth/SmoothLogHigherPowers.lean) | Bounded higher-prime-power contributions to the logarithmic main term |
+| [SmoothLogRootBound](NairTenenbaum/Smooth/SmoothLogRootBound.lean) | Root-density and remainder terms for the small-prime logarithmic mass |
 
 ## Conventions and scope
 

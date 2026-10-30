@@ -21,19 +21,7 @@ theorem primeArgument_band_decay {A c κ τ α x : ℝ} {g : ℕ}
     A ^ (c / α) * Real.exp (4 * (g : ℝ) * Real.log 4 / α) *
         Real.exp (-κ * Real.log (x ^ τ) / Real.log (x ^ (2 * α))) / α ≤
       Real.exp (-1 / α) := by
-  have HD : A ^ (c / α) * Real.exp (4 * (g : ℝ) * Real.log 4 / α) *
-      Real.exp (-κ * Real.log (x ^ τ) / Real.log (x ^ (2 * α))) ≤ Real.exp (-2 / α) := by
-    rw [Real.log_rpow (by linarith : 0 < x), Real.log_rpow (by linarith : 0 < x),
-      Real.rpow_def_of_pos hA, ← Real.exp_add, ← Real.exp_add]
-    apply Real.exp_le_exp.mpr
-    have hlog : Real.log x ≠ 0 := (Real.log_pos hx).ne'
-    have heq : Real.log A * (c / α) + 4 * (g : ℝ) * Real.log 4 / α +
-        -κ * (τ * Real.log x) / (2 * α * Real.log x) =
-        (c * Real.log A + 4 * (g : ℝ) * Real.log 4 - κ * τ / 2) / α := by
-      field_simp
-      ring
-    rw [heq]
-    exact div_le_div_of_nonneg_right (by linarith) hα.le
+  have HD := primeBand_decay_of_margin hA hα hx hκ
   calc
     _ ≤ Real.exp (-2 / α) / α := div_le_div_of_nonneg_right HD hα.le
     _ = Real.exp (-2 / α) * (1 / α) := by ring
