@@ -258,14 +258,12 @@ review:
     the transitive axiom audit. No independent human mathematical review is
     recorded. Challenge and Solution both compile. The compiled theorem types
     and all 19,610 transitive statement constants agree exactly, checked by
-    scripts/CheckStatements.lean. The complete axiom audit covers 3,209 library
-    and Solution declarations. These checks do not replace proof export and
-    independent kernel verification. Sandboxed Comparator could
-    not start its build in the preparation environment: Bubblewrap was denied
-    creation of a NETLINK_ROUTE socket. On 2026-10-30 the maintainer reported a
-    successful host run of scripts/verify-comparator.sh, covering full Comparator
-    and the bundled independent kernel checkers. This metadata does not claim
-    Palomar review or registration.
+    scripts/CheckStatements.lean. The complete axiom audit covers 3,060 library
+    and Solution declarations. On 2026-10-30 the refactored working tree also
+    passed scripts/verify-comparator.sh with host permissions for Bubblewrap's
+    namespace sandbox. Sandboxed Comparator exported the proofs, and con-ron,
+    NanoDa, and Lean's default kernel all accepted the solution. This metadata
+    does not claim Palomar review or registration.
 
 alignment:
   namespace: NairTenenbaum.Submission

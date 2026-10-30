@@ -483,7 +483,7 @@ source_issues:
     repaired_decomposition: NairTenenbaum.PolynomialSystem.divisor_primeReject_dagger
     repaired_counting: NairTenenbaum.PolynomialSystem.badPrime_weighted_congruence_sum_le
     repaired_sieve: NairTenenbaum.exists_smallDivisorSiftedSum_mainTerm_bound
-    repaired_first_class: NairTenenbaum.exists_smallRoughShortSum_theoremOne_bound
+    repaired_first_class: NairTenenbaum.exists_largeRoughContribution_value_bound
     repaired_main_theorem: NairTenenbaum.theoremOne
     application_status: all numbered applications have proved specializations
 allowed_axioms:
@@ -492,8 +492,16 @@ allowed_axioms:
   - Quot.sound
 verification: bash scripts/check.sh
 verification_result:
-  build_jobs: 9410
-  audited_declarations: 3209
+  build_jobs: 9406
+  audited_declarations: 3060
+  compared_theorems: 14
+  matching_statement_constants: 19610
+  unused_argument_lint_errors: 0
+  mathlib_standard_lint_warnings: 18
+  comparator: passed
+  comparator_date: '2026-10-30'
+  comparator_scope: refactored working tree
+  accepting_kernels: [con-ron, NanoDa, Lean]
   numbered_paper_statements: 15
   scope: all numbered results proved or explicitly corrected or refuted; see statement_targets and source_issues
 proof_map: BLUEPRINT.md

@@ -12,6 +12,7 @@ rev = "v4.35.0"
 
 [[lean_lib]]
 name = "NairTenenbaum"
+leanOptions = { weak.linter.mathlibStandardSet = true }
 
 # Deliberate statement placeholders are confined to Challenge.
 [[lean_lib]]

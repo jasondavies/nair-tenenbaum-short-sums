@@ -2,491 +2,486 @@ module
 
 import all NairTenenbaum
 import all Solution
-import all NairTenenbaum.Arithmetic
-import all NairTenenbaum.AuxiliaryFunctions
-import all NairTenenbaum.AuxiliarySeries
-import all NairTenenbaum.CongruenceCount
-import all NairTenenbaum.DivisorBounds
-import all NairTenenbaum.Hooley
-import all NairTenenbaum.LinearCase
-import all NairTenenbaum.MinimalMajorant
-import all NairTenenbaum.Normalization
-import all NairTenenbaum.PolynomialSystem
-import all NairTenenbaum.PolynomialStructure
-import all NairTenenbaum.PolynomialHeight
-import all NairTenenbaum.PrimePowerRoots
-import all NairTenenbaum.DiscriminantBezout
-import all NairTenenbaum.BadPrimeRoots
-import all NairTenenbaum.PolynomialLocal
-import all NairTenenbaum.UnitaryComparison
-import all NairTenenbaum.ComparisonKernel
-import all NairTenenbaum.TupleComparison
-import all NairTenenbaum.WeightTruncation
-import all NairTenenbaum.MultivariableComparison
-import all NairTenenbaum.ComparisonUniformity
-import all NairTenenbaum.ScalarComparison
-import all NairTenenbaum.ComparisonLocal
-import all NairTenenbaum.TotientTwist
-import all NairTenenbaum.PrimeLogSums
-import all NairTenenbaum.TiltedAuxiliary
-import all NairTenenbaum.MomentPrimeBounds
-import all NairTenenbaum.RootAuxiliary
-import all NairTenenbaum.PrimeSupportedFunction
-import all NairTenenbaum.LemmaOneCounterexample
-import all NairTenenbaum.LemmaOneObstruction
-import all NairTenenbaum.PrimeMajorant
-import all NairTenenbaum.PrimeSplitting
-import all NairTenenbaum.RootCount
-import all NairTenenbaum.Targets
-import all NairTenenbaum.Weights
-import all NairTenenbaum.PrimePowerComparison
-import all NairTenenbaum.MomentKernel
-import all NairTenenbaum.SmoothMoment
-import all NairTenenbaum.SmoothWeightSum
-import all NairTenenbaum.PrimeBandBounds
-import all NairTenenbaum.SmoothCutoffComparison
-import all NairTenenbaum.SmoothTruncation
-import all NairTenenbaum.SmoothTruncationUniform
-import all NairTenenbaum.RootSmoothTail
-import all NairTenenbaum.TiltedTotientComparison
-import all NairTenenbaum.TotientSmoothTail
-import all NairTenenbaum.SmoothTailUniformity
-import all NairTenenbaum.DiscriminantSplitting
-import all NairTenenbaum.PrimeThreshold
-import all NairTenenbaum.FractionalAuxiliary
-import all NairTenenbaum.BadPrimeMass
-import all NairTenenbaum.JointCongruence
-import all NairTenenbaum.BadPrimeCongruence
-import all NairTenenbaum.SelbergWeights
-import all NairTenenbaum.SelbergDenominator
-import all NairTenenbaum.SelbergCoefficientBounds
-import all NairTenenbaum.PrimeFactorBounds
-import all NairTenenbaum.SelbergRemainder
-import all NairTenenbaum.PolynomialSieve
-import all NairTenenbaum.ConditionalPolynomialSieve
-import all NairTenenbaum.OmittedEulerFactors
-import all NairTenenbaum.SievePrimes
-import all NairTenenbaum.SieveProductLowerBound
-import all NairTenenbaum.SieveLevel
-import all NairTenenbaum.TotientProducts
-import all NairTenenbaum.BadPrimeSieve
-import all NairTenenbaum.SmallDivisorSieve
-import all NairTenenbaum.SmallDivisorSum
-import all NairTenenbaum.SieveScales
-import all NairTenenbaum.SieveCutoffComparison
-import all NairTenenbaum.SmallDivisorMainTerm
-import all NairTenenbaum.RoughMass
-import all NairTenenbaum.PolynomialValueBounds
-import all NairTenenbaum.PolynomialValueTuples
-import all NairTenenbaum.SmallDivisorMajorant
-import all NairTenenbaum.RealIntervalBounds
-import all NairTenenbaum.FirstContribution
-import all NairTenenbaum.FirstContributionReal
-import all NairTenenbaum.PrimePowerThreshold
-import all NairTenenbaum.PrimePowerCounting
-import all NairTenenbaum.ValueWeightBounds
-import all NairTenenbaum.SecondContributionCounting
-import all NairTenenbaum.SecondContributionWeights
-import all NairTenenbaum.SecondContribution
-import all NairTenenbaum.SmoothDivisorDensity
-import all NairTenenbaum.SmoothDivisorCounting
-import all NairTenenbaum.ThirdContributionWeights
-import all NairTenenbaum.ThirdContribution
-import all NairTenenbaum.SmoothMomentUniformity
-import all NairTenenbaum.BadPrimeMoments
-import all NairTenenbaum.SplitSmoothTail
-import all NairTenenbaum.SmoothTailSieveReindex
-import all NairTenenbaum.SmoothTailSieve
-import all NairTenenbaum.MainTermLowerBound
-import all NairTenenbaum.LargePrefixScales
+import all NairTenenbaum.Arithmetic.Arithmetic
+import all NairTenenbaum.Arithmetic.AuxiliaryFunctions
+import all NairTenenbaum.Arithmetic.AuxiliarySeries
+import all NairTenenbaum.Arithmetic.CongruenceCount
+import all NairTenenbaum.Arithmetic.DivisorBounds
+import all NairTenenbaum.Hooley.Hooley
+import all NairTenenbaum.Polynomials.LinearCase
+import all NairTenenbaum.Arithmetic.MinimalMajorant
+import all NairTenenbaum.Arithmetic.Normalization
+import all NairTenenbaum.Polynomials.PolynomialSystem
+import all NairTenenbaum.Polynomials.PolynomialStructure
+import all NairTenenbaum.Polynomials.PolynomialHeight
+import all NairTenenbaum.Arithmetic.PrimePowerRoots
+import all NairTenenbaum.Polynomials.DiscriminantBezout
+import all NairTenenbaum.Sieve.BadPrimeRoots
+import all NairTenenbaum.Polynomials.PolynomialLocal
+import all NairTenenbaum.Arithmetic.UnitaryComparison
+import all NairTenenbaum.Arithmetic.ComparisonKernel
+import all NairTenenbaum.Arithmetic.TupleComparison
+import all NairTenenbaum.Arithmetic.WeightTruncation
+import all NairTenenbaum.Arithmetic.MultivariableComparison
+import all NairTenenbaum.Arithmetic.ComparisonUniformity
+import all NairTenenbaum.Arithmetic.ScalarComparison
+import all NairTenenbaum.Arithmetic.ComparisonLocal
+import all NairTenenbaum.Arithmetic.TotientTwist
+import all NairTenenbaum.Arithmetic.PrimeLogSums
+import all NairTenenbaum.Smooth.TiltedAuxiliary
+import all NairTenenbaum.Smooth.MomentPrimeBounds
+import all NairTenenbaum.Arithmetic.RootAuxiliary
+import all NairTenenbaum.Counterexamples.PrimeSupportedFunction
+import all NairTenenbaum.Counterexamples.LemmaOneCounterexample
+import all NairTenenbaum.Counterexamples.LemmaOneObstruction
+import all NairTenenbaum.Arithmetic.PrimeMajorant
+import all NairTenenbaum.Arithmetic.PrimeSplitting
+import all NairTenenbaum.Polynomials.RootCount
+import all NairTenenbaum.Results.Targets
+import all NairTenenbaum.Arithmetic.Weights
+import all NairTenenbaum.Arithmetic.PrimePowerComparison
+import all NairTenenbaum.Smooth.MomentKernel
+import all NairTenenbaum.Smooth.SmoothMoment
+import all NairTenenbaum.Smooth.SmoothWeightSum
+import all NairTenenbaum.Smooth.PrimeBandBounds
+import all NairTenenbaum.Smooth.SmoothCutoffComparison
+import all NairTenenbaum.Smooth.SmoothTruncation
+import all NairTenenbaum.Smooth.SmoothTruncationUniform
+import all NairTenenbaum.Smooth.RootSmoothTail
+import all NairTenenbaum.Smooth.TiltedTotientComparison
+import all NairTenenbaum.Smooth.TotientSmoothTail
+import all NairTenenbaum.Smooth.SmoothTailUniformity
+import all NairTenenbaum.Polynomials.DiscriminantSplitting
+import all NairTenenbaum.Arithmetic.PrimeThreshold
+import all NairTenenbaum.Arithmetic.FractionalAuxiliary
+import all NairTenenbaum.Sieve.BadPrimeMass
+import all NairTenenbaum.Sieve.JointCongruence
+import all NairTenenbaum.Sieve.BadPrimeCongruence
+import all NairTenenbaum.Sieve.SelbergWeights
+import all NairTenenbaum.Sieve.SelbergDenominator
+import all NairTenenbaum.Sieve.SelbergCoefficientBounds
+import all NairTenenbaum.Arithmetic.PrimeFactorBounds
+import all NairTenenbaum.Sieve.SelbergRemainder
+import all NairTenenbaum.Polynomials.PolynomialSieve
+import all NairTenenbaum.Sieve.ConditionalPolynomialSieve
+import all NairTenenbaum.Sieve.OmittedEulerFactors
+import all NairTenenbaum.Sieve.SievePrimes
+import all NairTenenbaum.Sieve.SieveProductLowerBound
+import all NairTenenbaum.Sieve.SieveLevel
+import all NairTenenbaum.Arithmetic.TotientProducts
+import all NairTenenbaum.Sieve.BadPrimeSieve
+import all NairTenenbaum.Sieve.SmallDivisorSieve
+import all NairTenenbaum.Sieve.SiftedDivisorSplit
+import all NairTenenbaum.Sieve.SmallDivisorSum
+import all NairTenenbaum.Sieve.SieveScales
+import all NairTenenbaum.Sieve.SieveCutoffComparison
+import all NairTenenbaum.Sieve.SmallDivisorMainTerm
+import all NairTenenbaum.Arithmetic.RoughMass
+import all NairTenenbaum.Polynomials.PolynomialValueBounds
+import all NairTenenbaum.Polynomials.PolynomialValueTuples
+import all NairTenenbaum.Sieve.SmallDivisorMajorant
+import all NairTenenbaum.Contributions.RealIntervalBounds
+import all NairTenenbaum.Contributions.FirstContribution
+import all NairTenenbaum.Contributions.FirstContributionReal
+import all NairTenenbaum.Arithmetic.PrimePowerThreshold
+import all NairTenenbaum.Arithmetic.PrimePowerCounting
+import all NairTenenbaum.Arithmetic.ValueWeightBounds
+import all NairTenenbaum.Contributions.SecondContributionCounting
+import all NairTenenbaum.Contributions.SecondContributionWeights
+import all NairTenenbaum.Contributions.SecondContribution
+import all NairTenenbaum.Smooth.SmoothDivisorDensity
+import all NairTenenbaum.Smooth.SmoothDivisorCounting
+import all NairTenenbaum.Contributions.ThirdContributionWeights
+import all NairTenenbaum.Contributions.ThirdContribution
+import all NairTenenbaum.Smooth.SmoothMomentUniformity
+import all NairTenenbaum.Sieve.BadPrimeMoments
+import all NairTenenbaum.Smooth.SplitSmoothTail
+import all NairTenenbaum.Smooth.SmoothTailSieveReindex
+import all NairTenenbaum.Smooth.SmoothTailSieve
+import all NairTenenbaum.Arithmetic.MainTermLowerBound
+import all NairTenenbaum.Smooth.LargePrefixScales
 
-import all NairTenenbaum.SmoothTailMajorant
+import all NairTenenbaum.Smooth.SmoothTailMajorant
 
-import all NairTenenbaum.PrimeBandDecay
+import all NairTenenbaum.Smooth.PrimeBandDecay
 
-import all NairTenenbaum.PrimeBandMajorant
+import all NairTenenbaum.Smooth.PrimeBandMajorant
 
-import all NairTenenbaum.PrimeBandContribution
+import all NairTenenbaum.Smooth.PrimeBandContribution
 
-import all NairTenenbaum.PrimeBandSummation
+import all NairTenenbaum.Smooth.PrimeBandSummation
 
-import all NairTenenbaum.PrimeBandCutoff
+import all NairTenenbaum.Smooth.PrimeBandCutoff
 
-import all NairTenenbaum.PrimeBandCover
+import all NairTenenbaum.Smooth.PrimeBandCover
 
-import all NairTenenbaum.IntermediateContribution
+import all NairTenenbaum.Contributions.IntermediateContribution
 
-import all NairTenenbaum.IntermediateContributionReal
+import all NairTenenbaum.Contributions.IntermediateContributionReal
 
-import all NairTenenbaum.LargePrefixMainTerm
+import all NairTenenbaum.Smooth.LargePrefixMainTerm
 
-import all NairTenenbaum.LargeRoughContribution
 
-import all NairTenenbaum.LargeRoughContributionReal
 
-import all NairTenenbaum.ShortSumDecomposition
+import all NairTenenbaum.Contributions.ShortSumDecomposition
 
-import all NairTenenbaum.TheoremOne
+import all NairTenenbaum.Results.TheoremOne
 
-import all NairTenenbaum.AffineRootCounts
+import all NairTenenbaum.Progressions.AffineRootCounts
 
-import all NairTenenbaum.AffinePolynomialSystem
+import all NairTenenbaum.Progressions.AffinePolynomialSystem
 
-import all NairTenenbaum.AffineDiscriminant
+import all NairTenenbaum.Progressions.AffineDiscriminant
 
-import all NairTenenbaum.AffineBadDiscriminant
+import all NairTenenbaum.Progressions.AffineBadDiscriminant
 
-import all NairTenenbaum.AffineWeights
+import all NairTenenbaum.Progressions.AffineWeights
 
-import all NairTenenbaum.AffineHeight
 
-import all NairTenenbaum.ValueBoundContributions
+import all NairTenenbaum.Contributions.ValueBoundContributions
 
-import all NairTenenbaum.IntegerIntervalDecomposition
+import all NairTenenbaum.Contributions.IntegerIntervalDecomposition
 
-import all NairTenenbaum.IntegerIntervalBound
+import all NairTenenbaum.Contributions.IntegerIntervalBound
 
-import all NairTenenbaum.ProgressionIntervals
+import all NairTenenbaum.Progressions.ProgressionIntervals
 
-import all NairTenenbaum.ProgressionBound
+import all NairTenenbaum.Progressions.ProgressionBound
 
-import all NairTenenbaum.CorollaryOne
+import all NairTenenbaum.Results.CorollaryOne
 
-import all NairTenenbaum.IrreducibleSystem
+import all NairTenenbaum.Polynomials.IrreducibleSystem
 
-import all NairTenenbaum.IrreducibleProgressionWeights
+import all NairTenenbaum.Polynomials.IrreducibleProgressionWeights
 
-import all NairTenenbaum.CorollaryTwo
+import all NairTenenbaum.Results.CorollaryTwo
 
-import all NairTenenbaum.ProductArithmetic
+import all NairTenenbaum.Arithmetic.ProductArithmetic
 
-import all NairTenenbaum.DivisorTupleDisjointness
+import all NairTenenbaum.Arithmetic.DivisorTupleDisjointness
 
-import all NairTenenbaum.JointDensityComparison
+import all NairTenenbaum.Sieve.JointDensityComparison
 
-import all NairTenenbaum.SubstitutionDensity
+import all NairTenenbaum.Polynomials.SubstitutionDensity
 
-import all NairTenenbaum.FactoredWeightBound
+import all NairTenenbaum.Arithmetic.FactoredWeightBound
 
-import all NairTenenbaum.CorollaryThree
+import all NairTenenbaum.Results.CorollaryThree
 
-import all NairTenenbaum.FamilyFactorization
+import all NairTenenbaum.Polynomials.FamilyFactorization
 
-import all NairTenenbaum.FamilyTheorems
+import all NairTenenbaum.Results.FamilyTheorems
 
-import all NairTenenbaum.PrimeArgumentRoots
+import all NairTenenbaum.PrimeArguments.PrimeArgumentRoots
 
-import all NairTenenbaum.PrimeArgumentEuler
+import all NairTenenbaum.PrimeArguments.PrimeArgumentEuler
 
-import all NairTenenbaum.LocalConditionalSieve
+import all NairTenenbaum.Sieve.LocalConditionalSieve
 
-import all NairTenenbaum.PrimeArgumentSieve
+import all NairTenenbaum.PrimeArguments.PrimeArgumentSieve
 
-import all NairTenenbaum.TotientComparisonExponents
+import all NairTenenbaum.Arithmetic.TotientComparisonExponents
 
-import all NairTenenbaum.PrimeArgumentSieveLevel
+import all NairTenenbaum.PrimeArguments.PrimeArgumentSieveLevel
 
-import all NairTenenbaum.PrimeArgumentMajorant
+import all NairTenenbaum.PrimeArguments.PrimeArgumentMajorant
 
-import all NairTenenbaum.PrimeArgumentBadSieve
+import all NairTenenbaum.PrimeArguments.PrimeArgumentBadSieve
 
-import all NairTenenbaum.PrimeArgumentSmallSieve
+import all NairTenenbaum.PrimeArguments.PrimeArgumentSmallSieve
 
-import all NairTenenbaum.PrimeArgumentSmallSum
+import all NairTenenbaum.PrimeArguments.PrimeArgumentSmallSum
 
-import all NairTenenbaum.PrimeArgumentScales
+import all NairTenenbaum.PrimeArguments.PrimeArgumentScales
 
-import all NairTenenbaum.PrimeArgumentMainTerm
+import all NairTenenbaum.PrimeArguments.PrimeArgumentMainTerm
 
-import all NairTenenbaum.PrimeArgumentFirstContribution
+import all NairTenenbaum.PrimeArguments.PrimeArgumentFirstContribution
 
-import all NairTenenbaum.PrimeArgumentMoment
+import all NairTenenbaum.PrimeArguments.PrimeArgumentMoment
 
-import all NairTenenbaum.PrimeArgumentSplitTail
+import all NairTenenbaum.PrimeArguments.PrimeArgumentSplitTail
 
-import all NairTenenbaum.PrimeArgumentTailReindex
+import all NairTenenbaum.PrimeArguments.PrimeArgumentTailReindex
 
-import all NairTenenbaum.PrimeArgumentTailSieve
+import all NairTenenbaum.PrimeArguments.PrimeArgumentTailSieve
 
-import all NairTenenbaum.PrimeArgumentBand
+import all NairTenenbaum.PrimeArguments.PrimeArgumentBand
 
-import all NairTenenbaum.PrimeArgumentTailMajorant
+import all NairTenenbaum.PrimeArguments.PrimeArgumentTailMajorant
 
-import all NairTenenbaum.PrimeArgumentBandContribution
+import all NairTenenbaum.PrimeArguments.PrimeArgumentBandContribution
 
-import all NairTenenbaum.PrimeArgumentBands
+import all NairTenenbaum.PrimeArguments.PrimeArgumentBands
 
-import all NairTenenbaum.PrimeArgumentCover
+import all NairTenenbaum.PrimeArguments.PrimeArgumentCover
 
-import all NairTenenbaum.PrimeArgumentExceptional
+import all NairTenenbaum.PrimeArguments.PrimeArgumentExceptional
 
-import all NairTenenbaum.PrimeArgumentDecomposition
+import all NairTenenbaum.PrimeArguments.PrimeArgumentDecomposition
 
-import all NairTenenbaum.PrimeArgumentIntervalBound
+import all NairTenenbaum.PrimeArguments.PrimeArgumentIntervalBound
 
-import all NairTenenbaum.PrimeArgumentHeight
+import all NairTenenbaum.PrimeArguments.PrimeArgumentHeight
 
-import all NairTenenbaum.PrimeShortSum
+import all NairTenenbaum.PrimeArguments.PrimeShortSum
 
-import all NairTenenbaum.TheoremThree
+import all NairTenenbaum.Results.TheoremThree
 
-import all NairTenenbaum.PrimeFamilyTheorem
+import all NairTenenbaum.Results.PrimeFamilyTheorem
 
-import all NairTenenbaum.ShiftedLinearSystem
+import all NairTenenbaum.Polynomials.ShiftedLinearSystem
 
-import all NairTenenbaum.CorollarySeven
+import all NairTenenbaum.Results.CorollarySeven
 
-import all NairTenenbaum.GoldbachSieve
+import all NairTenenbaum.DivisorSums.GoldbachSieve
 
-import all NairTenenbaum.GoldbachScales
+import all NairTenenbaum.DivisorSums.GoldbachScales
 
-import all NairTenenbaum.CorollaryTen
+import all NairTenenbaum.Results.CorollaryTen
 
-import all NairTenenbaum.SelectedMoment
+import all NairTenenbaum.Smooth.SelectedMoment
 
-import all NairTenenbaum.SelectedTilt
+import all NairTenenbaum.Smooth.SelectedTilt
 
-import all NairTenenbaum.SelectedTiltComparison
+import all NairTenenbaum.Smooth.SelectedTiltComparison
 
-import all NairTenenbaum.PolynomialPreimages
+import all NairTenenbaum.Polynomials.PolynomialPreimages
 
-import all NairTenenbaum.FixedSmoothCounting
+import all NairTenenbaum.Arithmetic.FixedSmoothCounting
 
-import all NairTenenbaum.SmoothValueRankin
+import all NairTenenbaum.Smooth.SmoothValueRankin
 
-import all NairTenenbaum.SmoothValueExceptional
+import all NairTenenbaum.Smooth.SmoothValueExceptional
 
-import all NairTenenbaum.SmoothValueScales
+import all NairTenenbaum.Smooth.SmoothValueScales
 
-import all NairTenenbaum.SmoothValuePowerBounds
+import all NairTenenbaum.Smooth.SmoothValuePowerBounds
 
-import all NairTenenbaum.SmoothTiltBound
+import all NairTenenbaum.Smooth.SmoothTiltBound
 
-import all NairTenenbaum.CorollarySix
+import all NairTenenbaum.Results.CorollarySix
 
-import all NairTenenbaum.SmoothFamilyTheorem
+import all NairTenenbaum.Results.SmoothFamilyTheorem
 
-import all NairTenenbaum.ConstantCoordinate
+import all NairTenenbaum.Counterexamples.ConstantCoordinate
 
-import all NairTenenbaum.CorollarySixObstruction
+import all NairTenenbaum.Counterexamples.CorollarySixObstruction
 
-import all NairTenenbaum.DivisorSumRearrangement
+import all NairTenenbaum.Arithmetic.DivisorSumRearrangement
 
-import all NairTenenbaum.HooleyShortSum
+import all NairTenenbaum.Hooley.HooleyShortSum
 
-import all NairTenenbaum.PrimeProgressionRearrangement
+import all NairTenenbaum.Arithmetic.PrimeProgressionRearrangement
 
-import all NairTenenbaum.HooleyPrimeShortSum
+import all NairTenenbaum.Hooley.HooleyPrimeShortSum
 
-import all NairTenenbaum.HooleyAverageReductions
+import all NairTenenbaum.Hooley.HooleyAverageReductions
 
-import all NairTenenbaum.HooleyMoments
+import all NairTenenbaum.Hooley.HooleyMoments
 
-import all NairTenenbaum.HooleyMomentComparison
+import all NairTenenbaum.Hooley.HooleyMomentComparison
 
-import all NairTenenbaum.HooleyMomentRecurrence
+import all NairTenenbaum.Hooley.HooleyMomentRecurrence
 
-import all NairTenenbaum.HooleyMomentInterpolation
+import all NairTenenbaum.Hooley.HooleyMomentInterpolation
 
-import all NairTenenbaum.PrimeLogIntervals
+import all NairTenenbaum.Arithmetic.PrimeLogIntervals
 
-import all NairTenenbaum.HooleyPrimeSampling
+import all NairTenenbaum.Hooley.HooleyPrimeSampling
 
-import all NairTenenbaum.HooleyPrimeMixedBound
+import all NairTenenbaum.Hooley.HooleyPrimeMixedBound
 
-import all NairTenenbaum.HooleyWeightedPrimeStep
+import all NairTenenbaum.Hooley.HooleyWeightedPrimeStep
 
-import all NairTenenbaum.WeightedMomentPowers
+import all NairTenenbaum.Arithmetic.WeightedMomentPowers
 
-import all NairTenenbaum.HooleyDirichletCoefficients
+import all NairTenenbaum.Hooley.HooleyDirichletCoefficients
 
-import all NairTenenbaum.HooleyDirichletSeries
+import all NairTenenbaum.Hooley.HooleyDirichletSeries
 
-import all NairTenenbaum.HooleyDirichletDerivative
+import all NairTenenbaum.Hooley.HooleyDirichletDerivative
 
-import all NairTenenbaum.PrimeFactorReindex
-import all NairTenenbaum.HooleyDirichletPrimeExpansion
-import all NairTenenbaum.HooleyInfinitePrimeStep
-import all NairTenenbaum.SeriesInterpolation
-import all NairTenenbaum.HooleyDirichletError
-import all NairTenenbaum.HooleyDifferentialInequality
+import all NairTenenbaum.Arithmetic.PrimeFactorReindex
+import all NairTenenbaum.Hooley.HooleyDirichletPrimeExpansion
+import all NairTenenbaum.Hooley.HooleyInfinitePrimeStep
+import all NairTenenbaum.Arithmetic.SeriesInterpolation
+import all NairTenenbaum.Hooley.HooleyDirichletError
+import all NairTenenbaum.Hooley.HooleyDifferentialInequality
 
-import all NairTenenbaum.SquarefreeEulerBound
-import all NairTenenbaum.HooleyDivisorEulerBound
-import all NairTenenbaum.RootPrimeSeriesDerivative
-import all NairTenenbaum.DifferentialInterpolation
-import all NairTenenbaum.HooleyIntegratingFactor
-import all NairTenenbaum.HooleyIntegratedBound
-import all NairTenenbaum.PrimeDirichletPoleBound
+import all NairTenenbaum.Arithmetic.SquarefreeEulerBound
+import all NairTenenbaum.Hooley.HooleyDivisorEulerBound
+import all NairTenenbaum.Arithmetic.RootPrimeSeriesDerivative
+import all NairTenenbaum.Arithmetic.DifferentialInterpolation
+import all NairTenenbaum.Hooley.HooleyIntegratingFactor
+import all NairTenenbaum.Hooley.HooleyIntegratedBound
+import all NairTenenbaum.Arithmetic.PrimeDirichletPoleBound
 
-import all NairTenenbaum.ResidueHomKernels
-import all NairTenenbaum.ConductorQuotient
-import all NairTenenbaum.NumberFieldResidueRoots
-import all NairTenenbaum.IdealNormDirichlet
-import all NairTenenbaum.ConductorNonzero
-import all NairTenenbaum.MinpolyEulerProduct
-import all NairTenenbaum.PrimeProductLogBound
-import all NairTenenbaum.MinpolyPrimeLogBound
-import all NairTenenbaum.IntegralRootNormalization
-import all NairTenenbaum.IrreduciblePrimeLogBound
-import all NairTenenbaum.HooleyExponentGap
-import all NairTenenbaum.HooleyPowerMajorant
-import all NairTenenbaum.HooleyIntegratedPowerBound
+import all NairTenenbaum.NumberFields.ResidueHomKernels
+import all NairTenenbaum.NumberFields.ConductorQuotient
+import all NairTenenbaum.NumberFields.NumberFieldResidueRoots
+import all NairTenenbaum.NumberFields.IdealNormDirichlet
+import all NairTenenbaum.NumberFields.ConductorNonzero
+import all NairTenenbaum.NumberFields.MinpolyEulerProduct
+import all NairTenenbaum.Arithmetic.PrimeProductLogBound
+import all NairTenenbaum.NumberFields.MinpolyPrimeLogBound
+import all NairTenenbaum.NumberFields.IntegralRootNormalization
+import all NairTenenbaum.NumberFields.IrreduciblePrimeLogBound
+import all NairTenenbaum.Hooley.HooleyExponentGap
+import all NairTenenbaum.Hooley.HooleyPowerMajorant
+import all NairTenenbaum.Hooley.HooleyIntegratedPowerBound
 
-import all NairTenenbaum.HooleyMomentRecovery
-import all NairTenenbaum.HooleyMomentOrderConstants
-import all NairTenenbaum.HooleyDirichletPowerBound
-import all NairTenenbaum.HooleySquarefreeRankin
-import all NairTenenbaum.HooleySquarefreePowerBound
-import all NairTenenbaum.MomentOrderOptimization
-import all NairTenenbaum.HooleySquarefreeMean
+import all NairTenenbaum.Hooley.HooleyMomentRecovery
+import all NairTenenbaum.Hooley.HooleyMomentOrderConstants
+import all NairTenenbaum.Hooley.HooleyDirichletPowerBound
+import all NairTenenbaum.Hooley.HooleySquarefreeRankin
+import all NairTenenbaum.Hooley.HooleySquarefreePowerBound
+import all NairTenenbaum.Smooth.MomentOrderOptimization
+import all NairTenenbaum.Hooley.HooleySquarefreeMean
 
-import all NairTenenbaum.RootCountSubpolynomial
-import all NairTenenbaum.PowerfulDecomposition
-import all NairTenenbaum.PowerfulSummability
-import all NairTenenbaum.HooleyPowerfulComparison
-import all NairTenenbaum.HooleyWeightedMean
-import all NairTenenbaum.CorollaryFive
+import all NairTenenbaum.Polynomials.RootCountSubpolynomial
+import all NairTenenbaum.Arithmetic.PowerfulDecomposition
+import all NairTenenbaum.Arithmetic.PowerfulSummability
+import all NairTenenbaum.Hooley.HooleyPowerfulComparison
+import all NairTenenbaum.Hooley.HooleyWeightedMean
+import all NairTenenbaum.Results.CorollaryFive
 
-import all NairTenenbaum.PrimeReciprocalLogBound
-import all NairTenenbaum.TotientLogLogBound
-import all NairTenenbaum.TotientSubexponential
-import all NairTenenbaum.HooleyTotientMean
-import all NairTenenbaum.CorollaryEight
-import all NairTenenbaum.CorollaryNine
+import all NairTenenbaum.Arithmetic.PrimeReciprocalLogBound
+import all NairTenenbaum.Arithmetic.TotientLogLogBound
+import all NairTenenbaum.Arithmetic.TotientSubexponential
+import all NairTenenbaum.Hooley.HooleyTotientMean
+import all NairTenenbaum.Results.CorollaryEight
+import all NairTenenbaum.Results.CorollaryNine
 
-import all NairTenenbaum.NumberFieldPrimeNormRoots
+import all NairTenenbaum.NumberFields.NumberFieldPrimeNormRoots
 
-import all NairTenenbaum.FiniteGeometricProduct
-import all NairTenenbaum.IdealFiniteEulerBound
-import all NairTenenbaum.PrimeIdealNormBounds
-import all NairTenenbaum.PrimeIdealErrorBounds
-import all NairTenenbaum.PrimeIdealRootComparison
-import all NairTenenbaum.IdealRootEulerBound
-import all NairTenenbaum.MinpolyPrimeLowerBound
-import all NairTenenbaum.RootNormalizationEquality
-import all NairTenenbaum.IrreduciblePrimeLowerBound
-import all NairTenenbaum.PrimeRootReciprocalLowerBound
-import all NairTenenbaum.IrreducibleSieveProduct
-import all NairTenenbaum.CorollaryFour
+import all NairTenenbaum.Arithmetic.FiniteGeometricProduct
+import all NairTenenbaum.NumberFields.IdealFiniteEulerBound
+import all NairTenenbaum.NumberFields.PrimeIdealNormBounds
+import all NairTenenbaum.NumberFields.PrimeIdealErrorBounds
+import all NairTenenbaum.NumberFields.PrimeIdealRootComparison
+import all NairTenenbaum.NumberFields.IdealRootEulerBound
+import all NairTenenbaum.NumberFields.MinpolyPrimeLowerBound
+import all NairTenenbaum.NumberFields.RootNormalizationEquality
+import all NairTenenbaum.NumberFields.IrreduciblePrimeLowerBound
+import all NairTenenbaum.NumberFields.PrimeRootReciprocalLowerBound
+import all NairTenenbaum.NumberFields.IrreducibleSieveProduct
+import all NairTenenbaum.Results.CorollaryFour
 
-import all NairTenenbaum.DivisorWindowMoments
-import all NairTenenbaum.HooleyLogarithmicSaving
-import all NairTenenbaum.HooleyDivisorTail
-import all NairTenenbaum.CompleteResidueBlock
-import all NairTenenbaum.PolynomialDivisorWindowCount
-import all NairTenenbaum.DivisorHitLowerBound
-import all NairTenenbaum.RoughCofactorBounds
-import all NairTenenbaum.RoughLogMass
-import all NairTenenbaum.GreatestPrimeFactorCount
-import all NairTenenbaum.PrimeFactorLogGain
-import all NairTenenbaum.ScalarPrimeSplit
-import all NairTenenbaum.TheoremTwoStatement
-import all NairTenenbaum.ScalarRoughLogMass
+import all NairTenenbaum.DivisorSums.DivisorWindowMoments
+import all NairTenenbaum.Hooley.HooleyLogarithmicSaving
+import all NairTenenbaum.Hooley.HooleyDivisorTail
+import all NairTenenbaum.Arithmetic.CompleteResidueBlock
+import all NairTenenbaum.DivisorSums.PolynomialDivisorWindowCount
+import all NairTenenbaum.DivisorSums.RoughCofactorBounds
+import all NairTenenbaum.DivisorSums.RoughLogMass
+import all NairTenenbaum.DivisorSums.GreatestPrimeFactorCount
+import all NairTenenbaum.DivisorSums.PrimeFactorLogGain
+import all NairTenenbaum.Arithmetic.ScalarPrimeSplit
+import all NairTenenbaum.Results.TheoremTwoStatement
+import all NairTenenbaum.DivisorSums.ScalarRoughLogMass
 
-import all NairTenenbaum.GreatestPrimeFactorExponent
+import all NairTenenbaum.DivisorSums.GreatestPrimeFactorExponent
 
-import all NairTenenbaum.PrimitiveResidueRoots
-import all NairTenenbaum.AffinePolynomialContent
-import all NairTenenbaum.AffineNoFixedPrime
-import all NairTenenbaum.AffineIrreducibility
-import all NairTenenbaum.HooleyFixedFactor
-import all NairTenenbaum.HooleyAffineReduction
-import all NairTenenbaum.AffineIntervalRange
-import all NairTenenbaum.HooleyCoarseLogBound
-import all NairTenenbaum.HooleyFixedPrimeBound
-import all NairTenenbaum.HooleyFixedPrimeTail
-import all NairTenenbaum.DivisorHitFixedPrime
-import all NairTenenbaum.TheoremTwoDivisorHits
+import all NairTenenbaum.Polynomials.PrimitiveResidueRoots
+import all NairTenenbaum.Progressions.AffinePolynomialContent
+import all NairTenenbaum.Progressions.AffineNoFixedPrime
+import all NairTenenbaum.Progressions.AffineIrreducibility
+import all NairTenenbaum.Hooley.HooleyFixedFactor
+import all NairTenenbaum.Hooley.HooleyAffineReduction
+import all NairTenenbaum.Progressions.AffineIntervalRange
+import all NairTenenbaum.Hooley.HooleyCoarseLogBound
+import all NairTenenbaum.Hooley.HooleyFixedPrimeBound
+import all NairTenenbaum.Hooley.HooleyFixedPrimeTail
+import all NairTenenbaum.DivisorSums.DivisorHitFixedPrime
+import all NairTenenbaum.Results.TheoremTwoDivisorHits
 
-import all NairTenenbaum.PolynomialLogMass
-import all NairTenenbaum.ShortIntervalCardinality
-import all NairTenenbaum.PolynomialLogMassLength
-import all NairTenenbaum.SmoothLogExpansion
-import all NairTenenbaum.PrimePowerLogExpansion
-import all NairTenenbaum.PolynomialLogParts
-import all NairTenenbaum.ShortIntervalCongruenceUpper
-import all NairTenenbaum.SmoothLogRootBound
-import all NairTenenbaum.PrimePowerLogCutoff
+import all NairTenenbaum.Polynomials.PolynomialLogMass
+import all NairTenenbaum.Contributions.ShortIntervalCardinality
+import all NairTenenbaum.Polynomials.PolynomialLogMassLength
+import all NairTenenbaum.Smooth.SmoothLogExpansion
+import all NairTenenbaum.Arithmetic.PrimePowerLogExpansion
+import all NairTenenbaum.Polynomials.PolynomialLogParts
+import all NairTenenbaum.Contributions.ShortIntervalCongruenceUpper
+import all NairTenenbaum.Smooth.SmoothLogRootBound
+import all NairTenenbaum.Arithmetic.PrimePowerLogCutoff
 
-import all NairTenenbaum.PrimitivePrimePowerRoots
-import all NairTenenbaum.SmoothLogCountingError
-import all NairTenenbaum.SmoothLogHigherPowers
-import all NairTenenbaum.PolynomialSmoothPrimeBound
+import all NairTenenbaum.Polynomials.PrimitivePrimePowerRoots
+import all NairTenenbaum.Smooth.SmoothLogCountingError
+import all NairTenenbaum.Smooth.SmoothLogHigherPowers
+import all NairTenenbaum.Polynomials.PolynomialSmoothPrimeBound
 
-import all NairTenenbaum.IdealNormMultiplicative
-import all NairTenenbaum.ConvolutionMean
+import all NairTenenbaum.NumberFields.IdealNormMultiplicative
+import all NairTenenbaum.NumberFields.ConvolutionMean
 
-import all NairTenenbaum.IdealNormMean
-import all NairTenenbaum.DyadicMeanDensity
+import all NairTenenbaum.NumberFields.IdealNormMean
+import all NairTenenbaum.Arithmetic.DyadicMeanDensity
 
-import all NairTenenbaum.MultiplicativeCompletion
-import all NairTenenbaum.RootIdealCorrection
-import all NairTenenbaum.IdealPrimePowerCountBound
-import all NairTenenbaum.DirichletInverseGrowth
-import all NairTenenbaum.RootIdealCorrectionGrowth
-import all NairTenenbaum.RootIdealCorrectionTail
+import all NairTenenbaum.Arithmetic.MultiplicativeCompletion
+import all NairTenenbaum.NumberFields.RootIdealCorrection
+import all NairTenenbaum.NumberFields.IdealPrimePowerCountBound
+import all NairTenenbaum.NumberFields.DirichletInverseGrowth
+import all NairTenenbaum.NumberFields.RootIdealCorrectionGrowth
+import all NairTenenbaum.NumberFields.RootIdealCorrectionTail
 
-import all NairTenenbaum.PrimeIdealSupport
-import all NairTenenbaum.IdealMultiplicityVectors
-import all NairTenenbaum.WeightedGeometricPolynomial
-import all NairTenenbaum.IdealLocalEulerPolynomial
-import all NairTenenbaum.RootIdealLocalPolynomial
-import all NairTenenbaum.EulerSummabilityCriterion
-import all NairTenenbaum.RootIdealCorrectionSummable
-import all NairTenenbaum.RootIdealCorrectionPositive
-import all NairTenenbaum.MinpolyRootDensity
+import all NairTenenbaum.NumberFields.PrimeIdealSupport
+import all NairTenenbaum.NumberFields.IdealMultiplicityVectors
+import all NairTenenbaum.Arithmetic.WeightedGeometricPolynomial
+import all NairTenenbaum.NumberFields.IdealLocalEulerPolynomial
+import all NairTenenbaum.NumberFields.RootIdealLocalPolynomial
+import all NairTenenbaum.NumberFields.EulerSummabilityCriterion
+import all NairTenenbaum.NumberFields.RootIdealCorrectionPositive
 
-import all NairTenenbaum.RootDensityFromIdealCounts
-import all NairTenenbaum.IrreducibleRootDensity
+import all NairTenenbaum.NumberFields.RootDensityFromIdealCounts
+import all NairTenenbaum.NumberFields.IrreducibleRootDensity
 
-import all NairTenenbaum.PrimeIdealResidueDegree
-import all NairTenenbaum.ArithmeticLogDerivative
-import all NairTenenbaum.PowerSeriesEulerDerivative
-import all NairTenenbaum.GeometricEulerDerivative
-import all NairTenenbaum.IdealVonMangoldtLocal
-import all NairTenenbaum.ArithmeticLogDerivativeSupport
-import all NairTenenbaum.IdealVonMangoldtBounds
-import all NairTenenbaum.IrreduciblePrimeIdealMatch
-import all NairTenenbaum.PrimeRootMangoldtBound
+import all NairTenenbaum.NumberFields.PrimeIdealResidueDegree
+import all NairTenenbaum.NumberFields.ArithmeticLogDerivative
+import all NairTenenbaum.NumberFields.PowerSeriesEulerDerivative
+import all NairTenenbaum.NumberFields.GeometricEulerDerivative
+import all NairTenenbaum.NumberFields.IdealVonMangoldtLocal
+import all NairTenenbaum.NumberFields.ArithmeticLogDerivativeSupport
+import all NairTenenbaum.NumberFields.IdealVonMangoldtBounds
+import all NairTenenbaum.NumberFields.IrreduciblePrimeIdealMatch
+import all NairTenenbaum.NumberFields.PrimeRootMangoldtBound
 
-import all NairTenenbaum.SummatoryAbel
-import all NairTenenbaum.SummatoryFractionalMoment
-import all NairTenenbaum.ConvolutionPowerError
-import all NairTenenbaum.LogWeightedSummatoryBound
-import all NairTenenbaum.IdealMangoldtMertensReduction
+import all NairTenenbaum.Arithmetic.SummatoryAbel
+import all NairTenenbaum.Arithmetic.SummatoryFractionalMoment
+import all NairTenenbaum.NumberFields.ConvolutionPowerError
+import all NairTenenbaum.NumberFields.LogWeightedSummatoryBound
+import all NairTenenbaum.NumberFields.IdealMangoldtMertensReduction
 
-import all NairTenenbaum.LipschitzCubeCover
-import all NairTenenbaum.IntegerLatticeBallBound
-import all NairTenenbaum.LatticePointsNearChart
-import all NairTenenbaum.IntegerLatticeCells
-import all NairTenenbaum.IntegerLatticeBoundary
-import all NairTenenbaum.LipschitzBoundaryLatticeCount
-import all NairTenenbaum.NormLeOneBoundaryRadii
-import all NairTenenbaum.MixedPolarCoordinates
-import all NairTenenbaum.NormLeOneRadialCharts
-import all NairTenenbaum.CubeFaces
-import all NairTenenbaum.NormLeOneBoundaryCharts
+import all NairTenenbaum.Geometry.LipschitzCubeCover
+import all NairTenenbaum.Geometry.IntegerLatticeBallBound
+import all NairTenenbaum.Geometry.LatticePointsNearChart
+import all NairTenenbaum.Geometry.IntegerLatticeCells
+import all NairTenenbaum.Geometry.IntegerLatticeBoundary
+import all NairTenenbaum.Geometry.LipschitzBoundaryLatticeCount
+import all NairTenenbaum.Geometry.NormLeOneBoundaryRadii
+import all NairTenenbaum.Geometry.MixedPolarCoordinates
+import all NairTenenbaum.Geometry.NormLeOneRadialCharts
+import all NairTenenbaum.Geometry.CubeFaces
+import all NairTenenbaum.Geometry.NormLeOneBoundaryCharts
 
-import all NairTenenbaum.LatticeCoordinateCount
-import all NairTenenbaum.NormConeLatticePowerError
+import all NairTenenbaum.Geometry.LatticeCoordinateCount
+import all NairTenenbaum.Geometry.NormConeLatticePowerError
 
-import all NairTenenbaum.IdealClassPowerError
-import all NairTenenbaum.IdealNormPowerError
-import all NairTenenbaum.PolynomialSmoothLogEstimate
-import all NairTenenbaum.PowerErrorMean
-import all NairTenenbaum.PrimeRootMertens
-import all NairTenenbaum.TheoremTwo
-import all NairTenenbaum.TheoremTwoLogGain
-import all NairTenenbaum.TheoremTwoRoughMass
-import all NairTenenbaum.TheoremTwoValueBounds
+import all NairTenenbaum.NumberFields.IdealClassPowerError
+import all NairTenenbaum.NumberFields.IdealNormPowerError
+import all NairTenenbaum.Polynomials.PolynomialSmoothLogEstimate
+import all NairTenenbaum.NumberFields.PowerErrorMean
+import all NairTenenbaum.NumberFields.PrimeRootMertens
+import all NairTenenbaum.Results.TheoremTwo
+import all NairTenenbaum.Results.TheoremTwoLogGain
+import all NairTenenbaum.Results.TheoremTwoRoughMass
+import all NairTenenbaum.Results.TheoremTwoValueBounds
 
-import all NairTenenbaum.FloorRootArithmetic
-import all NairTenenbaum.AppendArithmetic
-import all NairTenenbaum.LiftedWeights
-import all NairTenenbaum.LiftedWeightSums
-import all NairTenenbaum.GeneralSmoothTail
-import all NairTenenbaum.LemmaTwo
+import all NairTenenbaum.Arithmetic.FloorRootArithmetic
+import all NairTenenbaum.Arithmetic.AppendArithmetic
+import all NairTenenbaum.Smooth.LiftedWeights
+import all NairTenenbaum.Smooth.LiftedWeightSums
+import all NairTenenbaum.Smooth.GeneralSmoothTail
+import all NairTenenbaum.Results.LemmaTwo
 meta import Lean
 
 /-! Run after `lake build`. All project declarations, including private and generated

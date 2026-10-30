@@ -431,22 +431,12 @@ of every selected prefix whose cutoff exceeds `z`. `SmallDivisorMajorant`
 groups integers by their selected tuple, allowing arbitrary fiber sizes, to
 prove the reduction in (31).
 
-`PolynomialValueBounds` discharges the total-value bound from the height
-hypothesis, using the exponent `g+1/δ+1` and a degree-only lower threshold.
-`FirstContribution` combines this with the small-divisor sieve. The class
-`HasSmallRoughPrefix` permits every small prefix with a sufficiently large
-cutoff; it contains the paper's first class and need not impose the first-crossing
-condition. `RealIntervalBounds` and `FirstContributionReal` handle floors,
-positive divisor cutoffs, and the exact natural-number interval used by
-`shortSum`.
-
-`exists_smallRoughShortSum_theoremOne_bound` now proves the main-term bound
-for this first-class majorant with the height threshold
-`c₀·‖Q‖^δ<x`, growth parameter `εδ/3`, and interval bounds from Theorem 1.
-The constants precede the polynomial data and admissible function; only the
-upper-bound constant depends on the restricted discriminant. Its finite-subclass
-lemma applies directly to any class satisfying the two first-class cutoff
-inequalities.
+`FirstContribution` defines the small rough-prefix class and proves its
+reduction to the sifted divisor sum. `FirstContributionReal` identifies real
+mass cutoffs with positive integral cutoffs. `ValueBoundContributions` supplies
+the bound under an explicit value-growth hypothesis. `PrimeArgumentHeight`
+absorbs the evaluation constant into `x^(1/8)` and gives the common height
+threshold used by Theorems 1 and 3.
 
 `PrimePowerThreshold` handles the second class. It constructs the least
 exponent with `p^ν>T` and proves `p^ν≤pT`. The degree identity bounds the
@@ -467,11 +457,11 @@ the power of `x`. Together with the exceptional count this gives the saving
 `MainTermLowerBound` proves that the unit tuple contributes at least `F(1)`
 and that any fixed negative power is absorbed by the uniform lower bound
 for the sifting product. Consequently the second-class bound does not require
-normalizing `F(1)`. `SecondContribution` discharges the prime-power level
-and endpoint rounding at the original scales. Its theorem
-`exists_smallPrimeCrossingShortSum_theoremOne_bound` has the same height,
-growth, and interval hypotheses as Theorem 1, with constants chosen before
-the polynomial family and arithmetic function.
+normalizing `F(1)`. `SecondContribution` supplies the prime-power scale identity
+and sieve-level condition. The common value-bound estimates in
+`ValueBoundContributions` keep the saving exponent as a parameter, and
+`PrimeArgumentExceptional` specializes them to the margin `17gε/24` with a
+saving `gε/24`. These estimates serve both integer and prime arguments.
 
 `SmoothDivisorDensity` and `SmoothDivisorCounting` give a direct treatment
 of the bounded-smoothness third class, avoiding the printed restriction
@@ -488,13 +478,11 @@ on `g,D,s`. `ThirdContributionWeights` combines this with the pointwise
 arithmetic-weight estimate to obtain the saving `x^(-ε/12)`. It holds even
 when the tuple coordinates share bad primes.
 
-`ThirdContribution.exists_largeSmoothShortSum_theoremOne_bound` (in
-namespace `NairTenenbaum`) bounds a majorant containing every third-class
-prefix under Theorem 1's height, growth, and interval hypotheses. Crucially,
-the lower threshold is chosen before the finite support `s`; only the
-upper-bound constant depends on that support. Consequently the smoothness
-cutoff can later be chosen as a function of the discriminant, without changing
-the required uniformity of the height threshold.
+`ThirdContribution` defines the large smooth-divisor class and proves the
+required sieve-level inequality. `IntegerIntervalDecomposition` places this
+class inside the smooth exceptional set. The parameterized smooth-divisor
+estimate in `ValueBoundContributions` preserves the combined prefix mass and
+allows the finite support to be chosen before the final bound constant.
 
 The fourth contribution requires a tail estimate that retains the mass of
 all removed bad-prime powers. `BadPrimeMoments` proves a uniform bound for
@@ -536,17 +524,14 @@ exceeds that cutoff satisfies every logarithmic and size condition required by
 the sieve, moments, and Euler comparison. `PrimeBandCover` assigns actual
 prefixes with largest prime between the fixed cutoff and `x^u` to these bands.
 The finite interval requires only finitely many bands; nonnegative weights
-allow overlap. `IntermediateContributionReal` proves
-`exists_intermediatePrefixShortSum_theoremOne_bound` with precisely Theorem 1's
-height, growth, and interval hypotheses. The constants `c₀,w₀` precede the
-polynomial family, and the bound constant depends on its restricted discriminant.
+allow overlap. `IntermediateContributionReal` identifies the real and integral
+cutoff predicates. `ValueBoundContributions` bounds the intermediate contribution
+on arbitrary integer intervals; its constants precede the polynomial family.
 
-The remaining upper-prime estimate is now proved in `LargePrefixMainTerm`,
-`LargeRoughContribution`, and `LargeRoughContributionReal`. It covers every
-prefix of mass at most `x^(3g²ε)` whose next-prime cutoff exceeds
-`x^(gε/16)`. This includes the original first contribution, the upper-prime
-part of the fourth, and the small-total-mass case (choose a cutoff beyond all
-prime factors, leaving remainder one).
+`LargePrefixMainTerm` and `exists_largeRoughContribution_value_bound` cover every
+prefix of mass at most `x^(3g²ε)` whose next-prime cutoff exceeds `x^(gε/16)`.
+This includes the original first contribution, the upper-prime part of the
+fourth, and the small-total-mass case.
 
 `ShortSumDecomposition.prefix_classes_exhaustive` covers every nonzero total
 polynomial value by four majorants. If the whole mass is small, use the
@@ -557,12 +542,19 @@ prefix is either supported on the fixed finite prime set or belongs to the
 intermediate-prime contribution. The zero-extension terms vanish separately.
 The majorants can overlap because the arithmetic weights are nonnegative.
 
-`TheoremOne.exists_shortSum_mainTerm_bound` combines the four uniform estimates,
-taking the maximum of their height thresholds and the sum of their constants.
-`TheoremOne.theoremOne` (declaration `NairTenenbaum.theoremOne`) proves exactly
-the proposition recorded in `Targets.lean`, with growth parameter `εδ/3`,
-interval range `x^(4g²ε)≤y≤x`, and a height threshold independent of the
-coefficients and discriminant. No desired analytic conclusion is assumed.
+`IntegerIntervalBound.exists_integerSum_mainTerm_bound_of_margin` combines the
+four estimates with the growth margin `cσ≤17gε/24`. The stronger progression
+margin remains available as a specialization. Theorem 1 now applies this
+integer-interval bound through the same height-to-interval threshold lemma
+used by Theorem 3. The former separate real-interval estimate chain has been
+removed. The statement in `Targets.lean` is unchanged: growth parameter `εδ/3`,
+interval range `x^(4g²ε)≤y≤x`, and a coefficient-independent height threshold.
+
+`SiftedDivisorSplit` provides one reindexing proof for all four ordinary and
+mass-tail split lemmas, and one fiber-counting proof for the four selection
+lemmas. `ConditionalPolynomialSieve` specializes `LocalConditionalSieve`.
+`absorb_sieve_remainder` handles both sieve-level remainder arguments, while
+common finite-sum moment and dyadic-band lemmas serve both pipelines.
 
 `AffineRootCounts` begins the arithmetic-progression applications. It proves
 that substitution by `qX+a` preserves root counts at moduli coprime to `q`,
@@ -577,14 +569,13 @@ splitting field and deduces the exact discriminant multiplier `q^(d(d−1))`,
 including degree zero. `AffineBadDiscriminant` uses the zero root counts at
 primes dividing `q` to prove that the new restricted discriminant divides the
 original one. `AffineWeights` proves the exact weight identity: the new weight
-is the old weight for masses coprime to `q` and zero otherwise. `AffineHeight`
-proves `height(Q(qX+a)) ≤ (g+1) height(Q) (2q)^g` when `|a|≤q`.
+is the old weight for masses coprime to `q` and zero otherwise.
 
 The progression estimate uses a direct bound on the actual values, rather than
 requiring a coefficient-height hypothesis for the transformed polynomial at a
 smaller scale. `ValueBoundContributions` supplies all four majorants from
 `|Q(t)|≤x^c`. `IntegerIntervalDecomposition` gives their exhaustive cover on
-any integer interval. `IntegerIntervalBound` combines them when `cσ≤gε/2`,
+any integer interval. `IntegerIntervalBound` specializes the common bound to `cσ≤gε/2`
 and absorbs the bounded range of `x` into the bound constant. The resulting
 estimate holds for every `x≥2` with rounded length bounds `y−1≤b−a≤2y`.
 Its analytic scale is independent of the interval's location.
@@ -1009,9 +1000,8 @@ The completed analytic chain is:
      above `(log x)^η` is `o(y)` for every `η > log 4 - 1`, using Corollary 4.
    - `CompleteResidueBlock` and `PolynomialDivisorWindowCount` lower-bound the
      total window count by `(y/2) Σ_{y/2<d≤y} ρ_Q(d)/d`.
-   - `DivisorHitLowerBound` combines these bounds with a numerical positive
-     lower bound for the root-density sum; that arithmetic input is now proved
-     in `IrreducibleRootDensity`.
+   - `DivisorHitFixedPrime` combines the unrestricted tail estimates with the
+     positive root-density lower bound from `IrreducibleRootDensity`.
    - `RoughCofactorBounds`, `RoughLogMass`, and `GreatestPrimeFactorCount` prove
      that rough cofactors have at most `k-1` prime factors, and at most `k-2`
      when a divisor lies in the window. Their logarithmic mass is bounded using
@@ -1085,11 +1075,10 @@ The completed analytic chain is:
    - `RootIdealLocalPolynomial` identifies every local correction with the
      polynomial `(1+ρ_Q(p)X)∏_{P|p}(1-X^f(P))`, proves its absolute summability,
      and proves positivity at `X=1/p`, including all exceptional primes.
-     `EulerSummabilityCriterion`, `RootIdealCorrectionSummable`, and
-     `RootIdealCorrectionPositive` prove global absolute convergence and positivity.
-   - `MinpolyRootDensity` obtains a positive squarefree-root mean for integral
-     primitive generators. `RootDensityFromIdealCounts` and
-     `IrreducibleRootDensity` use eventual prime-root agreement under integral
+     `EulerSummabilityCriterion` supplies the general convergence criterion.
+     `RootIdealCorrectionPositive` proves positivity assuming absolute convergence.
+   - `RootDensityFromIdealCounts` and `IrreducibleRootDensity` use eventual
+     prime-root agreement under integral
      normalization to prove the positive mean and dyadic density for the original
      irreducible polynomial, with no fixed-prime restriction.
    - `PrimeIdealResidueDegree` bounds the total residue degree above each prime.
@@ -1142,7 +1131,7 @@ All fifteen numbered results are accounted for: Theorems 1–3, Corollaries 1–
 and Lemma 2 have proofs with the scope and corrections recorded above; the
 printed Lemma 1 is refuted and the needed replacements are proved. No result
 has been substituted by an axiom or a structure field containing the desired
-conclusion. The full build and audit check 3,209 declarations and allow only
+conclusion. The full build and audit check 3,060 declarations and allow only
 `propext`, `Classical.choice`, and `Quot.sound`.
 
 
@@ -1160,9 +1149,8 @@ constants, including generated helpers. `scripts/CheckAxioms.lean` additionally 
 name is a theorem with only the permitted axioms and that Solution does not
 import Challenge. `scripts/check-submission.py` checks the local source layout,
 size limits, dependency pins, and agreement between metadata and declarations.
-The full sandboxed Comparator and independent-kernel checks are run by
-`scripts/verify-comparator.sh` and CI; the preparation session could not run them
-because its sandbox denied Bubblewrap a network-namespace socket. The maintainer
-reported a successful host run of `scripts/verify-comparator.sh` on 2026-10-30,
-covering Comparator and the bundled independent kernel checkers. The submission
-is not yet registered, and no immutable public snapshot has been verified here.
+The refactored working tree passed the full sandboxed Comparator check via
+`scripts/verify-comparator.sh` on 2026-10-30, using host permissions for Bubblewrap's
+namespace sandbox. The con-ron, NanoDa, and Lean default kernels all accepted the
+exported solution. CI runs the same script. The submission is not yet registered,
+and no immutable public snapshot has been verified here.
